@@ -1,8 +1,215 @@
+@import base.sass
 @import blueprint.sass
-@import blueprint/modules/scaffolding.sass
+@import blueprint/modules/link_icons.sass
+@import compass/utilities.sass
 @import compass/reset.sass
 
-+blueprint
-// Remove the scaffolding when you're ready to start doing visual design.
-// Or leave it in if you're happy with how blueprint looks out-of-the-box
-+blueprint-scaffolding
++blueprint-typography
+/+blueprint-utilities
++blueprint-debug
+
+body
+	background-color= !body_bg_color
+
+a
+	+hover-link
+
+
+#header
+	+container
+
+	color= !body_bg_text_color
+	background: url(../images/upper-right-stars.png) no-repeat bottom right
+	#logo
+		margin-top: 0px
+		margin-bottom: -10px 
+		+column(17)
+	#menu
+		+column(7,true)
+		color: #677891
+		font-size: 14px
+		ul
+			+horizontal-list
+			+piped-list
+			a
+				color: #f3f6fb
+	#nav
+		+column(24,true)
+		ul 
+			+horizontal-list
+			#welcome
+				+nav-hover("welcome", 100px)
+			#classes
+				+nav-hover("classes", 80px)
+			#franchising
+				+nav-hover("franchising", 114px)
+			#pictures
+				+nav-hover("pictures", 86px)
+			#contact
+				+nav-hover("contact", 85px)
+			li
+				font-size= !nav_font_size
+				background: #3b6795 
+				border-right: 1px solid #111d29
+				border-bottom: 2px solid #2c4d6f
+				padding: 0px
+				&:first-child
+					border-left: 1px solid #111d29
+				a
+					//font-family: "Gotham Medium"
+					height= !nav_height - !nav_font_size - 3
+					display: block
+					padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
+					padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
+					padding-left: 20px
+					padding-right: 20px
+					text-decoration: none
+					border: 1px solid #467db7
+					border-bottom= 2px "solid" #365e88
+					color: #bcd0e8
+					&:hover
+						color: white
+						padding-left: 19px
+						padding-right: 19px
+						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 1
+						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 3
+						border-left= 2px "solid" #365e88 - #111
+						border-right= 2px "solid" #365e88 - #111
+			li.selected
+				border-right: 1px solid black
+				background: white
+				border-bottom: 4px solid white
+				a
+					border: 1px solid white
+					color: #9a1c1b
+
+h2 a, h3 a
+	color= !article_title_color
+	&:hover
+		color= !article_hover_color
+			
+
+
+#middle
+	background-color: white
+	position: relative
+	border-bottom: 1px solid #fafafa
+
+	#badge
+		position: absolute
+		background: url(../images/star-badge.png) no-repeat
+		height: 98px
+		width: 99px
+		top: -60px
+		margin-left: -80px
+		z-index: 20
+
+	p
+		font: 1.2em "georgia, times, times new roman"
+		line-height: 1.2em
+
+	#content 
+		+container
+		padding-top: 50px
+		.article 
+			h3
+				margin-bottom: 5px
+				a
+					font-size: 1.05em
+				div
+					border: 1px solid #7e848e
+					width: 184px
+					height: 138px
+					margin-bottom: 20px
+					img
+						width: 182px
+						height: 136px
+						display: block
+						border: 1px solid #b2ae96
+				\+p
+					margin: 0px
+					padding: 0px
+
+		> .article
+			+column(5)
+		> .article + .article
+		
+		#right
+			+prepend(1)
+			+column(12,true)
+			.introduction
+				p
+					font: 1.3em "georgia, times, times new roman"
+					line-height: 1.3em
+					a:hover
+						color= #2e5378 - #111
+				h2
+					margin-bottom: 5px
+					a
+						&:hover
+							text-decoration: none
+				
+
+
+#footer
+	+container
+	color= !body_bg_text_color
+	padding-top: 57px
+	padding-bottom: 50px
+	background: url(../images/lower-right-stars.jpg) no-repeat top right
+
+	ul
+		+horizontal-list
+		+piped-list
+	p
+		font-weight: lighter
+		font-size: 13px
+		line-height: 1.4em
+	#left
+		+column(7)
+		#classes
+			h2
+				color: #bcd0e8
+				> a
+					display: block
+					+replace-text("our_classes.png", 0px, 0px)
+					height: 54px
+					width: 183px
+		#camp
+			h2
+				color: #bcd0e8
+				> a
+					display: block
+					+replace-text("summer_camp.png", 0px, 0px)
+					height: 54px
+					width: 256px
+
+	#news
+		+prepend(1)
+		+column(16,true)
+		h2
+			color: #bcd0e8
+			> a
+				display: block
+				+replace-text("latest_news.png", 0px, 0px)
+				height: 54px
+				width: 233px
+		h3
+			margin-bottom: 3px
+			a
+				color= !article_title_color + #555
+				font-size: 15px
+				font-weight: normal
+				&:hover
+					color= !article_title_color + #333
+
+			p
+	hr
+		+column(24,true)
+		
+	#bottom_nav
+		+column(24,true)
+		ul
+			text-align: center	
+			
+	
