@@ -3,201 +3,184 @@
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exsl="http://exslt.org/common"
-	xmlns:form="http://nick-dunn.co.uk/xslt/form"
-	extension-element-prefixes="exsl">
+	xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
+	extension-element-prefixes="exsl form">
 
 <!--
-Utility: Form Controls (form-controls.xsl)
-Description: A suite of templates to build robust form control elements attached to Symphony events
-Version: 0.2
-
-Changes:
-0.2
-- added "form" namespace to all global variables and templates
-- added top level documentation and TODO list
-
-0.1
-Initial release
-
-TODO:
-- add support for optgroups in selects
-- complete support for multi-section events when used with EventEx (finish $prefix implementation)
-- add support for integrating with Section Schemas extension:
-	- add inline meta information for client side validation (regex, required etc.)
-	- build a form entirely by reflecting a Section, one xsl:call-template to iterate and build each field? (proof of concept only, not useful in reality)
+Name: Form Controls
+Description: An XSLT utility to create powerful HTML forms with Symphony
+Version: 1.0
+Author: Nick Dunn <http://github.com/nickdunn>
+URL: http://github.com/nickdunn/form-controls/tree/master
 -->
 
+<!-- Class valid added to invalid form controls -->
 <xsl:variable name="form:invalid-class" select="'invalid'"/>
 
 <!--
-Template: validation-summary
-Description: provides a summary of validation errors from an event
+Name: validation-summary
+Description: Renders a success/error message and list of invalid fields
 Returns: HTML
 Parameters:
-	event		(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	header		(optional)		string		custom error message at the top of the summary. Defaults to Symphony's default event message
-	errors		(optional)		string		list of nodes providing custom error messages to override specific field messages e.g.
-	
-	<error for="title">Please enter a title</error>									any error on the title field (missing or invalid)
-	<error for="title" type="missing,invalid">Please enter a title</error>			any error on the title field (missing or invalid)
-	<error for="email" type="missing">Please enter an e-mail address</error>		when email is missing
-	<error for="email" type="invalid">Please enter a valid e-mail address</error> 	when email is invalid
+* `error-message` (optional, string/XPath): Error notification message. Defaults to Symphony Event message
+* `success-message` (optional, string/XPath): Success notification message. Defaults to Symphony Event message
+* `erorrs` (optional, XML): Custom error messages for individual fields as <error> nodes. Defaults to Symphony Event defaults
+* `section` (optional, string): Use with EventEx to show errors for a specific section handle only
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
 -->
 <xsl:template name="form:validation-summary">
-	<xsl:param name="event"/>
-	<xsl:param name="header" select="$event/message"/>
+	<xsl:param name="error-message" select="$event/message"/>
+	<xsl:param name="success-message" select="$event/message"/>
 	<xsl:param name="errors"/>
-
-    <xsl:if test="$event/@result='error'">
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
 	
-		<div class="validation-summary">
+	<xsl:variable name="index-key">
+		<xsl:call-template name="form:section-index-key">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
 	
-			<p><xsl:value-of select="$header"/></p>
-		
-			<ul>
-				<xsl:for-each select="$event/*[not(name()='message' or name()='post-values')]">
-					<li class="{name()}">
-						<xsl:choose>
-							<xsl:when test="@type='missing' and exsl:node-set($errors)/error[@for=name(current()) and contains(@type,'missing')]">
-								<xsl:value-of select="exsl:node-set($errors)/error[@for=name(current()) and contains(@type,'missing')]"/>
-							</xsl:when>
-							<xsl:when test="@type='invalid' and exsl:node-set($errors)/error[@for=name(current()) and contains(@type,'invalid')]">
-								<xsl:value-of select="exsl:node-set($errors)/error[@for=name(current()) and contains(@type,'invalid')]"/>
-							</xsl:when>
-							<xsl:when test="exsl:node-set($errors)/error[@for=name(current())]">
-								<xsl:value-of select="exsl:node-set($errors)/error[@for=name(current())]"/>
-							</xsl:when>
-							<xsl:otherwise>
-								<span class="field-name">
-									<xsl:value-of select="translate(name(),'-',' ')"/>
-								</span>
-								<xsl:text> is </xsl:text>
-								<xsl:value-of select="@type"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</li>
-				</xsl:for-each>
-			</ul>
-		
-		</div>
-
-	</xsl:if>
-</xsl:template>
-
-<!--
-Template: control-is-valid
-Description: returns whether a field is valid or not
-Returns: boolean (string "true|false")
-Parameters:
-	event		(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	handle		(mandatory)		string		handle of a Symphony field name
--->
-<xsl:template name="form:control-is-valid">
-	<xsl:param name="event"/>
-	<xsl:param name="handle"/>
+	<xsl:variable name="section-handle">
+		<xsl:call-template name="form:section-handle">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
 	
-	<xsl:choose>
-		<xsl:when test="$event/*[name()=string($handle) and (@type='missing' or @type='invalid')]">false</xsl:when>
-		<xsl:otherwise>true</xsl:otherwise>
-	</xsl:choose>
-</xsl:template>
-
-<!--
-Template: control-name
-Description: returns a keyed field name for use in HTML @name attributes
-Returns: string
-Parameters:
-	handle		(mandatory)		string		handle of a Symphony field name
-	prefix		(optional)		string		custom key prefix. Defaults to "fields["
--->
-<xsl:template name="form:control-name">
-	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
-	
-	<xsl:variable name="prefix">
+	<xsl:variable name="event-result">
 		<xsl:choose>
-			<xsl:when test="$prefix=''">
-				<xsl:text>fields</xsl:text>
+			<xsl:when test="$section!='fields' and $index-key!=''">
+				<xsl:copy-of select="$event//entry[@section-handle=$section-handle and @index-key=$index-key]"/>
+			</xsl:when>
+			<xsl:when test="$section!='fields'">
+				<xsl:copy-of select="$event//entry[@section-handle=$section-handle]"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="$prefix"/>
+				<xsl:copy-of select="$event"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
 	
-	<xsl:value-of select="concat($prefix, '[', $handle, ']')"/>
-</xsl:template>
+	<xsl:choose>
+		<xsl:when test="exsl:node-set($event-result)//*[@result='error']">
+			
+			<div class="validation-summary error">
 
-<!--
-Template: control-id
-Description: returns a sanitised version of a field's @name for use as a unique @id attribute
-Returns: string
-Parameters:
-	name		(mandatory)		string		form field's @name attribute e.g. "fields[title]"
--->
-<xsl:template name="form:control-id">
-	<xsl:param name="name"/>
+				<p><xsl:value-of select="$error-message"/></p>
+
+				<ul>
+					<xsl:for-each select="exsl:node-set($event-result)//*[not(name()='entry') and @type]">
+						<li>
+							<label>
+
+								<xsl:attribute name="for">
+									<xsl:choose>
+										<xsl:when test="parent::entry/@index-key">
+											<xsl:value-of select="concat(parent::entry/@section-handle,'-',parent::entry/@index-key,'-',name())"/>
+										</xsl:when>
+										<xsl:when test="parent::entry">
+											<xsl:value-of select="concat(parent::entry/@section-handle,'-',name())"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="concat('fields-',name())"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+
+								<xsl:choose>
+
+									<!-- missing and a section specified -->
+									<xsl:when test="@type='missing' and exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'missing') and @section = current()/parent::entry/@section-handle]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'missing') and @section = current()/parent::entry/@section-handle]"/>
+									</xsl:when>
+									<!-- missing -->
+									<xsl:when test="@type='missing' and exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'missing')]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'missing')]"/>
+									</xsl:when>
+
+									<!-- invalid and a section specified-->
+									<xsl:when test="@type='invalid' and exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'invalid') and @section = current()/parent::entry/@section-handle]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'invalid') and @section = current()/parent::entry/@section-handle]"/>
+									</xsl:when>
+									<!-- invalid -->
+									<xsl:when test="@type='invalid' and exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'invalid')]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current()) and contains(@type,'invalid')]"/>
+									</xsl:when>
+
+									<!-- no specific type match, section specified -->
+									<xsl:when test="exsl:node-set($errors)/error[@handle=name(current()) and not(@type) and @section = current()/parent::entry/@section-handle]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current()) and @section = current()/parent::entry/@section-handle]"/>
+									</xsl:when>
+									<!-- no specific type match -->
+									<xsl:when test="exsl:node-set($errors)/error[@handle=name(current()) and not(@type)]">
+										<xsl:value-of select="exsl:node-set($errors)/error[@handle=name(current())]"/>
+									</xsl:when>
+
+									<xsl:otherwise>
+										<span class="field-name">
+											<xsl:value-of select="translate(name(),'-',' ')"/>
+										</span>
+										<xsl:text> is </xsl:text>
+										<xsl:value-of select="@type"/>
+									</xsl:otherwise>
+
+								</xsl:choose>
+							</label>
+						</li>
+					</xsl:for-each>
+				</ul>
+
+			</div>
+			
+		</xsl:when>
 		
-	<xsl:value-of select="translate(translate($name, '[', '-'),']','')"/>
+		<xsl:when test="exsl:node-set($event-result)//*[@result='success']">
+		
+			<div class="validation-summary success">
+				<p><xsl:value-of select="$success-message"/></p>
+			</div>
+			
+		</xsl:when>
+	</xsl:choose>
+
 </xsl:template>
 
 <!--
-Template: label
-Description: builds an HTML label element
+Name: form:label
+Description: Renders an HTML `label` element that can be explicitly assigned to another form element. Can be wrapped around other controls.
 Returns: HTML <label> element
 Parameters:
-	event			(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	for				(mandatory)		string		handle of a Symphony field name that this label is associated with
-	text			(optional)		string		text value of the label. Defaults to field name ($for value)
-	prefix			(optional)		string		custom key prefix
-	child			(XML)			string		places this XML inside the label, for wrapping elements with the label
-	child-position	(optional)		string		place the child before or after the label text. Defaults to "after"
-	class			(optional)		string		value of the HTML @class attribute
+* `for` (optional, string): Handle of a Symphony field name that this label is associated with
+* `text` (optional, string): Text value of the label. Defaults to field name ($for value)
+* `child` (optional, XML): Places this XML inside the label, for wrapping elements with the label
+* `child-position` (optional, string): Place the child before or after the label text. Defaults to "after"
+* `class` (optional, string): Value of the HTML @class attribute
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
 -->
 <xsl:template name="form:label">
-	<xsl:param name="event"/>
 	<xsl:param name="for"/>
 	<xsl:param name="text"/>
-	<xsl:param name="prefix"/>
 	<xsl:param name="child"/>
 	<xsl:param name="child-position" select="'after'"/>
 	<xsl:param name="class"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
 	
-	<xsl:variable name="valid">
-		<xsl:call-template name="form:control-is-valid">
-			<xsl:with-param name="event" select="$event"/>
-			<xsl:with-param name="handle" select="$for"/>
-		</xsl:call-template>
-	</xsl:variable>
+	<xsl:param name="handle" select="$for"/>
 	
-	<xsl:variable name="name">
-		<xsl:call-template name="form:control-name">
-			<xsl:with-param name="handle" select="$for"/>
-			<xsl:with-param name="prefix" select="$prefix"/>
-		</xsl:call-template>
-	</xsl:variable>
-	
-	<xsl:variable name="id">
-		<xsl:call-template name="form:control-id">
-			<xsl:with-param name="name" select="$name"/>
-		</xsl:call-template>
-	</xsl:variable>
-	
-	<label>
+	<xsl:element name="label" use-attribute-sets="form:attribute-class">
 		
-		<xsl:attribute name="for">
-			<xsl:value-of select="$id"/>
-		</xsl:attribute>
-		
-		<xsl:if test="$class or $valid='false'">
-			<xsl:attribute name="class">
-				<xsl:value-of select="$class"/>
-				<xsl:if test="$valid='false'">
-					<xsl:if test="$class!=''">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:value-of select="$form:invalid-class"/>
-				</xsl:if>
+		<xsl:if test="$for">
+			<xsl:attribute name="for">
+				<xsl:call-template name="form:control-id">
+					<xsl:with-param name="name">
+						<xsl:call-template name="form:control-name">
+							<xsl:with-param name="handle" select="$for"/>
+							<xsl:with-param name="section" select="$section"/>
+						</xsl:call-template>
+					</xsl:with-param>
+				</xsl:call-template>
 			</xsl:attribute>
 		</xsl:if>
 		
@@ -206,11 +189,14 @@ Parameters:
 		</xsl:if>
 		
 		<xsl:choose>
+			<xsl:when test="$text and $child">
+				<xsl:value-of select="concat($text,' ')"/>
+			</xsl:when>
 			<xsl:when test="$text">
 				<xsl:value-of select="$text"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="$for"/>
+				<xsl:value-of select="concat($for,' ')"/>
 			</xsl:otherwise>
 		</xsl:choose>
 		
@@ -218,131 +204,131 @@ Parameters:
 			<xsl:copy-of select="$child"/>
 		</xsl:if>
 		
-	</label>
+	</xsl:element>
 	
 </xsl:template>
 
 <!--
-Template: checkbox
-Description: builds an HTML checkbox element
+Name: form:checkbox
+Description: Renders an HTML checkbox `input` element
 Returns: HTML <input> element
 Parameters:
-	event				(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	handle				(mandatory)		string		handle of a Symphony field name
-	prefix				(optional)		string		custom key prefix
-	checked				(optional)		string		existing value to pre-check the checkbox ("yes|no")
-	checked-by-default	(optional)		string		when no existing $checked value, should this checkbox be selected? Defaults to "no"
-	class				(optional)		string		value of the HTML @class attribute
-	title				(optional)		string		value of the HTML @title attribute
+* `handle` (mandatory, string): Handle of the field name
+* `checked` (optional, string): Initial checked state ("yes", "no"). Defaults to "no"
+* `checked-by-default` (optional, string): When there is no initial $checked value (a fresh form), check by default ("yes", "no"). Defaults to "no"
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
+* `allow-multiple` (optional, string): Internal use only ("yes", "no"). Whether checkbox is part of a checkbox list. Defaults to "no"
+* `allow-multiple-value` (optional, string): Internal use only. Overrides default "yes" value when part of a checkbox list
 -->
 <xsl:template name="form:checkbox">
-	<xsl:param name="event"/>
 	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
 	<xsl:param name="checked"/>
 	<xsl:param name="checked-by-default" select="'no'"/>
 	<xsl:param name="class"/>
 	<xsl:param name="title"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
+	<xsl:param name="allow-multiple" select="'no'"/>
+	<xsl:param name="allow-multiple-value"/>
 	
-	<input type="hidden" value="no">
-		<xsl:attribute name="name">
-			<xsl:call-template name="form:control-name">
-				<xsl:with-param name="handle" select="$handle"/>
-				<xsl:with-param name="prefix" select="$prefix"/>
-			</xsl:call-template>
-		</xsl:attribute>
-	</input>
+	<xsl:if test="$allow-multiple='no'">
+		<input type="hidden" value="no">
+			<xsl:attribute name="name">
+				<xsl:call-template name="form:control-name">
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+				</xsl:call-template>
+			</xsl:attribute>
+		</input>
+	</xsl:if>
 	
 	<xsl:call-template name="form:radio">
 		<xsl:with-param name="event" select="$event"/>
 		<xsl:with-param name="handle" select="$handle"/>
-		<xsl:with-param name="prefix" select="$prefix"/>
-		<xsl:with-param name="value" select="$checked"/>
+		<xsl:with-param name="section" select="$section"/>
+		<xsl:with-param name="value">
+			<xsl:choose>
+				<xsl:when test="$allow-multiple='yes'">
+					<xsl:value-of select="$allow-multiple-value"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$checked"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:with-param>
+		<xsl:with-param name="existing-value">
+			<xsl:if test="$allow-multiple='yes'">
+				<xsl:value-of select="$checked"/>
+			</xsl:if>
+		</xsl:with-param>
 		<xsl:with-param name="checked-by-default" select="$checked-by-default"/>
 		<xsl:with-param name="class" select="$class"/>
 		<xsl:with-param name="title" select="$title"/>
 		<xsl:with-param name="type" select="'checkbox'"/>
+		<xsl:with-param name="allow-multiple" select="$allow-multiple"/>
 	</xsl:call-template>
 	
 </xsl:template>
 
 <!--
-Template: radio
-Description: builds an HTML radio element
+Name: form:radio
+Description: Renders an HTML radio `input` element
 Returns: HTML <input> element
 Parameters:
-	event				(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	handle				(mandatory)		string		handle of a Symphony field name
-	prefix				(optional)		string		custom key prefix
-	value				(optional)		string		the selected value of this radio button
-	existing-value		(optional)		string		existing value to pre-check a radio button
-	checked-by-default	(optional)		string		when no $existing-value, should this radio button be selected? Defaults to "no"
-	class				(optional)		string		value of the HTML @class attribute
-	title				(optional)		string		value of the HTML @title attribute
-	type				(optional)		string		internal use ("radio|checkbox"). Defaults to "radio"
+* `handle` (mandatory, string): Handle of the field name
+* `value` (optional, string): The selected value for this radio sent when the form is submitted
+* `existing-value` (optional, string): An initial value. Selects radio if it matches $value
+* `checked-by-default` (optional, string): When there is no initial $existing-value (a fresh form), select by default ("yes", "no"). Defaults to "no"
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `type` (optional, string): Internal use only ("radio", "checkbox"). Defaults to "radio"
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
+* `allow-multiple` (optional, string): Internal use only ("yes", "no"). Whether control is part of a radio/checkbox list. Defaults to "no"
 -->
 <xsl:template name="form:radio">
-	<xsl:param name="event"/>
 	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
 	<xsl:param name="value"/>
 	<xsl:param name="existing-value"/>
 	<xsl:param name="checked-by-default" select="'no'"/>
 	<xsl:param name="class"/>
 	<xsl:param name="title"/>
+	<xsl:param name="event" select="$form:event"/>
+	<xsl:param name="section" select="'fields'"/>
 	<xsl:param name="type" select="'radio'"/>
+	<xsl:param name="allow-multiple" select="'no'"/>
 	
-	<xsl:variable name="value" select="normalize-space(string($value))"/>
-	<xsl:variable name="selected-value" select="normalize-space(string($existing-value))"/>
-	<xsl:variable name="postback-value" select="normalize-space(string($event/post-values/*[name()=$handle]))"/>
+	<xsl:variable name="value" select="normalize-space($value)"/>
+	<xsl:variable name="selected-value" select="normalize-space($existing-value)"/>
 	
-	<xsl:variable name="valid">
-		<xsl:call-template name="form:control-is-valid">
+	<xsl:variable name="postback-value">
+		<xsl:call-template name="form:postback-value">
 			<xsl:with-param name="event" select="$event"/>
 			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
 		</xsl:call-template>
 	</xsl:variable>
 	
-	<xsl:variable name="name">
-		<xsl:call-template name="form:control-name">
-			<xsl:with-param name="handle" select="$handle"/>
-			<xsl:with-param name="prefix" select="$prefix"/>
-		</xsl:call-template>
-	</xsl:variable>
+	<xsl:element name="input" use-attribute-sets="form:attributes-general">
 	
-	<input type="{$type}">
+		<xsl:attribute name="type"><xsl:value-of select="$type"/></xsl:attribute>
 		
-		<xsl:attribute name="name">
-			<xsl:value-of select="$name"/>
-		</xsl:attribute>
-		
-		<xsl:attribute name="id">
-			<xsl:call-template name="form:control-id">
-				<xsl:with-param name="name" select="$name"/>
-			</xsl:call-template>
-		</xsl:attribute>
-		
-		<xsl:if test="$class or $valid='false'">
-			<xsl:attribute name="class">
-				<xsl:value-of select="$class"/>
-				<xsl:if test="$valid='false'">
-					<xsl:if test="$class!=''">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:value-of select="$form:invalid-class"/>
-				</xsl:if>
-			</xsl:attribute>
-		</xsl:if>
-		
-		<xsl:if test="$title">
-			<xsl:attribute name="title">
-				<xsl:value-of select="$title"/>
+		<xsl:if test="$allow-multiple='yes'">
+			<xsl:attribute name="name">
+				<xsl:call-template name="form:control-name">
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+				</xsl:call-template>
+				<xsl:text>[]</xsl:text>
 			</xsl:attribute>
 		</xsl:if>
 		
 		<xsl:attribute name="value">
 			<xsl:choose>
-				<xsl:when test="$type='checkbox'">
+				<xsl:when test="$type='checkbox' and $allow-multiple='no'">
 					<xsl:text>yes</xsl:text>
 				</xsl:when>
 				<xsl:otherwise>
@@ -379,97 +365,70 @@ Parameters:
 					<xsl:when test="$postback-value='' and $value='' and $checked-by-default='yes'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:when>
+					<!-- when allowing multiple, check if this value exists -->
+					<xsl:when test="$allow-multiple='yes' and $selected-value='yes'">
+						<xsl:attribute name="checked">checked</xsl:attribute>
+					</xsl:when>					
 				</xsl:choose>
 			</xsl:when>
 		</xsl:choose>
 		  
-	</input>
+	</xsl:element>
 	
 </xsl:template>
 
 <!--
-Template: input
-Description: builds an HTML input element
+Name: form:input
+Description: Renders an HTML text `input` element with support for `password` and `file` types
 Returns: HTML <input> element
 Parameters:
-	event				(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	handle				(mandatory)		string		handle of a Symphony field name
-	prefix				(optional)		string		custom key prefix
-	value				(optional)		string		value of the HTML @value attribute
-	class				(optional)		string		value of the HTML @class attribute
-	title				(optional)		string		value of the HTML @title attribute
-	type				(optional)		string		value of the HTML @type attribute. Defaults to "text". Used for "file" inputs
-	size				(optional)		string		value of the HTML @size attribute
-	maxlength			(optional)		string		value of the HTML @maxlength attribute
+* `handle` (mandatory, string): Handle of the field name
+* `value` (optional, string): Initial value of form control. Will not work for `file` inputs.
+* `type` (optional, string): Type attribute value ("text", "password" "file"). Defaults to "text"
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `size` (optional, string): Size attribute value
+* `maxlength` (optional, string): Maxlength attribute value
+* `autocomplete` (optional, string): Autocomplete attribute value ("off"). Not set by default
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
 -->
 <xsl:template name="form:input">
-	<xsl:param name="event"/>
 	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
 	<xsl:param name="value"/>
 	<xsl:param name="class"/>
 	<xsl:param name="title"/>
 	<xsl:param name="type" select="'text'"/>
 	<xsl:param name="size"/>
 	<xsl:param name="maxlength"/>
+	<xsl:param name="autocomplete"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
 	
-	<xsl:variable name="initial-value" select="normalize-space(string($value))"/>
-	<xsl:variable name="postback-value" select="normalize-space(string($event/post-values/*[name()=$handle]))"/>
-	
-	<xsl:variable name="valid">
-		<xsl:call-template name="form:control-is-valid">
+	<xsl:variable name="initial-value" select="normalize-space($value)"/>
+
+	<xsl:variable name="postback-value">
+		<xsl:call-template name="form:postback-value">
 			<xsl:with-param name="event" select="$event"/>
 			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
 		</xsl:call-template>
 	</xsl:variable>
 	
-	<xsl:variable name="name">
-		<xsl:call-template name="form:control-name">
-			<xsl:with-param name="handle" select="$handle"/>
-			<xsl:with-param name="prefix" select="$prefix"/>
-		</xsl:call-template>
-	</xsl:variable>
-	
-	<input type="{$type}">
+	<xsl:element name="input" use-attribute-sets="form:attributes-general">
 		
-		<xsl:attribute name="name">
-			<xsl:value-of select="$name"/>
-		</xsl:attribute>
-		
-		<xsl:attribute name="id">
-			<xsl:call-template name="form:control-id">
-				<xsl:with-param name="name" select="$name"/>
-			</xsl:call-template>
-		</xsl:attribute>
-		
-		<xsl:if test="$class or $valid='false'">
-			<xsl:attribute name="class">
-				<xsl:value-of select="$class"/>
-				<xsl:if test="$valid='false'">
-					<xsl:if test="$class!=''">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:value-of select="$form:invalid-class"/>
-				</xsl:if>
-			</xsl:attribute>
-		</xsl:if>
-		
-		<xsl:if test="$title">
-			<xsl:attribute name="title">
-				<xsl:value-of select="$title"/>
-			</xsl:attribute>
-		</xsl:if>
+		<xsl:attribute name="type"><xsl:value-of select="$type"/></xsl:attribute>
 		
 		<xsl:if test="$size">
-			<xsl:attribute name="size">
-				<xsl:value-of select="$size"/>
-			</xsl:attribute>
+			<xsl:attribute name="size"><xsl:value-of select="$size"/></xsl:attribute>
 		</xsl:if>
 		
 		<xsl:if test="$maxlength">
-			<xsl:attribute name="maxlength">
-				<xsl:value-of select="$maxlength"/>
-			</xsl:attribute>
+			<xsl:attribute name="maxlength"><xsl:value-of select="$maxlength"/></xsl:attribute>
+		</xsl:if>
+		
+		<xsl:if test="$autocomplete='off'">
+			<xsl:attribute name="autocomplete"><xsl:value-of select="$autocomplete"/></xsl:attribute>
 		</xsl:if>
 		
 		<xsl:attribute name="value">
@@ -482,91 +441,52 @@ Parameters:
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:attribute>
-	</input>
+	
+	</xsl:element>
 	
 </xsl:template>
 
 <!--
-Template: textarea
-Description: builds an HTML textarea element
+Name: form:textarea
+Description: Renders an HTML `textarea` element
 Returns: HTML <textarea> element
 Parameters:
-	event				(mandatory)		XPath		XPath expression to the specific event within the page <events> node
-	handle				(mandatory)		string		handle of a Symphony field name
-	prefix				(optional)		string		custom key prefix
-	value				(optional)		string		value of the textarea
-	class				(optional)		string		value of the HTML @class attribute
-	title				(optional)		string		value of the HTML @title attribute
-	rows				(optional)		string		value of the HTML @rows attribute
-	cols				(optional)		string		value of the HTML @cols attribute
+* `handle` (mandatory, string): Handle of the field name
+* `value` (optional, string): Contents of the textarea
+* `class` (optional, string): Class attribute value
+* `rows` (optional, string): Rows attribute value
+* `cols` (optional, string): cols attribute value
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
 -->
 <xsl:template name="form:textarea">
-	<xsl:param name="event"/>
 	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
 	<xsl:param name="value"/>
 	<xsl:param name="class"/>
 	<xsl:param name="title"/>
 	<xsl:param name="rows"/>
 	<xsl:param name="cols"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
 	
-	<xsl:variable name="initial-value" select="normalize-space(string($value))"/>
-	<xsl:variable name="postback-value" select="normalize-space(string($event/post-values/*[name()=$handle]))"/>
+	<xsl:variable name="initial-value" select="normalize-space($value)"/>
 	
-	<xsl:variable name="valid">
-		<xsl:call-template name="form:control-is-valid">
+	<xsl:variable name="postback-value">
+		<xsl:call-template name="form:postback-value">
 			<xsl:with-param name="event" select="$event"/>
 			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
 		</xsl:call-template>
 	</xsl:variable>
 	
-	<xsl:variable name="name">
-		<xsl:call-template name="form:control-name">
-			<xsl:with-param name="handle" select="$handle"/>
-			<xsl:with-param name="prefix" select="$prefix"/>
-		</xsl:call-template>
-	</xsl:variable>
-	
-	<textarea>
-
-		<xsl:attribute name="name">
-			<xsl:value-of select="$name"/>
-		</xsl:attribute>
-		
-		<xsl:attribute name="id">
-			<xsl:call-template name="form:control-id">
-				<xsl:with-param name="name" select="$name"/>
-			</xsl:call-template>
-		</xsl:attribute>
-		
-		<xsl:if test="$class or $valid='false'">
-			<xsl:attribute name="class">
-				<xsl:value-of select="$class"/>
-				<xsl:if test="$valid='false'">
-					<xsl:if test="$class!=''">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:value-of select="$form:invalid-class"/>
-				</xsl:if>
-			</xsl:attribute>
-		</xsl:if>
-		
-		<xsl:if test="$title">
-			<xsl:attribute name="title">
-				<xsl:value-of select="$title"/>
-			</xsl:attribute>
-		</xsl:if>
+	<xsl:element name="textarea" use-attribute-sets="form:attributes-general">
 		
 		<xsl:if test="$rows">
-			<xsl:attribute name="rows">
-				<xsl:value-of select="$rows"/>
-			</xsl:attribute>
+			<xsl:attribute name="rows"><xsl:value-of select="$rows"/></xsl:attribute>
 		</xsl:if>
 		
 		<xsl:if test="$cols">
-			<xsl:attribute name="cols">
-				<xsl:value-of select="$cols"/>
-			</xsl:attribute>
+			<xsl:attribute name="cols"><xsl:value-of select="$cols"/></xsl:attribute>
 		</xsl:if>
 		
 		<xsl:choose>
@@ -578,128 +498,75 @@ Parameters:
 			</xsl:otherwise>
 		</xsl:choose>
 		
-	</textarea>
+	</xsl:element>
 	
 </xsl:template>
 
 <!--
-Template: select
-Description: builds an HTML select element
+Name: form:select
+Description: Renders an HTML `select` element
 Returns: HTML <select> element
 Parameters:
-	event				(mandatory)		XPath				XPath expression to the specific event within the page <events> node
-	handle				(mandatory)		string				handle of a Symphony field name
-	prefix				(optional)		string				custom key prefix
-	value				(optional)		string				existing value
-	class				(optional)		string				value of the HTML @class attribute
-	title				(optional)		string				value of the HTML @title attribute
-	options				(mandatory)		string/Xpath/XML	options to build a list of <option> elements. Has presets! e.g.
-	
-	String:	'days'
-			returns a list of 31 days, for building a series of date selects
-			e.g. <option>1</option> ... <option>31</option>
-		
-	String:	'months'
-			returns a list of 12 months
-			e.g. <option value="01">January</option> ... <option value="12">December</option>
-		
-	String:	'years+10' ('years+N')
-			returns a list of years between this year and 10 years from now
-			e.g. <option>2009</option> ... <option>2019</option>
-	
-	String:	'years-3' ('years-N')
-			returns a list of years between this year and 3 years in the past
-			e.g. <option>2009</option> ... <option>2006</option>
-	
-	In addition to present strings, $options can be a node-set (xsl:copy-of) or static XML.
-	If the option has one of the following attributes, they will be used as the @value in the HTML (in this order of preference)
-		@handle, @id, @link-id, @link-handle, @value
-	
-	Therefore acceptable with-param examples can be in the form:
-	
-		<xsl:with-param name="options" select="'days'"/> (return a list of 31 days)
-		
-		<xsl:with-param name="options" select="/data/datasource/entry/tags/item"/> (build a list of tags)
-		
-		<xsl:with-param name="options">
-			<item handle="hello">Hello</item>
-			<item handle="world">World</item>
-		</xsl:with-param>
-	
-		<xsl:with-param name="options">
-			<option>Hello</option>
-			<option>World</option>
-		</xsl:with-param>
-		
-		<xsl:with-param name="options">
-			<option value="">Please select a tag:</option>
-			<xsl:copy-of select="/data/datasource/entry/tags/item"/>
-		</xsl:with-param>	
+* `handle` (mandatory, string): Handle of the field name
+* `options` (mandatory, XPath/XML): Options to build a list of <option> elements. Has presets! See examples.
+* `value` (optional, string/XML): Initial selected value
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `allow-multiple` (optional, string): Allow selection of multiple options ("yes", "no"). Defaults to "no"
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
 -->
 <xsl:template name="form:select">
-	<xsl:param name="event"/>
-	<xsl:param name="handle"/>
-	<xsl:param name="prefix"/>
+	<xsl:param name="handle"/>	
 	<xsl:param name="value"/>
 	<xsl:param name="class"/>
 	<xsl:param name="title"/>
 	<xsl:param name="options"/>
+	<xsl:param name="allow-multiple"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
 
-	<xsl:variable name="initial-value" select="normalize-space(string($value))"/>
-	<xsl:variable name="postback-value" select="normalize-space(string($event/post-values/*[name()=$handle]))"/>
+	<xsl:variable name="initial-value">
+		<xsl:choose>
+			<xsl:when test="count(exsl:node-set($value)/*) &gt; 1">
+				<xsl:copy-of select="$value"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<value><xsl:value-of select="normalize-space($value)"/></value>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 	
-	<xsl:variable name="valid">
-		<xsl:call-template name="form:control-is-valid">
+	<xsl:variable name="postback-value">
+		<xsl:call-template name="form:postback-value">
 			<xsl:with-param name="event" select="$event"/>
 			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
 		</xsl:call-template>
 	</xsl:variable>
 	
-	<xsl:variable name="name">
-		<xsl:call-template name="form:control-name">
-			<xsl:with-param name="handle" select="$handle"/>
-			<xsl:with-param name="prefix" select="$prefix"/>
-		</xsl:call-template>
-	</xsl:variable>
-	
-	<select>
+	<xsl:element name="select" use-attribute-sets="form:attributes-general">
 		
-		<xsl:attribute name="name">
-			<xsl:value-of select="$name"/>
-		</xsl:attribute>
-		
-		<xsl:attribute name="id">
-			<xsl:call-template name="form:control-id">
-				<xsl:with-param name="name" select="$name"/>
-			</xsl:call-template>
-		</xsl:attribute>
-		
-		<xsl:if test="$class or $valid='false'">
-			<xsl:attribute name="class">
-				<xsl:value-of select="$class"/>
-				<xsl:if test="$valid='false'">
-					<xsl:if test="$class!=''">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:value-of select="$form:invalid-class"/>
-				</xsl:if>
-			</xsl:attribute>
+		<xsl:if test="$allow-multiple">
+			<xsl:attribute name="multiple">multiple</xsl:attribute>
+			<xsl:variable name="name">
+				<xsl:call-template name="form:control-name">
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+				</xsl:call-template>
+				<xsl:text>[]</xsl:text>
+			</xsl:variable>
+			<xsl:attribute name="name"><xsl:value-of select="$name"/></xsl:attribute>
 		</xsl:if>
 		
-		<xsl:if test="$title">
-			<xsl:attribute name="title">
-				<xsl:value-of select="$title"/>
-			</xsl:attribute>
-		</xsl:if>
-	
 		<xsl:variable name="options">
 			<xsl:choose>
 				
 				<xsl:when test="string($options)='days'">
 					<option value="">Day</option>
-					<xsl:call-template name="incrementor">
+					<xsl:call-template name="form:incrementor">
 						<xsl:with-param name="start" select="'1'"/>
-						<xsl:with-param name="end" select="31"/>
+						<xsl:with-param name="iterations" select="31"/>
 					</xsl:call-template>
 				</xsl:when>
 				
@@ -723,16 +590,16 @@ Parameters:
 					<option value="">Year</option>
 					<xsl:choose>
 						<xsl:when test="substring($options, 6, 1) = '-'">
-							<xsl:call-template name="incrementor">
+							<xsl:call-template name="form:incrementor">
 								<xsl:with-param name="start" select="$this-year"/>
-								<xsl:with-param name="end" select="number(substring-after($options,'-') + 1)"/>
+								<xsl:with-param name="iterations" select="number(substring-after($options,'-') + 1)"/>
 								<xsl:with-param name="direction" select="'-'"/>
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:when test="substring($options, 6, 1) = '+'">
-							<xsl:call-template name="incrementor">
+							<xsl:call-template name="form:incrementor">
 								<xsl:with-param name="start" select="$this-year"/>
-								<xsl:with-param name="end" select="number(substring-after($options,'+') + 1)"/>
+								<xsl:with-param name="iterations" select="number(substring-after($options,'+') + 1)"/>
 							</xsl:call-template>
 						</xsl:when>
 					</xsl:choose>
@@ -741,7 +608,7 @@ Parameters:
 				<xsl:otherwise>
 					<xsl:for-each select="exsl:node-set($options)/* | exsl:node-set($options)">
 						<xsl:if test="text()!=''">
-							<option>
+							<option>a
 								<xsl:if test="@handle or @id or @link-id or @link-handle or @value">
 									<xsl:attribute name="value">
 										<xsl:value-of select="@handle | @id | @link-id | @link-handle | @value"/>
@@ -771,15 +638,11 @@ Parameters:
 		
 			<option>
 				<xsl:if test="@value">
-					<xsl:attribute name="value">
-						<xsl:value-of select="@value"/>
-					</xsl:attribute>
+					<xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute>
 				</xsl:if>
 				
-				<xsl:if test="($event and $option-value=$postback-value) or (not($event) and $option-value=$initial-value)">
-					<xsl:attribute name="selected">
-						<xsl:text>selected</xsl:text>
-					</xsl:attribute>
+				<xsl:if test="($event and $option-value=exsl:node-set($postback-value)/value) or (not($event) and $option-value=exsl:node-set($initial-value)/*)">
+					<xsl:attribute name="selected"><xsl:text>selected</xsl:text></xsl:attribute>
 				</xsl:if>
 				
 				<xsl:value-of select="text()"/>
@@ -787,39 +650,360 @@ Parameters:
 			
 		</xsl:for-each>
 		
-  </select>
+  </xsl:element>
 
 </xsl:template>
 
 <!--
-Template: incrementor
+Name: form:radiobutton-list
+Description: Renders a collection of HTML radio `input` elements wrapped with `label` elements
+Returns: HTML <select> element
+Parameters:
+* `handle` (mandatory, string): Handle of the field name
+* `options` (mandatory, XPath/XML): Options to build a list of <option> elements. Has presets! See examples.
+* `value` (optional, string): Initial selected value
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
+-->
+<xsl:template name="form:radiobutton-list">
+	<xsl:param name="handle"/>
+	<xsl:param name="value"/>
+	<xsl:param name="class"/>
+	<xsl:param name="title"/>
+	<xsl:param name="options"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
+	
+	<xsl:variable name="select">
+		<xsl:call-template name="form:select">
+			<xsl:with-param name="event" select="$event"/>
+			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
+			<xsl:with-param name="value" select="$value"/>
+			<xsl:with-param name="class" select="$class"/>
+			<xsl:with-param name="title" select="$title"/>
+			<xsl:with-param name="options" select="$options"/>
+		</xsl:call-template>
+	</xsl:variable>
+		
+	<xsl:for-each select="exsl:node-set($select)//option">
+		
+		<xsl:call-template name="form:label">
+			<xsl:with-param name="event" select="$event"/>
+			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
+			<xsl:with-param name="text" select="."/>
+			<xsl:with-param name="child-position" select="'before'"/>
+			<xsl:with-param name="child">
+				<xsl:call-template name="form:radio">
+					<xsl:with-param name="event" select="$event"/>
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+					<xsl:with-param name="value" select="@value | ."/>
+					<xsl:with-param name="existing-value">
+						<xsl:if test="@selected">
+							<xsl:value-of select="@value | ."/>
+						</xsl:if>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:with-param>
+		</xsl:call-template>
+		
+	</xsl:for-each>
+	
+</xsl:template>
+
+<!--
+Name: form:checkbox-list
+Description: Renders a collection of HTML checkbox `input` elements wrapped with `label` elements
+Returns: HTML <select> element
+Parameters:
+* `handle` (mandatory, string): Handle of the field name
+* `options` (mandatory, XPath/XML): Options to build a list of <option> elements. Has presets! See examples.
+* `value` (optional, string/XML): Initial selected value
+* `class` (optional, string): Class attribute value
+* `title` (optional, string): Title attribute value
+* `section` (optional, string): Use with EventEx to change "fields[...]" to a section handle
+* `event` (optional, XPath): XPath expression to the specific event within the page <events> node
+-->
+<xsl:template name="form:checkbox-list">
+	<xsl:param name="handle"/>	
+	<xsl:param name="value"/>
+	<xsl:param name="class"/>
+	<xsl:param name="title"/>
+	<xsl:param name="options"/>
+	<xsl:param name="section" select="'fields'"/>
+	<xsl:param name="event" select="$form:event"/>
+	
+	<xsl:variable name="select">
+		<xsl:call-template name="form:select">
+			<xsl:with-param name="event" select="$event"/>
+			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
+			<xsl:with-param name="value" select="$value"/>
+			<xsl:with-param name="class" select="$class"/>
+			<xsl:with-param name="title" select="$title"/>
+			<xsl:with-param name="options" select="$options"/>
+			<xsl:with-param name="allow-multiple" select="'yes'"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<xsl:for-each select="exsl:node-set($select)//option">
+		
+		<xsl:call-template name="form:label">
+			<xsl:with-param name="event" select="$event"/>
+			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
+			<xsl:with-param name="text" select="."/>
+			<xsl:with-param name="child-position" select="'before'"/>
+			<xsl:with-param name="child">
+				<xsl:call-template name="form:checkbox">
+					<xsl:with-param name="event" select="$event"/>
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+					<xsl:with-param name="allow-multiple" select="'yes'"/>
+					<xsl:with-param name="allow-multiple-value" select="@value | ."/>
+					<xsl:with-param name="checked">
+						<xsl:if test="@selected">yes</xsl:if>
+					</xsl:with-param>
+					<xsl:with-param name="existing-value">
+						<xsl:value-of select="@value | ."/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:with-param>
+		</xsl:call-template>
+		
+	</xsl:for-each>
+	
+</xsl:template>
+
+<!-- Attributes common to all form controls (name, id, title) -->
+<xsl:attribute-set name="form:attributes-general" use-attribute-sets="form:attribute-class">
+	
+	<xsl:attribute name="name">
+		<xsl:call-template name="form:control-name">
+			<xsl:with-param name="handle" select="$handle"/>
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:attribute>
+	
+	<xsl:attribute name="id">
+		<xsl:call-template name="form:control-id">
+			<xsl:with-param name="name">
+				<xsl:call-template name="form:control-name">
+					<xsl:with-param name="handle" select="$handle"/>
+					<xsl:with-param name="section" select="$section"/>
+				</xsl:call-template>
+			</xsl:with-param>
+		</xsl:call-template>
+	</xsl:attribute>
+	
+	<xsl:attribute name="title">
+		<xsl:value-of select="$title"/>
+	</xsl:attribute>
+	
+</xsl:attribute-set>
+
+<!-- Class attribute separate so it can be applied independently (for label elements) -->
+<xsl:attribute-set name="form:attribute-class">
+	
+	<xsl:attribute name="class">
+		
+		<xsl:variable name="valid">
+			<xsl:call-template name="form:control-is-valid">
+				<xsl:with-param name="event" select="$event"/>
+				<xsl:with-param name="handle" select="$handle"/>
+				<xsl:with-param name="section" select="$section"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<xsl:if test="$class or $valid='false'">
+			<xsl:value-of select="$class"/>
+			<xsl:if test="$valid='false'">
+				<xsl:if test="$class!=''">
+					<xsl:text> </xsl:text>
+				</xsl:if>
+				<xsl:value-of select="$form:invalid-class"/>
+			</xsl:if>
+		</xsl:if>
+		
+	</xsl:attribute>
+	
+</xsl:attribute-set>
+
+<!--
+Name: form:control-is-valid
+Description: returns whether a field is valid or not
+Returns: boolean (string "true|false")
+-->
+<xsl:template name="form:control-is-valid">
+	<xsl:param name="handle"/>
+	<xsl:param name="section"/>
+	<xsl:param name="event" select="$form:event"/>
+	
+	<xsl:variable name="index-key">
+		<xsl:call-template name="form:section-index-key">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<xsl:variable name="section-handle">
+		<xsl:call-template name="form:section-handle">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<xsl:choose>
+		<xsl:when test="$section!='fields' and $index-key!=''">
+			<xsl:choose>
+				<xsl:when test="$event//entry[@section-handle=$section-handle and @index-key=$index-key]/*[name()=$handle and (@type='missing' or @type='invalid')]">false</xsl:when>
+				<xsl:otherwise>true</xsl:otherwise>
+			</xsl:choose>
+		</xsl:when>
+		<xsl:when test="$section!='fields'">
+			<xsl:choose>
+				<xsl:when test="$event//entry[@section-handle=$section-handle]/*[name()=$handle and (@type='missing' or @type='invalid')]">false</xsl:when>
+				<xsl:otherwise>true</xsl:otherwise>
+			</xsl:choose>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:choose>
+				<xsl:when test="$event/*[name()=$handle and (@type='missing' or @type='invalid')]">false</xsl:when>
+				<xsl:otherwise>true</xsl:otherwise>
+			</xsl:choose>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!--
+Name: form:control-name
+Description: returns a keyed field name for use in HTML @name attributes
+Returns: string
+-->
+<xsl:template name="form:control-name">
+	<xsl:param name="handle"/>
+	<xsl:param name="section"/>
+	
+	<!--xsl:variable name="section">
+		<xsl:choose>
+			<xsl:when test="$section=''">
+				<xsl:text>fields</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$section"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable-->
+	
+	<xsl:value-of select="concat($section, '[', $handle, ']')"/>
+</xsl:template>
+
+<!--
+Name: form:control-id
+Description: returns a sanitised version of a field's @name for use as a unique @id attribute
+Returns: string
+-->
+<xsl:template name="form:control-id">
+	<xsl:param name="name"/>
+		
+	<xsl:value-of select="translate(translate($name, '[', '-'),']','')"/>
+</xsl:template>
+
+<!--
+Name: form:postback-value
+Description: determines the postback value of a control if an Event has been triggered
+Returns: string
+-->
+<xsl:template name="form:postback-value">
+	<xsl:param name="handle"/>
+	<xsl:param name="section"/>
+	<xsl:param name="event" select="$form:event"/>
+	
+	<xsl:variable name="index-key">
+		<xsl:call-template name="form:section-index-key">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<xsl:variable name="section-handle">
+		<xsl:call-template name="form:section-handle">
+			<xsl:with-param name="section" select="$section"/>
+		</xsl:call-template>
+	</xsl:variable>
+	
+	<xsl:choose>
+		<xsl:when test="$section!='fields' and $index-key!=''">
+			<xsl:value-of select="normalize-space($event/entry[@section-handle=$section-handle and @index-key=$index-key]/post-values/*[name()=$handle])"/>
+		</xsl:when>
+		<xsl:when test="$section!='fields'">
+			<xsl:value-of select="normalize-space($event/entry[@section-handle=$section-handle]/post-values/*[name()=$handle])"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:for-each select="$event/post-values/*[name()=$handle]">
+				<value><xsl:value-of select="normalize-space(.)"/></value>
+			</xsl:for-each>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!--
+Name: form:section-handle
 Description: increases or decreases a number between two bounds
 Returns: a nodeset of <option> elements
-Parameters:
-	start		(mandatory)		string		start number
-	end			(mandatory)		string		end number
-	direction	(optional)		string		direction of iteration. Defaults to "+"
 -->
-<xsl:template name="incrementor">
+<xsl:template name="form:section-handle">
+	<xsl:param name="section"/>
+		
+	<xsl:choose>
+		<xsl:when test="contains($section,'[')">
+			<xsl:value-of select="substring-before($section,'[')"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="$section"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!--
+Name: form:section-index-key
+Description: returns the index from a section handle
+Returns: string
+-->
+<xsl:template name="form:section-index-key">
+	<xsl:param name="section"/>
+	
+	<xsl:if test="contains($section,'[')">
+		<xsl:value-of select="substring-after(substring-before($section, ']'),'[')"/>
+	</xsl:if>
+</xsl:template>
+
+<!--
+Name: form:incrementor
+Description: increases or decreases a number between two bounds
+Returns: a nodeset of <option> elements
+-->
+<xsl:template name="form:incrementor">
 	<xsl:param name="start" select="$start"/>
-	<xsl:param name="end" select="$end"/>
-	<xsl:param name="count" select="$end"/>
+	<xsl:param name="iterations" select="$iterations"/>
+	<xsl:param name="count" select="$iterations"/>
 	<xsl:param name="direction" select="'+'"/>
 	<xsl:if test="$count > 0">
 		<option>
 			<xsl:choose>
 				<xsl:when test="$direction='-'">
-					<xsl:value-of select="$start - ($end - $count)"/>
+					<xsl:value-of select="$start - ($iterations - $count)"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="$start + ($end - $count)"/>
+					<xsl:value-of select="$start + ($iterations - $count)"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</option>
-		<xsl:call-template name="incrementor">
+		<xsl:call-template name="form:incrementor">
 			<xsl:with-param name="count" select="$count - 1"/>
 			<xsl:with-param name="start" select="$start"/>
-			<xsl:with-param name="end" select="$end"/>
+			<xsl:with-param name="iterations" select="$iterations"/>
 			<xsl:with-param name="direction" select="$direction"/>
 		</xsl:call-template>
 	</xsl:if>  

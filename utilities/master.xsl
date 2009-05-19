@@ -22,29 +22,90 @@
 			<xsl:call-template name="page-title"/>
 		</title>
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
-		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/styles.css" />
+	<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="{$workspace}/css/index.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
+	<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
 		<link rel="alternate" type="application/rss+xml" href="/rss/" />
 	</head>
-	<body>
-		<div id="masthead">
-			<h1>
-				<a href="{$root}"><xsl:value-of select="$website-name"/></a>
-			</h1>
-			<h1>
-				<a href="#" class="testing"><xsl:value-of select="$website-name"/></a>
-			</h1>
+<body>
+	<div id="header">
+
+
+		
+		<div id="logo">
+			<a href="{$root}"><img src="{$workspace}/images/kf-logo.png" alt="keep flippin' logo"/></a>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="{$root}">Login</a></li> 
+				<li><a href="{$root}">Register</a></li> 
+				<li><a href="{$root}">Locations</a></li> 
+				<li><a href="{$root}">Community</a></li> 
+			</ul>
+		</div>
+		<div id="nav">
 			<xsl:apply-templates select="data/navigation"/>
 		</div>
-		<div id="package">
-			<div id="content">
-				<xsl:apply-templates/>
+	</div>
+	<div id="middle">
+		<div id="content">
+			<div id="badge">
+			</div>
+                        <xsl:apply-templates />
+		</div>
+	</div>
+	<div id="footer">
+		<div id="left">
+			<div id="camp">
+				<h2><a href="{$root}">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
+				<p>Come join us for Summer camp! There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}">Read More...</a></p>
+			</div>
+			<div id="classes">
+				<h2><a href="{$root}">Our Classes - for any skill level</a></h2>
+				<p>Our USA Program is comprised of three different skill levels: <a href="{$root}">Red</a> for beginners, <a href="White">White</a> for Intermediate gymnasts, and
+	               <a href="{$root}">Blue</a> for Advanced gymnasts.</p>
+		
+				<p>In addition, we also have classes available <a href="http://some-site.com/">Middle School</a> and High School students, as well as <a
+	               href="http://some-site.com/">Open Gym</a>, where students can focus on what they wish.</p>
 			</div>
 		</div>
-		<ul id="footer">
-			<li>Orchestrated by <a class="symphony" href="http://symphony21.com/">Symphony</a></li>
-			<li>Broadcasted via <a class="rss" href="{$root}/rss/">XML Feed</a></li>
-		</ul>
+		<div id="news">
+			<h2><a href="{$root}">Latest News - learn about new happenings at keep flippin'</a></h2>
+			<div class="article">
+				<h3><a href="http://some-site.com/">The end of the year show is upon us!</a></h3>
+				<p>As you all know we are a performance based gym. This means our students will be performing at the end of the year show in April at the Eissey Campus Theatre in Palm Beach Gardens where all the students participate and receive a Trophy. In January we started putting together routines. It is VERY important our students attend their scheduled classes. For information about practice and performance times, go <a href="{$root}">here</a>.
+				</p>
+			</div>
+			<div class="article">
+				<h3><a href="{$root}">The end of the year show is upon us!</a></h3>
+				<p>As you all know we are a performance based gym. This means our students will be performing at the end of the year show in April at the Eissey Campus Theatre in Palm Beach Gardens where all the students participate and receive a Trophy. In January we started putting together routines. It is VERY important our students attend their scheduled classes. For information about practice and performance times, go <a href="{$root}">here</a>.
+				</p>
+			</div>
+			<h3><a href="{$root}">Looking for further information? Please continue on and read more...</a></h3>
+		</div>
+
+		<hr />
+		
+		<div id="bottom_nav">
+			<ul>
+				<li><a href="{$root}">home</a></li>
+				<li><a href="{$root}">classes</a></li>
+				<li><a href="{$root}">schedule</a></li>
+				<li><a href="{$root}">franchising</a></li>
+				<li><a href="{$root}">summer camp</a></li>
+				<li><a href="{$root}">pictures</a></li>
+				<li><a href="{$root}">search</a></li>
+				<li><a href="{$root}">about kf</a></li>
+				<li><a href="{$root}">sitemap</a></li>
+			</ul>
+		</div>
+
+
+	</div>
+
+
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>

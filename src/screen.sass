@@ -3,6 +3,7 @@
 @import blueprint/modules/link_icons.sass
 @import compass/utilities.sass
 @import compass/reset.sass
+@import forms.sass
 
 +blueprint-typography
 /+blueprint-utilities
@@ -85,6 +86,8 @@ a
 
 h2 a, h3 a
 	color= !article_title_color
+	&:visited
+		color= !article_title_visited_color
 	&:hover
 		color= !article_hover_color
 			
@@ -106,11 +109,12 @@ h2 a, h3 a
 
 	p
 		font: 1.2em "georgia, times, times new roman"
-		line-height: 1.2em
+		line-height: 140%
 
 	#content 
 		+container
 		padding-top: 50px
+		padding-bottom: 50px
 		.article 
 			h3
 				margin-bottom: 5px
@@ -139,12 +143,13 @@ h2 a, h3 a
 			+column(12,true)
 			.introduction
 				p
-					font: 1.3em "georgia, times, times new roman"
-					line-height: 1.3em
+					font: 1.35em "georgia, times, times new roman"
+					line-height: 140%
 					a:hover
 						color= #2e5378 - #111
+
 				h2
-					margin-bottom: 5px
+					margin-bottom: 0px
 					a
 						&:hover
 							text-decoration: none
@@ -197,11 +202,11 @@ h2 a, h3 a
 		h3
 			margin-bottom: 3px
 			a
-				color= !article_title_color + #555
+				color= !article_title_color + #333
 				font-size: 15px
 				font-weight: normal
 				&:hover
-					color= !article_title_color + #333
+					color= !article_title_color + #555
 
 			p
 	hr
