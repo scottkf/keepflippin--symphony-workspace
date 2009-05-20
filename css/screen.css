@@ -229,13 +229,13 @@ h2 a:hover, h3 a:hover { color: #555555; }
 #middle p { font: 1.2em "georgia, times, times new roman"; line-height: 140%; }
 #middle #content { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; padding-top: 50px; padding-bottom: 50px; }
 #middle #content { display: block; }
-#middle #content .article h3 { margin-bottom: 5px; }
-#middle #content .article h3 a { font-size: 1.05em; }
-#middle #content .article h3 a div { border: 1px solid #7e848e; width: 184px; height: 138px; margin-bottom: 20px; }
-#middle #content .article h3 a div img { width: 182px; height: 136px; display: block; border: 1px solid #b2ae96; }
-#middle #content .article h3 a:hover div { border: 1px solid #4b515b; }
-#middle #content .article h3 a:hover div img { border: 1px solid #7f7b63; /* width: 180px */ height: 134px*/; }
-#middle #content .article h3 +p { margin: 0px; padding: 0px; }
+#middle #content .article h3, #middle #content .article-wide h3 { margin-bottom: 5px; }
+#middle #content .article h3 a, #middle #content .article-wide h3 a { font-size: 1.05em; }
+#middle #content .article h3 a div, #middle #content .article-wide h3 a div { border: 1px solid #7e848e; width: 184px; height: 138px; margin-bottom: 20px; }
+#middle #content .article h3 a div img, #middle #content .article-wide h3 a div img { width: 182px; height: 136px; display: block; border: 1px solid #b2ae96; }
+#middle #content .article h3 a:hover div, #middle #content .article-wide h3 a:hover div { border: 1px solid #4b515b; }
+#middle #content .article h3 a:hover div img, #middle #content .article-wide h3 a:hover div img { border: 1px solid #7f7b63; /* width: 180px */ height: 134px*/; }
+#middle #content .article h3 +p, #middle #content .article-wide h3 +p { margin: 0px; padding: 0px; }
 #middle #content > .article { display: inline; float: left; margin-right: 15px; width: 185px; }
 * html #middle #content > .article { overflow-x: hidden; }
 #middle #content #right { padding-left: 40px; display: inline; float: left; margin-right: 0; width: 465px; }

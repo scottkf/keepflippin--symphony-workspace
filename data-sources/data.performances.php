@@ -2,28 +2,20 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourcearticles extends Datasource{
+	Class datasourceperformances extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'articles';
+		public $dsParamROOTELEMENT = 'performances';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '1';
-		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$entry';
-		public $dsParamPARAMOUTPUT = 'system:id';
-		public $dsParamSORT = 'system:id';
+		public $dsParamLIMIT = '5';
+		public $dsParamREDIRECTONEMPTY = 'no';
+		public $dsParamSORT = 'start-date';
 		public $dsParamSTARTPAGE = '1';
-		
-		public $dsParamFILTERS = array(
-				'26' => '{$entry}',
-				'29' => '{$year}',
-				'30' => 'yes',
-		);
-		
 		public $dsParamINCLUDEDELEMENTS = array(
-				'title',
-				'body',
-				'publish-this-article-on',
-				'comments-allowed'
+				'start-date',
+				'end-date',
+				'location',
+				'url',
+				'description'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -33,17 +25,17 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Articles',
+					 'name' => 'Performances',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T13:23:21+00:00');	
+					 'release-date' => '2009-05-20T14:32:42+00:00');	
 		}
 		
 		public function getSource(){
-			return '6';
+			return '8';
 		}
 		
 		public function allowEditorToParse(){

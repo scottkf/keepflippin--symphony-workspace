@@ -1,0 +1,47 @@
+=feedback-badge
+	#github-voice-wrapper #github-voice-close
+		background-color: transparent
+		background-position: 0 0
+		background-repeat: no-repeat
+		color: #0066CC
+		cursor: pointer
+		height: 48px
+		position: absolute
+		right: -12px
+		top: -11px
+		width: 48px
+
+	a#github-voice-close
+		background-image: url(../images/close.png)
+
+	a#feedback, a#feedback:link
+		-moz-border-radius-bottomleft: 0
+		-moz-border-radius-bottomright: .5em
+		-moz-border-radius-topleft: 0
+		-moz-border-radius-topright: .5em
+		background-color: #FF0000
+		background-image: url(../images/feedback_tab_white.png)
+		background-repeat: no-repeat
+		border-color: #FF0000 #FF0000 #FF0000 -moz-use-text-color
+		border-style: outset outset outset none
+		border-width: 1px 1px 1px medium
+		left: 0
+		background-position: 2px 50% !important
+		display: block !important
+		height: 98px !important
+		margin: -45px 0 0 !important
+		padding: 0 !important
+		position: fixed !important
+		top: 55% !important
+		width: 25px !important
+		z-index: 1 !important
+		&:hover
+			background-color: #0066CC
+			border-color: #0066CC #0066CC #0066CC -moz-use-text-color
+			border-style: outset outset outset none
+			border-width: 1px 1px 1px medium
+			cursor: pointer
+
+	* html a#feedback, * html a#feedback:link
+		background-image: none !important
+		position: absolute !important

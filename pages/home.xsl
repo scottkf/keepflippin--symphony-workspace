@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="../utilities/master.xsl"/>
-<xsl:import href="../utilities/get-notes.xsl"/>
+<xsl:import href="../utilities/get-performances.xsl"/>
 <xsl:import href="../utilities/get-comments.xsl"/>
 <xsl:import href="../utilities/get-article.xsl"/>
 
@@ -17,7 +17,7 @@
 				</div>
   <xsl:apply-templates select="frontpage-articles/entry[1]	"/>
   <hr/>
-  <xsl:apply-templates select="notes"/>
+  <xsl:apply-templates select="performances"/>
 
 			</div>
 </xsl:template>

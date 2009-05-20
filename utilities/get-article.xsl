@@ -22,12 +22,12 @@
 	</xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="entry" mode="short">
+<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry" mode="short">
 	<xsl:param name="admin" />
 	<xsl:param name="entry-id" select="@id" />
 	<div class="article">
 		<h3>
-			<a href="{$root}/news/{title/@handle}/">
+			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
 				<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
 				<xsl:value-of select="title"/>
 			</a>
@@ -43,11 +43,11 @@
 
 
 
-<xsl:template match="entry" mode="left">
+<xsl:template match="frontpage-articles/entry" mode="left">
 	<xsl:param name="entry-id" select="@id" />
 	<div class="article">
 		<h3>
-			<a href="{$root}/news/{title/@handle}/">
+			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
 				<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
 				<xsl:value-of select="title"/>
 			</a>
@@ -63,9 +63,9 @@
 
 
 
-<xsl:template match="entry" mode="full">
+<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry | news/*/*/entry | articles/entry" mode="full">
 	<h3>
-		<a href="{$root}/news/{title/@handle}/"><xsl:value-of select="title"/></a>
+		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/"><xsl:value-of select="title"/></a>
 		<xsl:apply-templates select="." mode="admin" />
 	</h3>
 	<ul class="meta">

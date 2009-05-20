@@ -62,7 +62,7 @@
 		<div id="content">
 			<div id="badge">
 			</div>
-                        <xsl:apply-templates />
+      <xsl:apply-templates />
 		</div>
 	</div>
 	<div id="footer">

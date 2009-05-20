@@ -2,28 +2,26 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourcearticles extends Datasource{
+	Class datasourcefrontpage_articles extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'articles';
+		public $dsParamROOTELEMENT = 'frontpage-articles';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '1';
-		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$entry';
+		public $dsParamLIMIT = '3';
+		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamPARAMOUTPUT = 'system:id';
-		public $dsParamSORT = 'system:id';
+		public $dsParamSORT = 'publish-this-article-on';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'26' => '{$entry}',
-				'29' => '{$year}',
+				'29' => '2007-01-21 to {$today}',
 				'30' => 'yes',
+				'79' => 'yes',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'body',
-				'publish-this-article-on',
-				'comments-allowed'
+				'publish-this-article-on'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -33,13 +31,13 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Articles',
+					 'name' => 'Frontpage Articles',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T13:23:21+00:00');	
+					 'release-date' => '2009-05-20T14:26:02+00:00');	
 		}
 		
 		public function getSource(){

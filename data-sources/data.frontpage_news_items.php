@@ -2,28 +2,24 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourcearticles extends Datasource{
+	Class datasourcefrontpage_news_items extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'articles';
+		public $dsParamROOTELEMENT = 'frontpage-news-items';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '1';
-		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$entry';
-		public $dsParamPARAMOUTPUT = 'system:id';
+		public $dsParamLIMIT = '3';
+		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'26' => '{$entry}',
-				'29' => '{$year}',
 				'30' => 'yes',
+				'79' => 'no',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'body',
-				'publish-this-article-on',
-				'comments-allowed'
+				'publish-this-article-on'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -33,13 +29,13 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Articles',
+					 'name' => 'Frontpage News Items',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T13:23:21+00:00');	
+					 'release-date' => '2009-05-20T13:24:40+00:00');	
 		}
 		
 		public function getSource(){

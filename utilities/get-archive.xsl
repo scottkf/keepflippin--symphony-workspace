@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+<xsl:import href="get-images.xsl"/>
+
 <xsl:template match="news">
   <xsl:apply-templates select="year/month"/>
 </xsl:template>
@@ -23,9 +25,9 @@
         <xsl:with-param name="format" select="'D'"/>
       </xsl:call-template>
     </span>
-    <div class="article">
+		<div class="article">
 			<xsl:apply-templates select="." mode="full" />
-    </div>
+		</div>
   </div>
 </xsl:template>
 

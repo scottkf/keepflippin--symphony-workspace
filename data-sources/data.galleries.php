@@ -2,28 +2,17 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourcearticles extends Datasource{
+	Class datasourcegalleries extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'articles';
+		public $dsParamROOTELEMENT = 'galleries';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '1';
-		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$entry';
-		public $dsParamPARAMOUTPUT = 'system:id';
+		public $dsParamLIMIT = '20';
+		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
-		
-		public $dsParamFILTERS = array(
-				'26' => '{$entry}',
-				'29' => '{$year}',
-				'30' => 'yes',
-		);
-		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
-				'body',
-				'publish-this-article-on',
-				'comments-allowed'
+				'image'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -33,17 +22,17 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Articles',
+					 'name' => 'Galleries',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T13:23:21+00:00');	
+					 'release-date' => '2009-05-19T15:52:23+00:00');	
 		}
 		
 		public function getSource(){
-			return '6';
+			return '17';
 		}
 		
 		public function allowEditorToParse(){
