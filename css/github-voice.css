@@ -6,9 +6,11 @@
   left: 0;
   background: #000;
   color: #FFF;
+	z-index:10;
 }
 
 #github-voice-wrapper {
+	z-index:12;
   position: absolute;
   top: 50%;
   left: 50%;

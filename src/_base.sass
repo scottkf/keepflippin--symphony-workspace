@@ -33,10 +33,11 @@
 =nav-hover(!name, !width)
 	&.selected
 		background-color: white	
+		border-bottom: 4px solid white
 	&.selected a
 		padding: 0px
-		padding-left: 10px
-		padding-right:10px
+		padding-left: 19px
+		padding-right:19px
 		margin-top= (!nav_height - !nav_font_size - 3) / 2 + 3
 		margin-bottom= (!nav_height - !nav_font_size - 3) / 2 - 3
 		+replace-text("nav"-!name-".png", 50%, -18px)

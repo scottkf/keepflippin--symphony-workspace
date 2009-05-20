@@ -4,13 +4,22 @@
 @import compass/utilities.sass
 @import compass/reset.sass
 @import forms.sass
+@import feedback.sass
 
 +blueprint-typography
 /+blueprint-utilities
 +blueprint-debug
 
+
 body
 	background-color= !body_bg_color
+	+feedback-badge
+	&#latest
+		div.list
+			span.date
+				+column(1)
+			div.article
+				+column(23,true)
 
 a
 	+hover-link
@@ -18,15 +27,14 @@ a
 
 #header
 	+container
-
 	color= !body_bg_text_color
 	background: url(../images/upper-right-stars.png) no-repeat bottom right
 	#logo
 		margin-top: 0px
 		margin-bottom: -10px 
-		+column(17)
+		+column(16)
 	#menu
-		+column(7,true)
+		+column(8,true)
 		color: #677891
 		font-size: 14px
 		ul
@@ -79,10 +87,16 @@ a
 			li.selected
 				border-right: 1px solid black
 				background: white
-				border-bottom: 4px solid white
+				border-bottom: 3px solid white
 				a
 					border: 1px solid white
 					color: #9a1c1b
+					&:hover
+						padding-left: 20px
+						padding-right: 20px
+						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
+						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
+						
 
 h2 a, h3 a
 	color= !article_title_color
@@ -95,9 +109,8 @@ h2 a, h3 a
 
 #middle
 	background-color: white
-	position: relative
 	border-bottom: 1px solid #fafafa
-
+	position: relative
 	#badge
 		position: absolute
 		background: url(../images/star-badge.png) no-repeat
@@ -105,7 +118,7 @@ h2 a, h3 a
 		width: 99px
 		top: -60px
 		margin-left: -80px
-		z-index: 20
+		z-index: 2
 
 	p
 		font: 1.2em "georgia, times, times new roman"
@@ -120,16 +133,23 @@ h2 a, h3 a
 				margin-bottom: 5px
 				a
 					font-size: 1.05em
-				div
-					border: 1px solid #7e848e
-					width: 184px
-					height: 138px
-					margin-bottom: 20px
-					img
-						width: 182px
-						height: 136px
-						display: block
-						border: 1px solid #b2ae96
+					div
+						border: 1px solid #7e848e
+						width: 184px
+						height: 138px
+						margin-bottom: 20px
+						img
+							width: 182px
+							height: 136px
+							display: block
+							border: 1px solid #b2ae96
+					&:hover
+						div
+							border= 1px "solid" #7e848e - #333
+							img
+								border= 1px "solid" #b2ae96 - #333
+								/*width: 180px
+								height: 134px*/
 				\+p
 					margin: 0px
 					padding: 0px
@@ -217,4 +237,3 @@ h2 a, h3 a
 		ul
 			text-align: center	
 			
-	

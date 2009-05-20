@@ -7,13 +7,11 @@
       <xsl:if test="'home' = $current-page">
         <xsl:attribute name="class">selected</xsl:attribute>
       </xsl:if>
-      <a href="{$root}/{@handle}/">Welcome</a>
+      <a href="{$root}/{@handle}">Welcome</a>
     </li>
     <xsl:apply-templates select="page[not(types/type = 'hidden') and not(types/type = 'admin')]"/>
 
     <xsl:if test="/data/events/login-info/@logged-in = 'true'">
-      <li><a href="" class="testing">Issues</a></li>
-      <li><a href="{$root}/drafts/">Drafts</a></li>
       <li><a href="{$root}/symphony/">Admin</a></li>
       <li><a href="?debug">Debug</a></li>
     </xsl:if>
@@ -27,7 +25,7 @@
       <xsl:attribute name="class">selected</xsl:attribute>
     </xsl:if>
     <a href="{$root}/{@handle}/">
-      <xsl:value-of select="name"/>
+      <xsl:value-of select="(@handle)"/>
     </a>
   </li>
 </xsl:template>

@@ -4,6 +4,7 @@
 <xsl:import href="../utilities/page-title.xsl"/>
 <xsl:import href="../utilities/navigation.xsl"/>
 <xsl:import href="../utilities/date-time.xsl"/>
+<xsl:import href="../utilities/get-article.xsl"/>
 
 <xsl:output method="xml"
 	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -11,7 +12,7 @@
 	omit-xml-declaration="yes"
 	encoding="UTF-8"
 	indent="yes" />
-
+	
 <xsl:variable name="is-logged-in" select="/data/events/login-info/@logged-in"/>
 
 <xsl:template match="/">
@@ -29,7 +30,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
 		<link rel="alternate" type="application/rss+xml" href="/rss/" />
 	</head>
-<body>
+<body id="{$current-page}">
+	<a id="feedback" href="#" />
 	<div id="header">
 
 
@@ -39,7 +41,14 @@
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="{$root}">Login</a></li> 
+				<xsl:choose>
+					<xsl:when test="/data/events/login-info/@logged-in = 'true'">
+						<li><a href="{$root}/symphony/logout/">Logout</a></li> 
+					</xsl:when>
+					<xsl:otherwise>
+						<li><a href="{$root}/symphony">Login</a></li> 
+					</xsl:otherwise>
+				</xsl:choose>
 				<li><a href="{$root}">Register</a></li> 
 				<li><a href="{$root}">Locations</a></li> 
 				<li><a href="{$root}">Community</a></li> 
@@ -72,18 +81,9 @@
 			</div>
 		</div>
 		<div id="news">
-			<h2><a href="{$root}">Latest News - learn about new happenings at keep flippin'</a></h2>
-			<div class="article">
-				<h3><a href="http://some-site.com/">The end of the year show is upon us!</a></h3>
-				<p>As you all know we are a performance based gym. This means our students will be performing at the end of the year show in April at the Eissey Campus Theatre in Palm Beach Gardens where all the students participate and receive a Trophy. In January we started putting together routines. It is VERY important our students attend their scheduled classes. For information about practice and performance times, go <a href="{$root}">here</a>.
-				</p>
-			</div>
-			<div class="article">
-				<h3><a href="{$root}">The end of the year show is upon us!</a></h3>
-				<p>As you all know we are a performance based gym. This means our students will be performing at the end of the year show in April at the Eissey Campus Theatre in Palm Beach Gardens where all the students participate and receive a Trophy. In January we started putting together routines. It is VERY important our students attend their scheduled classes. For information about practice and performance times, go <a href="{$root}">here</a>.
-				</p>
-			</div>
-			<h3><a href="{$root}">Looking for further information? Please continue on and read more...</a></h3>
+			<h2><a href="{$root}/latest">Latest News - learn about new happenings at keep flippin'</a></h2>
+         <xsl:apply-templates select="/data/frontpage-news-items/entry" />
+			<h3><a href="{$root}/latest">Looking for further information? Please continue on and read more...</a></h3>
 		</div>
 
 		<hr />
@@ -113,7 +113,9 @@
 <script type="text/javascript">
 //<![CDATA[
 $(function() {
-  $('a.testing').githubVoice('scottkf', 'keepflippin--on-symphony');
+  $('a#feedback').githubVoice('scottkf', 'keepflippin--on-symphony', {
+		limit : 10
+	})
 });
 //]]>]]&gt;
 &lt;/script>

@@ -129,7 +129,7 @@
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:select">
 						<xsl:with-param name="handle" select="name()"/>
-						<xsl:with-param name="options" select="/data/navigation/pages/page" />
+			            <xsl:with-param name="options" select="options/*" />
 					</xsl:call-template>
 				</xsl:with-param>
 			</xsl:call-template>

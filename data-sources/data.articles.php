@@ -22,7 +22,8 @@
 				'title',
 				'body',
 				'date',
-				'categories'
+				'categories',
+				'comments-allowed'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -34,11 +35,11 @@
 			return array(
 					 'name' => 'Articles',
 					 'author' => array(
-							'name' => 'Alistair Kearney',
-							'website' => 'http://symphony.local:8888/2',
-							'email' => 'alistair@symphony21.com'),
+							'name' => 'scott tesoriere',
+							'website' => 'http://imac.local/kf',
+							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2008-12-12T04:29:07+00:00');	
+					 'release-date' => '2009-05-19T18:39:57+00:00');	
 		}
 		
 		public function getSource(){
