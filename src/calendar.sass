@@ -1,0 +1,57 @@
+@import base.sass
+@import blueprint.sass
+
+#events
+	+column(4)
+#calendar
+	+column(20,true)
+
+table 
+	border-collapse: separate
+	border: 1px solid #3B6795
+	border-width: 1px 1px 1px 1px
+
+td, th 
+	width: 80px
+	height: 80px
+	overflow: hidden
+	text-align: left
+	vertical-align: top
+	<!-- background: url(../workspace/images/calendar/cells.png) -->
+	background: #eee
+	background-repeat: no-repeat
+	color: #444
+	position: relative
+
+td 
+	border-bottom: 1px dashed #3B6795
+
+	&.month-nav 
+		height: 10px
+		font-weight: bold
+		font-size: 14px
+
+	&:hover, &.month-nav:hover
+		background-position: 0px -81px
+		color: #222
+
+	&.date_has_event 
+		background-position: 162px 0px
+		color: white
+
+	&.date_has_event:hover 
+		background-position: 162px -81px
+
+	&.padding 
+		background: url(../images/workspace/calendar/calpad.jpg)
+
+	&.other-month 
+		background: #ddd
+		color: #aaa
+
+	&.this-day 
+		background-position: 81px 0px
+		color: black
+		background-color: white
+
+	&.this-day:hover 

@@ -24,13 +24,15 @@
 		</title>
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 	<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="{$workspace}/css/index.css" type="text/css" media="screen, projection" />
+	<xsl:if test="$root-page = 'schedule'">
+		<link rel="stylesheet" href="{$workspace}/css/calendar.css" type="text/css" media="screen, projection" />
+	</xsl:if>
 	<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
 	<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
-		<link rel="alternate" type="application/rss+xml" href="/rss/" />
+	<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
+	<link rel="alternate" type="application/rss+xml" href="/rss/" />
 	</head>
-<body id="{$current-page}">
+<body id="{$root-page}">
 	<a id="feedback" href="#" />
 	<div id="header">
 

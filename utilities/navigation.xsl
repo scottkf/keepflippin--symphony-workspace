@@ -4,7 +4,7 @@
 <xsl:template match="navigation">
   <ul>
     <li id="welcome">
-      <xsl:if test="'home' = $current-page">
+      <xsl:if test="'home' = $root-page">
         <xsl:attribute name="class">selected</xsl:attribute>
       </xsl:if>
       <a href="{$root}/{@handle}">Welcome</a>
@@ -21,7 +21,7 @@
 
 <xsl:template match="page">
   <li>
-    <xsl:if test="@handle = $current-page">
+    <xsl:if test="@handle = $root-page">
       <xsl:attribute name="class">selected</xsl:attribute>
     </xsl:if>
     <a href="{$root}/{@handle}/">
