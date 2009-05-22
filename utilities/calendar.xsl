@@ -53,7 +53,7 @@ URL: http://gist.github.com/115859
 		<!-- generate caption with name of month plus links to preceding
 		and following months -->
 		<tr>
-			<td class="month-nav" colspan="7">
+			<th class="month-nav" colspan="7">
 				<xsl:call-template name="preceding-month">
 					<xsl:with-param name="date" select="$relative-day"/>
 				</xsl:call-template>
@@ -65,7 +65,16 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="following-month">
 					<xsl:with-param name="date" select="$relative-day"/>
 				</xsl:call-template>
-			</td>
+			</th>
+		</tr>
+		<tr>
+			<th>Sunday</th>
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
 		</tr>
 
 		<!-- Call the template with two parameters: where to start and
@@ -226,19 +235,27 @@ URL: http://gist.github.com/115859
 	</ul>
 </xsl:template>
 
-	<xsl:template match="/data/schedule*" mode="events">
+<xsl:template match="/data/schedule*" mode="events">
 	<xsl:param name="day" />
-	<xsl:variable name="start-day" select="entry/date/start" />
-	<xsl:variable name="current-day" select="entry/date/current" />
-	<xsl:variable name="end-day" select="entry/date/end" />
-	<xsl:if test="not(contains(date:difference($start-day,$day),'-')) and contains(date:difference($end-day,$day),'-') and date:day-name($current-day) = date:day-name($day)">
-		<xsl:apply-templates select="entry[@id]"/>
-	</xsl:if>
+	<xsl:apply-templates select="entry">
+		<xsl:with-param name="day" select="$day"/>
+	</xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="/data/schedule*/entry">
+	<xsl:param name="day" />
+	<xsl:variable name="start-day" select="date/start" />
+	<xsl:variable name="current-day" select="date/current" />
+	<xsl:variable name="end-day" select="date/end" />
+	<xsl:if test="not(contains(date:difference($start-day,$day),'-')) and contains(date:difference($end-day,$day),'-') and date:day-name($current-day) = date:day-name($day)">
+		<xsl:apply-templates select="." mode="event" />
+	</xsl:if>
+	
+</xsl:template>
+
+<xsl:template match="/data/schedule*/entry" mode="event">
 	<xsl:variable name="entry-id" select="class/item/@id" />
-		<li>
+	<li>
 		<a>
 			<xsl:attribute name="href">
 				<xsl:value-of select="$root" />
@@ -247,12 +264,12 @@ URL: http://gist.github.com/115859
 			</xsl:attribute>
 			<xsl:value-of select="class/item" />
 		</a>
-		<xsl:copy-of select="substring(/data/classes-list/entry[@id = $entry-id]/description/*,1,50)" />
+		<!-- <xsl:copy-of select="substring(/data/classes-list/entry[@id = $entry-id]/description/*,1,50)" />
 		<xsl:if test="string-length(/data/classes-list/entry[@id = $entry-id]/description) &gt; 50">
 			<a href="{$root}/news/{title/@handle}/">
 				...
 			</a>
-		</xsl:if>
+		</xsl:if> -->
 	</li>
 </xsl:template>
 

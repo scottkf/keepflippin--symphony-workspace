@@ -10,7 +10,7 @@
 <xsl:template match="data">
 	<div id="events">
 		<ul>
-			<xsl:apply-templates select="/data/schedule" mode="events">
+			<xsl:apply-templates select="/data/schedule/entry" mode="event">
 				<xsl:with-param name="day" select="$relative-day" />
 			</xsl:apply-templates>
 		</ul>
