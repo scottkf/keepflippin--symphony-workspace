@@ -4,6 +4,8 @@
 	xmlns:date="http://exslt.org/dates-and-times"
 	extension-element-prefixes="date">
 
+
+<xsl:import href="get-schedule.xsl" />
 <!--
 Name: XSLT Calendar 
 Description:  
@@ -235,43 +237,6 @@ URL: http://gist.github.com/115859
 	</ul>
 </xsl:template>
 
-<xsl:template match="/data/schedule*" mode="events">
-	<xsl:param name="day" />
-	<xsl:apply-templates select="entry">
-		<xsl:with-param name="day" select="$day"/>
-	</xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="/data/schedule*/entry">
-	<xsl:param name="day" />
-	<xsl:variable name="start-day" select="date/start" />
-	<xsl:variable name="current-day" select="date/current" />
-	<xsl:variable name="end-day" select="date/end" />
-	<xsl:if test="not(contains(date:difference($start-day,$day),'-')) and contains(date:difference($end-day,$day),'-') and date:day-name($current-day) = date:day-name($day)">
-		<xsl:apply-templates select="." mode="event" />
-	</xsl:if>
-	
-</xsl:template>
-
-<xsl:template match="/data/schedule*/entry" mode="event">
-	<xsl:variable name="entry-id" select="class/item/@id" />
-	<li>
-		<a>
-			<xsl:attribute name="href">
-				<xsl:value-of select="$root" />
-				<xsl:text>/classes/class/</xsl:text>
-				<xsl:value-of select="/data/classes-list/entry[@id = $entry-id]/class-name/@handle" />
-			</xsl:attribute>
-			<xsl:value-of select="class/item" />
-		</a>
-		<!-- <xsl:copy-of select="substring(/data/classes-list/entry[@id = $entry-id]/description/*,1,50)" />
-		<xsl:if test="string-length(/data/classes-list/entry[@id = $entry-id]/description) &gt; 50">
-			<a href="{$root}/news/{title/@handle}/">
-				...
-			</a>
-		</xsl:if> -->
-	</li>
-</xsl:template>
 
 
 </xsl:stylesheet>
