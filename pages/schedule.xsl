@@ -6,7 +6,8 @@
 <xsl:import href="../utilities/get-article.xsl"/>
 <xsl:import href="../utilities/calendar.xsl" />
 
-
+<xsl:param name="places" />
+<xsl:param name="classes" />
 <xsl:template match="data">
 	<div id="events">
 		<ul>

@@ -12,18 +12,18 @@ Description:
 	The purpose is to generate a calendar you can view by month, to be used in symphony.
 	To override what goes in each day, go to the bottom and edit the optional-hyperlink-to-date template,
 		to edit the next/previous month links, edit the following-month and preceding-month templates.
-Version: 0.1
+Version: 0.2
 Original Author: Robe Menke <http://www.the-wabe.com/notebook/xslt-calendar.html>
 Modified by: Scott Tesoriere <http://github.com/scottkf>
 URL: http://gist.github.com/115859
 -->
 <xsl:param name="relative-day">
 	<xsl:choose>
-		<xsl:when test="not(contains($current-path,'?'))">
-			<xsl:value-of select="$today" />
+		<xsl:when test="$year &gt;= 1 or $month &gt;= 1">
+			<xsl:value-of select="concat(format-number($year,'0000'),'-',format-number($month ,'00'),'-',$this-day)" />
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:value-of select="concat(format-number($url-year,'0000'),'-',format-number($url-month ,'00'),'-',$this-day)" />
+			<xsl:value-of select="$today" />
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:param>
@@ -207,18 +207,34 @@ URL: http://gist.github.com/115859
 	<a>
 		<xsl:attribute name="href">
 			<xsl:value-of select="$root" />
-			<xsl:choose>
-				<xsl:when test="contains($current-path,'?')">
-					<xsl:value-of select="substring-before($current-path, '?')" />					
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$current-path" />
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:text>?year=</xsl:text>
+			<xsl:text>/</xsl:text>
+			<xsl:if test="$parent-path != ''">
+				<xsl:value-of select="$parent-path" />
+				<xsl:text>/</xsl:text>				
+			</xsl:if>
+			<xsl:value-of select="$current-page" />
+			<xsl:text>/</xsl:text>
 			<xsl:value-of select="date:year($month)" />
-			<xsl:text>&amp;month=</xsl:text>
+			<xsl:text>/</xsl:text>
 			<xsl:value-of select="format-number(date:month-in-year($month) ,'00')" />
+			<xsl:choose>
+				<xsl:when test="$current-page = 'classes'">
+					<xsl:text>/</xsl:text>
+					<xsl:value-of select="$classes" />
+					<xsl:text>/</xsl:text>
+					<xsl:if test="$places != ''">
+						<xsl:value-of select="$places"/>
+					</xsl:if>
+				</xsl:when>
+				<xsl:when test="$current-page = 'places'">
+					<xsl:text>/</xsl:text>
+					<xsl:value-of select="$places" />
+					<xsl:text>/</xsl:text>
+					<xsl:if test="$classes != ''">
+						<xsl:value-of select="$classes"/>
+					</xsl:if>
+				</xsl:when>
+			</xsl:choose>
 		</xsl:attribute>
 		<xsl:value-of select="$text" />
 	</a>
