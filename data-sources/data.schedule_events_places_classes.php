@@ -5,7 +5,8 @@
 	Class datasourceschedule_events_places_classes extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'schedule-events-places-classes';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
+		public $dsParamGROUP = '101';
 		public $dsParamLIMIT = '20';
 		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamREQUIREDPARAM = '$places';
@@ -20,9 +21,9 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name',
 				'description',
+				'session',
 				'class',
-				'place',
-				'date'
+				'place'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -38,7 +39,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-23T01:09:55+00:00');	
+					 'release-date' => '2009-05-23T23:55:25+00:00');	
 		}
 		
 		public function getSource(){

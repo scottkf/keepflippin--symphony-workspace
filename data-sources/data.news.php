@@ -6,21 +6,23 @@
 		
 		public $dsParamROOTELEMENT = 'news';
 		public $dsParamORDER = 'desc';
-		public $dsParamGROUP = '29';
-		public $dsParamLIMIT = '100';
-		public $dsParamREDIRECTONEMPTY = 'no';
+		public $dsParamLIMIT = '99';
+		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamPARAMOUTPUT = 'system:id';
 		public $dsParamSORT = 'publish-this-article-on';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'29' => '{$year:$this-year}-01-01 to {$year:$this-year}-{$month:$this-month}-{$this-day}',
+				'26' => '{$entry}',
+				'29' => '{$year}',
 				'30' => 'yes',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'body',
-				'publish-this-article-on'
+				'publish-this-article-on',
+				'comments-allowed'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -36,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T14:23:40+00:00');	
+					 'release-date' => '2009-05-24T01:20:01+00:00');	
 		}
 		
 		public function getSource(){

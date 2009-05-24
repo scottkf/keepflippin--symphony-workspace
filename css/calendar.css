@@ -39,7 +39,7 @@
 * html #calendar { overflow-x: hidden; }
 #calendar ul { margin: 0px; list-style-type: none; text-align: center; }
 
-table { border-collapse: separate; border: 1px solid #3B6795; border-width: 1px 1px 1px 1px; }
+table { border-collapse: separate; border-width: 1px 1px 1px 1px; }
 
 td, th { width: 80px; height: 80px; overflow: hidden; text-align: left; vertical-align: top; background: white; background-repeat: no-repeat; color: #444; position: relative; }
 

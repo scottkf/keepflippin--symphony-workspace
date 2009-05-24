@@ -3,6 +3,63 @@
 
 <xsl:import href="get-images.xsl"/>
 
+<xsl:template name="single-article">
+	<div class="article-wide">
+	  <xsl:apply-templates select="news/entry" mode="full"/>
+	</div>
+  <xsl:if test="news/entry/comments-allowed='Yes'">
+	  <hr/>
+		<xsl:apply-templates select="comments"/>
+	  <hr/>
+	  <h2>Make a comment</h2>
+	  <div id="guideline">
+	    <h4>Rules</h4>
+	    <ul>
+	      <li>Please keep the language PG-13, my mum reads this blog. Hi mum!</li>
+	      <li>Text is formatted with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</li>
+	    </ul>
+	  </div>
+	  <form action="" method="post">
+	    <xsl:for-each select="events/save-comment">
+	      <p class="{@result}">
+	        <xsl:choose>
+	          <xsl:when test="@result = 'success'">Your comment has been saved successfully.</xsl:when>
+	          <xsl:otherwise>The system encountered errors when saving your comment. Please check if all the required fields have been filled.</xsl:otherwise>
+	        </xsl:choose>
+	      </p>
+	    </xsl:for-each>
+	    <fieldset>
+	      <label>
+	        <xsl:text>Name </xsl:text>
+	        <input type="text" name="fields[author]" value="{events/save-comment/post-values/author}" />
+	      </label>
+	      <label>
+	        <xsl:text>Email </xsl:text>
+	        <input type="text" name="fields[email]" value="{events/save-comment/post-values/email}" />
+	      </label>
+	      <label>
+	        <xsl:text>Website </xsl:text><small>http://</small>
+	        <input type="text" name="fields[website]" value="{events/save-comment/post-values/website}" />
+	      </label>
+	      <label>
+	        <xsl:text>Comment </xsl:text>
+	        <textarea name="fields[comment]" rows="5" cols="21"><xsl:value-of select="events/save-comment/post-values/comment" /></textarea>
+	      </label>
+
+	      <input name="fields[article]" value="{articles/entry/@id}" type="hidden" />
+
+	<input name="akismet[author]" value="author" type="hidden" />
+	<input name="akismet[email]" value="email" type="hidden" />
+	<input name="akismet[url]" value="website" type="hidden" />
+
+	      <input id="submit" type="submit" name="action[save-comment]" value="Post Comment" />
+	    </fieldset>
+	  </form>
+	</xsl:if>
+</xsl:template>
+
+
+
 <xsl:template match="entry" mode="admin">
 		<xsl:if test="$is-logged-in = 'true'">
 				<xsl:text> &#8212; </xsl:text>
@@ -11,32 +68,35 @@
 </xsl:template>
 
 <xsl:template match="frontpage-news-items/entry">
-	<xsl:apply-templates select="." mode="short">
-		<xsl:with-param name="admin">1</xsl:with-param>
-	</xsl:apply-templates>
+	<div class="article">
+		<xsl:apply-templates select="." mode="short">
+			<xsl:with-param name="admin">1</xsl:with-param>
+		</xsl:apply-templates>
+	</div>
 </xsl:template>
 
 <xsl:template match="frontpage-articles/entry">
-	<xsl:apply-templates select="." mode="short">
-		<xsl:with-param name="admin">1</xsl:with-param>
-	</xsl:apply-templates>
+	<div class="article">
+		<xsl:apply-templates select="." mode="short">
+			<xsl:with-param name="admin">1</xsl:with-param>
+		</xsl:apply-templates>
+	</div>
 </xsl:template>
 
-<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry" mode="short">
+
+<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry | articles/entry" mode="short">
 	<xsl:param name="admin" />
 	<xsl:param name="entry-id" select="@id" />
-	<div class="article">
-		<h3>
-			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
-				<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
-				<xsl:value-of select="title"/>
-			</a>
-			<xsl:if test="$admin">
-				<xsl:apply-templates select="." mode="admin" />
-			</xsl:if>
-		</h3>
-			<xsl:copy-of select="body/*" />
-	</div>
+	<h3>
+		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+			<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
+			<xsl:value-of select="title"/>
+		</a>
+		<xsl:if test="$admin">
+			<xsl:apply-templates select="." mode="admin" />
+		</xsl:if>
+	</h3>
+		<xsl:copy-of select="body/*" />
 </xsl:template>
 
 
@@ -63,7 +123,8 @@
 
 
 
-<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry | news/*/*/entry | articles/entry" mode="full">
+<xsl:template match="frontpage-articles/entry | frontpage-news-items/entry | news/*/*/entry | news/entry" mode="full">
+	<xsl:param name="entry-id" select="@id" />
 	<h3>
 		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/"><xsl:value-of select="title"/></a>
 		<xsl:apply-templates select="." mode="admin" />
@@ -83,7 +144,7 @@
 		</xsl:if>
 	</ul>
 	<xsl:copy-of select="body/*[1]"/>
-	<xsl:apply-templates select="/data/article-images[entry]"/>
+	<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
 	<xsl:copy-of select="body/*[position() &gt; 1]"/>
 </xsl:template>
 
