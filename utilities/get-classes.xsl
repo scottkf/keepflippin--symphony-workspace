@@ -19,7 +19,7 @@
 	<xsl:param name="admin" />
 	<div class="class">
 		<h3>
-			<a href="{$root}/classes/class/{class-name/@handle}/">
+			<a href="{$root}/classes/{class-name/@handle}/">
 				<xsl:value-of select="class-name"/>
 			</a>
 			<xsl:if test="$admin">

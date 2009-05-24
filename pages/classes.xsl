@@ -6,7 +6,14 @@
 <xsl:import href="../utilities/get-classes.xsl"/>
 
 <xsl:template match="data">
-  <xsl:apply-templates select="classes-list/entry" />
+	<xsl:choose>
+		<xsl:when test="class != ''">
+			  <xsl:apply-templates select="classes/entry" mode="full" />
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:apply-templates select="classes/entry" />
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

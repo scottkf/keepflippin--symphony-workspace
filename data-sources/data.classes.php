@@ -6,26 +6,25 @@
 		
 		public $dsParamROOTELEMENT = 'classes';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '1';
+		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$entry';
 		public $dsParamSORT = 'class-name';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'90' => '{$entry}',
+				'90' => '{$class}',
+				'id' => '{$ds-events-list}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'class-name',
 				'ages',
-				'description',
-				'when'
+				'description'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array();
+			$this->_dependencies = array('$ds-events-list');
 		}
 		
 		public function about(){
@@ -36,7 +35,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T15:49:51+00:00');	
+					 'release-date' => '2009-05-24T13:45:27+00:00');	
 		}
 		
 		public function getSource(){
