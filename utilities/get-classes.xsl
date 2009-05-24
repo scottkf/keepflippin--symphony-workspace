@@ -9,13 +9,13 @@
 		</xsl:if>
 </xsl:template>
 
-<xsl:template match="classes/entry | classes-list/entry">
+<xsl:template match="classes/entry">
 	<xsl:apply-templates select="." mode="short">
 		<xsl:with-param name="admin">1</xsl:with-param>
 	</xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="classes/entry | classes-list/entry" mode="short">
+<xsl:template match="classes/entry" mode="short">
 	<xsl:param name="admin" />
 	<div class="class">
 		<h3>
@@ -26,17 +26,23 @@
 				<xsl:apply-templates select="." mode="admin" />
 			</xsl:if>
 		</h3>
+		<xsl:call-template name="build-schedule-link">
+			<xsl:with-param name="classname" select="class-name/@handle"/>
+		</xsl:call-template>
 		<xsl:copy-of select="description/*" />
 	</div>
+</xsl:template>
+
+<!-- if there's a session, use it, otherwise use a space -->
+<xsl:template name="build-schedule-link">
+	<a href="{$root}/schedule/classes/+/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
 </xsl:template>
 
 
 
 
 
-
-
-<xsl:template match="classes/entry | classes-list/entry" mode="full">
+<xsl:template match="classes/entry" mode="full">
 	<div class="class">
 		<h2>
 			<a href="{$root}/{$root-page}/{$current-page}/{class-name/@handle}/"><xsl:value-of select="class-name"/></a>
@@ -45,6 +51,9 @@
 		<h3>
 			Ages <xsl:copy-of select="ages" />
 		</h3>
+		<xsl:call-template name="build-schedule-link">
+			<xsl:with-param name="classname" select="class-name/@handle"/>
+		</xsl:call-template>
 		<xsl:copy-of select="description/*"/>
 	</div>
 </xsl:template>

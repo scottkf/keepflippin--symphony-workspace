@@ -29,11 +29,11 @@
 	
 	<xsl:choose>
 		<!-- filter by class, since we can't do it through the DS, otherwise we lose all over events -->
-		<xsl:when test="entry[date/current = $day] and entry[name/@handle = 'closed']">
-			<xsl:apply-templates select="entry[date/current = $day] and entry[name/@handle = 'closed']" mode="event" />
+		<xsl:when test="entry[date/current = $day and name/@handle = 'closed']">
+			<xsl:apply-templates select="entry[date/current = $day and name/@handle = 'closed']" mode="event" />
 		</xsl:when>
 		<xsl:when test="$classes != ''">
-			<xsl:apply-templates select="entry[date/current = $day and class/item/@handle = $classes or not(class)]" mode="event" />
+			<xsl:apply-templates select="entry[date/current = $day and (class/item/@handle = $classes or not(class))]" mode="event" />
 		</xsl:when>
 		<!-- otherwise give everything -->
 		<xsl:otherwise>
@@ -47,12 +47,12 @@
 	<xsl:choose>
 		<!-- if the item has a class attached -->
 		<xsl:when test="class != ''">
-				<li class="{/data/classes-list/entry[@id = $entry-id]/class-name/@handle}">
+				<li class="{class/item/@handle}">
 					<a>
 						<xsl:attribute name="href">
 							<xsl:value-of select="$root" />
-							<xsl:text>/classes/class/</xsl:text>
-							<xsl:value-of select="/data/classes-list/entry[@id = $entry-id]/class-name/@handle" />
+							<xsl:text>/classes/</xsl:text>
+							<xsl:value-of select="class/item/@handle" />
 						</xsl:attribute>
 						<xsl:value-of select="name" />
 					</a>

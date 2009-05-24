@@ -15,6 +15,7 @@
 		public $dsParamFILTERS = array(
 				'109' => '{$ds-schedule-places-events}',
 				'101' => '{$year:2009}-{$month:$this-month}-01 to {$year:2009}-{$month:$this-month}-31',
+				'112' => '{$session}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -39,7 +40,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T13:35:05+00:00');	
+					 'release-date' => '2009-05-24T15:25:03+00:00');	
 		}
 		
 		public function getSource(){

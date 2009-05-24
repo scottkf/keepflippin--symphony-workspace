@@ -12,7 +12,7 @@ Description:
 	The purpose is to generate a calendar you can view by month, to be used in symphony.
 	To override what goes in each day, go to the bottom and edit the optional-hyperlink-to-date template,
 		to edit the next/previous month links, edit the following-month and preceding-month templates.
-Version: 0.2
+Version: 0.3
 Original Author: Robe Menke <http://www.the-wabe.com/notebook/xslt-calendar.html>
 Modified by: Scott Tesoriere <http://github.com/scottkf>
 URL: http://gist.github.com/115859
@@ -213,6 +213,15 @@ URL: http://gist.github.com/115859
 				<xsl:text>/</xsl:text>				
 			</xsl:if>
 			<xsl:value-of select="$current-page" />
+			<xsl:text>/</xsl:text>
+			<xsl:choose>
+				<xsl:when test="$session != ''">
+					<xsl:value-of select="$session"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>+</xsl:text>					
+				</xsl:otherwise>
+			</xsl:choose>
 			<xsl:text>/</xsl:text>
 			<xsl:value-of select="date:year($month)" />
 			<xsl:text>/</xsl:text>
