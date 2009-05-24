@@ -29,20 +29,20 @@
 	
 	<xsl:choose>
 		<!-- filter by class, since we can't do it through the DS, otherwise we lose all over events -->
-		<xsl:when test="year[$y = @value]/month[$m = @value]/day[$d = @value]/*[name/@handle = 'closed']">
-			<xsl:apply-templates select="year[$y = @value]/month[$m = @value]/day[$d = @value]/entry[name/@handle = 'closed']" mode="event" />
+		<xsl:when test="entry[date/current = $day] and entry[name/@handle = 'closed']">
+			<xsl:apply-templates select="entry[date/current = $day] and entry[name/@handle = 'closed']" mode="event" />
 		</xsl:when>
 		<xsl:when test="$classes != ''">
-			<xsl:apply-templates select="year[$y = @value]/month[$m = @value]/day[$d = @value]/entry[class/item/@handle = $classes or not(class)]" mode="event" />
+			<xsl:apply-templates select="entry[date/current = $day and class/item/@handle = $classes or not(class)]" mode="event" />
 		</xsl:when>
 		<!-- otherwise give everything -->
 		<xsl:otherwise>
-			<xsl:apply-templates select="year[$y = @value]/month[$m = @value]/day[$d = @value]/entry" mode="event" />
+			<xsl:apply-templates select="entry[date/current = $day]" mode="event" />
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="/data/schedule*/year/month/day/entry" mode="event">
+<xsl:template match="/data/schedule*/entry" mode="event">
 	<xsl:variable name="entry-id" select="class/item/@id" />
 	<xsl:choose>
 		<!-- if the item has a class attached -->

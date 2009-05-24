@@ -10,6 +10,11 @@
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
+		
+		public $dsParamFILTERS = array(
+				'id' => '{$ds-events-list}',
+		);
+		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'class-name',
 				'ages',
@@ -18,7 +23,7 @@
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array();
+			$this->_dependencies = array('$ds-events-list');
 		}
 		
 		public function about(){
@@ -29,7 +34,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T13:02:07+00:00');	
+					 'release-date' => '2009-05-24T13:37:37+00:00');	
 		}
 		
 		public function getSource(){
