@@ -4,8 +4,9 @@
     xmlns:exsl="http://exslt.org/common"
     xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
 		xmlns:dyn="http://exslt.org/dynamic" 
-    extension-element-prefixes="exsl form dyn">
-
+	  xmlns:str="http://exslt.org/strings"
+		extension-element-prefixes="exsl form str dyn">
+		
 <xsl:import href="../utilities/form-controls.xsl"/>
 
 
@@ -146,7 +147,7 @@
 							<xsl:choose>
 								<xsl:when test="$multiple &gt;= 0">
 										<xsl:value-of select="$multiple"/>
-										<xsl:text>,</xsl:text>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="name()"/>
 								</xsl:when>
 								<xsl:otherwise>
@@ -156,6 +157,72 @@
 						</xsl:with-param>
 						<xsl:with-param name="event" select="$event" />
 					</xsl:call-template>
+				</xsl:with-param>
+			</xsl:call-template>	
+		</xsl:when>
+		
+		<xsl:when test="@type='repeatingdate'">
+			<xsl:call-template name="form:label">
+				<xsl:with-param name="event" select="$event" />
+				<xsl:with-param name="for" select="name()"/>
+				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="child">
+					<xsl:call-template name="form:input">
+						<xsl:with-param name="value">
+							<xsl:choose>
+								<xsl:when test="$id = 0">
+								</xsl:when>
+								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
+									<xsl:value-of select="$parent_id"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="dyn:evaluate(concat($value,'/start'))"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
+						<xsl:with-param name="handle">
+							<xsl:choose>
+								<xsl:when test="$multiple &gt;= 0">
+										<xsl:value-of select="$multiple"/>
+										<xsl:text> </xsl:text>
+										<xsl:value-of select="name()"/>
+										<xsl:text> start</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="name()"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
+						<xsl:with-param name="event" select="$event" />
+					</xsl:call-template>
+					<xsl:call-template name="form:input">
+						<xsl:with-param name="value">
+							<xsl:choose>
+								<xsl:when test="$id = 0">
+								</xsl:when>
+								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
+									<xsl:value-of select="$parent_id"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="dyn:evaluate(concat($value,'/end'))"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
+						<xsl:with-param name="handle">
+							<xsl:choose>
+								<xsl:when test="$multiple &gt;= 0">
+										<xsl:value-of select="$multiple"/>
+										<xsl:text> </xsl:text>
+										<xsl:value-of select="name()"/>
+										<xsl:text> end</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="name()"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
+						<xsl:with-param name="event" select="$event" />
+					</xsl:call-template>			
 				</xsl:with-param>
 			</xsl:call-template>	
 		</xsl:when>
@@ -222,7 +289,7 @@
 							<xsl:choose>
 								<xsl:when test="$multiple &gt;= 0">
 										<xsl:value-of select="$multiple"/>
-										<xsl:text>,</xsl:text>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="name()"/>
 								</xsl:when>
 								<xsl:otherwise>
@@ -263,7 +330,7 @@
 							<xsl:choose>
 								<xsl:when test="$multiple &gt;= 0">
 										<xsl:value-of select="$multiple"/>
-										<xsl:text>,</xsl:text>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="name()"/>
 								</xsl:when>
 								<xsl:otherwise>
@@ -301,7 +368,7 @@
 							<xsl:choose>
 								<xsl:when test="$multiple &gt;= 0">
 										<xsl:value-of select="$multiple"/>
-										<xsl:text>,</xsl:text>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="name()"/>
 								</xsl:when>
 								<xsl:otherwise>
@@ -353,7 +420,7 @@
 							<xsl:choose>
 								<xsl:when test="$multiple &gt;= 0">
 										<xsl:value-of select="$multiple"/>
-										<xsl:text>,</xsl:text>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="name()"/>
 								</xsl:when>
 								<xsl:otherwise>

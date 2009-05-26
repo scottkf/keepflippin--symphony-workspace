@@ -4,7 +4,8 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
-	extension-element-prefixes="exsl form">
+  xmlns:str="http://exslt.org/strings"
+	extension-element-prefixes="exsl form str">
 
 <!--
 Name: Form Controls
@@ -894,14 +895,13 @@ Returns: string
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable-->
-	<xsl:choose>
-		<xsl:when test="contains($handle, ',')">
-			<xsl:value-of select="concat($section, '[', substring-before($handle,','), '][', substring-after($handle,','), ']')"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:value-of select="concat($section, '[', $handle, ']')"/>
-		</xsl:otherwise>
-	</xsl:choose>
+	<!-- <xsl:choose> -->
+	<xsl:value-of select="$section"/>
+	<xsl:for-each select="str:tokenize($handle)">
+		<xsl:text>[</xsl:text>
+		<xsl:value-of select="."/>
+		<xsl:text>]</xsl:text>		
+	</xsl:for-each>
 </xsl:template>
 
 <!--

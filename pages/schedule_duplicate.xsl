@@ -42,7 +42,6 @@
 		</xsl:with-param>
 	</xsl:apply-templates>
 	
-	<!-- <xsl:if test="1"> -->
 	<xsl:if test="/data/events/duplicate-session[@type = 'created' and @result = 'success']">
 		<xsl:apply-templates select="section-schema[@handle='events']">
 			<xsl:with-param name="multiple" select="1" />
@@ -50,9 +49,6 @@
 				<xsl:text>session</xsl:text>
 			</xsl:with-param>
 			<xsl:with-param name="parent_id" select="/data/events/duplicate-session/@id"/>
-			<!-- <xsl:with-param name="parent_id">
-				<xsl:text>205</xsl:text>				
-			</xsl:with-param> -->
 			<xsl:with-param name="values">
 				<xsl:text>/data/duplicate-event/entry</xsl:text>
 			</xsl:with-param>
@@ -61,13 +57,6 @@
 				<xsl:text>duplicate-event</xsl:text>
 			</xsl:with-param>
 		</xsl:apply-templates>
-		<!-- <form method="post" action="" enctype="multipart/form-data">
-		  <input name="MAX_FILE_SIZE" type="hidden" value="5242880" />
-		  <label>Name
-		    <input name="fields[name]" type="text" />
-		  </label>
-		  <input name="action[duplicate-session]" type="submit" value="Submit" />
-		</form> -->
 
 	</xsl:if>
 </xsl:template>
