@@ -525,7 +525,6 @@ Parameters:
 	<xsl:param name="allow-multiple"/>
 	<xsl:param name="section" select="'fields'"/>
 	<xsl:param name="event" select="$form:event"/>
-
 	<xsl:variable name="initial-value">
 		<xsl:choose>
 			<xsl:when test="count(exsl:node-set($value)/*) &gt; 1">
@@ -536,7 +535,6 @@ Parameters:
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	
 	<xsl:variable name="postback-value">
 		<xsl:call-template name="form:postback-value">
 			<xsl:with-param name="event" select="$event"/>
@@ -547,7 +545,7 @@ Parameters:
 	
 	<xsl:element name="select" use-attribute-sets="form:attributes-general">
 		
-		<xsl:if test="$allow-multiple">
+		<xsl:if test="$allow-multiple = 'yes'">
 			<xsl:attribute name="multiple">multiple</xsl:attribute>
 			<xsl:variable name="name">
 				<xsl:call-template name="form:control-name">
@@ -641,7 +639,7 @@ Parameters:
 					<xsl:attribute name="value"><xsl:value-of select="@value"/></xsl:attribute>
 				</xsl:if>
 				
-				<xsl:if test="($event and $option-value=exsl:node-set($postback-value)/value) or (not($event) and $option-value=exsl:node-set($initial-value)/*)">
+				<xsl:if test="(@value != '' and (contains($value,@value) or $value = @value)) or ($event and $option-value=exsl:node-set($postback-value)/value) or (not($event) and $option-value=exsl:node-set($initial-value)/*)">
 					<xsl:attribute name="selected"><xsl:text>selected</xsl:text></xsl:attribute>
 				</xsl:if>
 				
@@ -896,8 +894,14 @@ Returns: string
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable-->
-	
-	<xsl:value-of select="concat($section, '[', $handle, ']')"/>
+	<xsl:choose>
+		<xsl:when test="contains($handle, ',')">
+			<xsl:value-of select="concat($section, '[', substring-before($handle,','), '][', substring-after($handle,','), ']')"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="concat($section, '[', $handle, ']')"/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <!--

@@ -53,6 +53,10 @@
 							<xsl:value-of select="$root" />
 							<xsl:text>/classes/</xsl:text>
 							<xsl:value-of select="class/item/@handle" />
+							<xsl:text>?short</xsl:text>
+						</xsl:attribute>
+						<xsl:attribute name="rel">
+							<xsl:text>facebox</xsl:text>
 						</xsl:attribute>
 						<xsl:value-of select="name" />
 					</a>

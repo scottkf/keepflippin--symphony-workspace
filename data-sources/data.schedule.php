@@ -7,13 +7,13 @@
 		public $dsParamROOTELEMENT = 'schedule';
 		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '99';
-		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'112' => '{$session}',
 				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
+				'118' => '{$ds-session}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -27,7 +27,7 @@
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array();
+			$this->_dependencies = array('$ds-session');
 		}
 		
 		public function about(){
@@ -38,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T16:03:22+00:00');	
+					 'release-date' => '2009-05-25T15:07:36+00:00');	
 		}
 		
 		public function getSource(){
