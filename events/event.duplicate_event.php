@@ -1,6 +1,5 @@
 <?php
 
-	print_r($_POST);
 	require_once(TOOLKIT . '/class.event.php');
 	
 	Class eventduplicate_event extends Event{

@@ -72,6 +72,10 @@ a img { border: none; }
 #guideline li { margin: 0 5px 12px; }
 
 form { overflow: hidden; background-color: #fff; border: 1px solid #afc79f; margin-top: 20px; }
+form #main { display: inline; float: left; margin-right: 15px; width: 545px; }
+* html form #main { overflow-x: hidden; }
+form #sidebar { display: inline; float: left; margin-right: 0; width: 385px; }
+* html form #sidebar { overflow-x: hidden; }
 form fieldset { background: #c8e4b7 url("../images/grid.gif"); border: none; font-size: 90%; padding: 10px 15px; margin: 1px; }
 form label { display: block; position: relative; color: #3f5a3e; font-size: 0.95em; letter-spacing: 1px; margin-bottom: 10px; }
 form label.error { color: #b12123; font-weight: bold; }

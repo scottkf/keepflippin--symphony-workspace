@@ -7,7 +7,7 @@
 		public $dsParamROOTELEMENT = 'session';
 		public $dsParamORDER = 'desc';
 		public $dsParamLIMIT = '10';
-		public $dsParamREDIRECTONEMPTY = 'no';
+		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamPARAMOUTPUT = 'system:id';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
@@ -33,7 +33,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-25T15:27:29+00:00');	
+					 'release-date' => '2009-05-27T15:31:22+00:00');	
 		}
 		
 		public function getSource(){

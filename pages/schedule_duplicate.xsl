@@ -11,54 +11,65 @@
 
 
 <xsl:template match="data">
-	<style type="text/css">
-		div#main, div#sidebar {
-			width: 340px;
-			float: left;
-		}
-		label {
-			display: block;
-			margin-bottom: 20px;
-		}
-		input, textarea, select {
-			display: block;
-			width: 300px;
-		}
-		label.checkbox input {
-			display: inline;
-			width: auto;
-		}
-		input.submit-button {
-			clear: left;
-			width: auto;
-		}
-	</style>
-	<xsl:copy-of select="/data/events" />
-	<h3>Attempting to duplicate <xsl:value-of select="$session"/></h3>
-	<xsl:apply-templates select="section-schema[@handle='sessions']">
-		<xsl:with-param name="event" select="/data/events/duplicate-session" />
-		<xsl:with-param name="post">
-			<xsl:text>duplicate-session</xsl:text>			
-		</xsl:with-param>
-	</xsl:apply-templates>
-	
-	<xsl:if test="/data/events/duplicate-session[@type = 'created' and @result = 'success']">
-		<xsl:apply-templates select="section-schema[@handle='events']">
-			<xsl:with-param name="multiple" select="1" />
-			<xsl:with-param name="parent_name">
-				<xsl:text>session</xsl:text>
-			</xsl:with-param>
-			<xsl:with-param name="parent_id" select="/data/events/duplicate-session/@id"/>
-			<xsl:with-param name="values">
-				<xsl:text>/data/duplicate-event/entry</xsl:text>
-			</xsl:with-param>
-			<xsl:with-param name="event" select="/data/events/duplicate-event" />
-			<xsl:with-param name="post">
-				<xsl:text>duplicate-event</xsl:text>
-			</xsl:with-param>
-		</xsl:apply-templates>
+	<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+			<style type="text/css">
+			div#main, div#sidebar {
+				width: 340px;
+				float: left;
+			}
+			label {
+				display: block;
+				margin-bottom: 20px;
+			}
+			input, textarea, select {
+				display: block;
+				width: 300px;
+			}
+			label.checkbox input {
+				display: inline;
+				width: auto;
+			}
+			input.submit-button {
+				clear: left;
+				width: auto;
+			}
+		</style>
+		
+		<xsl:copy-of select="/data/events" />
+		<xsl:choose>
+			<xsl:when test="/data/events/duplicate-session[@type = 'created' and @result = 'success']">
+				<h3>You can change some of the event data now, or do it later.</h3>
+				<xsl:apply-templates select="section-schema[@handle='events']">
+					<xsl:with-param name="multiple" select="1" />
+					<xsl:with-param name="parent_name">
+						<xsl:text>session</xsl:text>
+					</xsl:with-param>
+					<xsl:with-param name="parent_id" select="/data/events/duplicate-session/@id"/>
+					<xsl:with-param name="values">
+						<xsl:text>/data/duplicate-event/entry</xsl:text>
+					</xsl:with-param>
+					<xsl:with-param name="event" select="/data/events/duplicate-event" />
+					<xsl:with-param name="post">
+						<xsl:text>duplicate-event</xsl:text>
+					</xsl:with-param>
+				</xsl:apply-templates>				
+			</xsl:when>
 
-	</xsl:if>
+
+			<xsl:otherwise>
+				<h3>Attempting to duplicate <xsl:value-of select="$session"/></h3>
+				<h4>The name must be entered like Winter-2009, Summer-2010, etc. You have to use a dash (sorry). Then just click one of the submit buttons.</h4>
+				<xsl:apply-templates select="section-schema[@handle='sessions']">
+					<xsl:with-param name="event" select="/data/events/duplicate-session" />
+					<xsl:with-param name="post">
+						<xsl:text>duplicate-session</xsl:text>			
+					</xsl:with-param>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+		</xsl:choose>
+	
+
+</xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

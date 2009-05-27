@@ -8,6 +8,7 @@
 
 <xsl:template match="/data/schedule*" mode="events">
 	<xsl:param name="day" />
+	<xsl:param name="time" />
 	<xsl:variable name="y">
 		<xsl:call-template name="format-date">
 	    <xsl:with-param name="date" select="$day"/>
@@ -26,19 +27,22 @@
 	    <xsl:with-param name="format" select="'d'"/>
 	  </xsl:call-template>
 	</xsl:variable>
-	
+
 	<xsl:choose>
 		<!-- filter by class, since we can't do it through the DS, otherwise we lose all over events -->
-		<xsl:when test="entry[date/current = $day and name/@handle = 'closed']">
+		<xsl:when test="$time = '' and entry[date/current = $day and name/@handle = 'closed']">
 			<xsl:apply-templates select="entry[date/current = $day and name/@handle = 'closed']" mode="event" />
 		</xsl:when>
-		<xsl:when test="$classes != ''">
+		<xsl:when test="$time = '' and $classes != ''">
 			<xsl:apply-templates select="entry[date/current = $day and (class/item/@handle = $classes or not(class))]" mode="event" />
 		</xsl:when>
-		<!-- otherwise give everything -->
-		<xsl:otherwise>
+		<xsl:when test="$time != ''">
+			<xsl:variable name="day-in-seconds" select="date:seconds(concat($day,'T',$time,':00:00'))" />
+			<xsl:apply-templates select="entry[(date:day-in-week(date/current) = date:day-in-week($day)) and date:seconds(concat($day,'T',date/current/@time,':00')) &gt;= $day-in-seconds and date:seconds(concat($day,'T',date/current/@time,':00')) &lt; ($day-in-seconds + 3600)]" mode="event" />
+		</xsl:when>
+		<xsl:when test="$time = ''">
 			<xsl:apply-templates select="entry[date/current = $day]" mode="event" />
-		</xsl:otherwise>
+		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 

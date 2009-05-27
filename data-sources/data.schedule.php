@@ -12,8 +12,8 @@
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
 				'118' => '{$ds-session}',
+				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -38,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-25T15:07:36+00:00');	
+					 'release-date' => '2009-05-27T16:38:54+00:00');	
 		}
 		
 		public function getSource(){
