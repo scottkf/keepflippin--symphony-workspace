@@ -12,13 +12,14 @@
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'90' => '{$class}',
 				'id' => '{$ds-events-list}',
+				'90' => '{$class}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'class-name',
 				'ages',
+				'short-description',
 				'description'
 		);
 
@@ -35,7 +36,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T13:45:27+00:00');	
+					 'release-date' => '2009-05-27T19:05:36+00:00');	
 		}
 		
 		public function getSource(){

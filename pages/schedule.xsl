@@ -17,6 +17,7 @@
 		</ul>
 	</div>
 	<div id="calendar">
+		<a href="{$root}/schedule/week/{$session}">See a list of class-times by hour</a>
 		<xsl:call-template name="calendar" />
 	</div>
 </xsl:template>

@@ -18,6 +18,7 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'class-name',
 				'ages',
+				'short-description',
 				'description'
 		);
 
@@ -34,7 +35,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T13:37:37+00:00');	
+					 'release-date' => '2009-05-27T19:05:04+00:00');	
 		}
 		
 		public function getSource(){

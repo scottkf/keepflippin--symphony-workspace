@@ -16,6 +16,7 @@
 		</xsl:otherwise>
 	</xsl:choose>
 	<div id="calendar">
+		<a href="{$root}/schedule/{$session}">See what's going on by month!</a>
 		<xsl:call-template name="calendar-by-week" />
 	</div>
 </xsl:template>

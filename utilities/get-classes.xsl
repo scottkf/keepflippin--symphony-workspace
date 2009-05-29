@@ -5,7 +5,7 @@
 <xsl:template match="entry" mode="admin">
 		<xsl:if test="$is-logged-in = 'true'">
 				<xsl:text> &#8212; </xsl:text>
-				<a class="edit" href="{$root}/symphony/publish/{section/@handle}/edit/{entry/@id}/">Edit</a>
+				<a class="edit" href="{$root}/symphony/publish/{../section/@handle}/edit/{@id}/">Edit</a>
 		</xsl:if>
 </xsl:template>
 
@@ -29,7 +29,9 @@
 		<xsl:call-template name="build-schedule-link">
 			<xsl:with-param name="classname" select="class-name/@handle"/>
 		</xsl:call-template>
-		<xsl:copy-of select="description/*" />
+		<p>
+		<xsl:value-of select="short-description" />
+		</p>
 	</div>
 </xsl:template>
 

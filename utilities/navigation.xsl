@@ -7,7 +7,7 @@
       <xsl:if test="'home' = $root-page">
         <xsl:attribute name="class">selected</xsl:attribute>
       </xsl:if>
-      <a href="{$root}/{@handle}">Welcome</a>
+      <a href="{$root}">Welcome</a>
     </li>
     <xsl:apply-templates select="page[not(types/type = 'hidden') and not(types/type = 'admin')]"/>
 
@@ -25,7 +25,7 @@
       <xsl:attribute name="class">selected</xsl:attribute>
     </xsl:if>
     <a href="{$root}/{@handle}/">
-      <xsl:value-of select="(@handle)"/>
+      <xsl:value-of select="(name)"/>
     </a>
   </li>
 </xsl:template>
