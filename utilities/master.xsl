@@ -35,13 +35,13 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
-		<link href="{$workspace}/css/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-		<script src="{$workspace}/javascript/facebox.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/facebox.css" />
+		<script type="text/javascript" src="{$workspace}/javascript/facebox.js"></script>
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 		<script type="text/javascript">
 		//<![CDATA[
-		jQuery(document).ready(function($) {
-		  $('a[rel*=facebox]').facebox()
+		$(document).ready(function() { 
+			$('a[rel^=facebox]').facebox();
 		})	//]]>]]&gt;
 		&lt;/script>
 		</xsl:text>		

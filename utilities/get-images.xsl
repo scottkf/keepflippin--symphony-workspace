@@ -17,7 +17,7 @@
 	<img title="{description}">
 		<xsl:attribute name="src">
 			<xsl:value-of select="$workspace"/>
-			<xsl:text>/uploads/</xsl:text>
+			<xsl:text>/article_images/</xsl:text>
 			<xsl:value-of select="image/filename"/>
 		</xsl:attribute>
 	</img>
