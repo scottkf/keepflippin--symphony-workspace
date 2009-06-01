@@ -12,6 +12,8 @@
 		</div>
 		<div id="menu">
 			<ul>
+				<li><a href="{$root}/locations?short" rel="locations">Locations</a></li> 
+				<li><a href="{$root}">Community</a></li> 
 				<xsl:choose>
 					<xsl:when test="/data/events/login-info/@logged-in = 'true'">
 						<li><a href="{$root}/symphony/logout/">Logout</a></li> 
@@ -20,9 +22,6 @@
 						<li><a href="{$root}/symphony">Login</a></li> 
 					</xsl:otherwise>
 				</xsl:choose>
-				<li><a href="{$root}">Register</a></li> 
-				<li><a href="{$root}/locations?short" rel="facebox">Locations</a></li> 
-				<li><a href="{$root}">Community</a></li> 
 			</ul>
 		</div>
 		<div id="nav">

@@ -16,8 +16,8 @@
 <xsl:template match="article-images/entry" mode="frontpage">
 	<img title="{description}">
 		<xsl:attribute name="src">
-			<xsl:value-of select="$workspace"/>
-			<xsl:text>/article_images/</xsl:text>
+			<xsl:value-of select="$root"/>
+			<xsl:text>/image/1/182/136/article_images/</xsl:text>
 			<xsl:value-of select="image/filename"/>
 		</xsl:attribute>
 	</img>

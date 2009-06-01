@@ -6,13 +6,22 @@
 		
 		public $dsParamROOTELEMENT = 'galleries';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '20';
-		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'system:id';
+		public $dsParamLIMIT = '99';
+		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamPARAMOUTPUT = 'images';
+		public $dsParamSORT = 'system:date';
 		public $dsParamSTARTPAGE = '1';
+		
+		public $dsParamFILTERS = array(
+				'128' => '{$gallery}',
+		);
+		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
-				'image'
+				'short-description',
+				'tags',
+				'images',
+				'key-photo'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -28,11 +37,11 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-19T15:52:23+00:00');	
+					 'release-date' => '2009-06-01T17:35:08+00:00');	
 		}
 		
 		public function getSource(){
-			return '17';
+			return '23';
 		}
 		
 		public function allowEditorToParse(){

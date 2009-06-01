@@ -30,21 +30,25 @@
 		<xsl:if test="$root-page = 'schedule'">
 			<link rel="stylesheet" href="{$workspace}/css/calendar.css" type="text/css" media="screen, projection" />
 		</xsl:if>
+		<xsl:if test="$root-page = 'photos'">
+			<link rel="stylesheet" href="{$workspace}/css/gallery.css" type="text/css" media="screen, projection" />
+		</xsl:if>
 		<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
-		<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/facebox.css" />
-		<script type="text/javascript" src="{$workspace}/javascript/facebox.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/colorbox.css" />
+		<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
+		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 		<script type="text/javascript">
-		//<![CDATA[
 		$(document).ready(function() { 
-			$('a[rel^=facebox]').facebox();
-		})	//]]>]]&gt;
-		&lt;/script>
-		</xsl:text>		
+			$("a[rel='locations']").colorbox({transition:"elastic"});
+			$('a.colorbox').colorbox({transition:"elastic"});
+			$("a[rel='gallery']").colorbox({transition:"elastic"});				
+		})
+		</script>
+		]]></xsl:text>		
 		<link rel="alternate" type="application/rss+xml" href="/rss/" />
 	</xsl:if>
 </head>

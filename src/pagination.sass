@@ -1,0 +1,32 @@
+ul.pagination 
+	margin: 0
+	li 
+		list-style-type: none
+		font-size: 1.2em
+		margin: 0
+		padding: 0
+		display: inline
+		a 
+			display: block
+			float: left
+			padding: 2px 8px
+			margin-right: 3px
+			color: #777
+			&.page
+				background-color: #9FA19F
+				color: #ddd
+				font-weight: bold
+				&:hover
+					text-decoration: none
+					color: #fff
+		span 
+			float: left
+			margin-right: 4px
+		&.selected 
+			a.page
+				background-color: #545C5F
+				color: #fff
+		&.disabled 
+			a
+				color: #ddd
+				cursor: default

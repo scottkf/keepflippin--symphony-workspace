@@ -38,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-27T16:38:54+00:00');	
+					 'release-date' => '2009-06-01T15:16:44+00:00');	
 		}
 		
 		public function getSource(){

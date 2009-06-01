@@ -8,12 +8,11 @@
 		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '999';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamREQUIREDPARAM = '$ds-articles';
 		public $dsParamSORT = 'date';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'39' => '{$ds-articles}',
+				'39' => '{$photo}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -21,24 +20,25 @@
 				'email',
 				'website',
 				'date',
+				'image',
 				'comment',
 				'authorised'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array('$ds-articles');
+			$this->_dependencies = array();
 		}
 		
 		public function about(){
 			return array(
 					 'name' => 'Comments',
 					 'author' => array(
-							'name' => 'Alistair Kearney',
-							'website' => 'http://symphony.local:8888/2',
-							'email' => 'alistair@symphony21.com'),
+							'name' => 'scott tesoriere',
+							'website' => 'http://imac.local/kf',
+							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2008-12-12T04:29:10+00:00');	
+					 'release-date' => '2009-06-01T17:41:08+00:00');	
 		}
 		
 		public function getSource(){

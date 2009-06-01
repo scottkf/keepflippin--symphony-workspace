@@ -1,0 +1,100 @@
+@import _base.sass
+@import blueprint.sass
+@import compass/utilities.sass
+
+!galleryw = 160px
+!galleryh = 120px
+!gallerycols = 5
+!picw = 260px
+!pich = 195px
+!piccols = 3
+
+
+!gallery = !blueprint_grid_columns / !gallerycols
+!pic = !blueprint_grid_columns / !piccols
+
+#gallery-list, #gallery
+	+horizontal-list(0px)
+	li
+		margin-bottom: 35px
+		+column(!gallery)
+		&.last
+			+column(!gallery,true)
+		margin-right: 0px
+		p.tags, p.title, p.date, p.comments
+			margin-top: .2em
+			font-weight: normal
+			color: #222222
+			font-size: 1.2em
+			margin-bottom: 0em
+			white-space: normal
+			width= !galleryw
+			a
+				display: inline
+			&.comments
+				font-size: 1em
+			&.tags
+				font-size: 1em
+				margin-top: .2em
+			&.date
+				margin-top: .3em
+				font-size: 1em
+			&.title
+		a
+			text-decoration: none
+			display: block
+			position: relative
+			width= !galleryw
+			height= !galleryh
+			img
+			div
+				width= !galleryw
+				height= !galleryh
+				display: none
+				&.shade
+					background-color: #000000
+					left: 0
+					position: absolute
+					top: 0
+					z-index: 5
+					opacity: 0.8
+				&.description
+					background-color: transparent
+					color: white
+					font-weight: bold
+					left: 0
+					overflow: hidden
+					position: absolute
+					top: 0px
+					z-index: 9
+					p
+						white-space: normal
+						padding: 5px
+						border: 1px solid #aaa
+						width= !galleryw - 10
+						height= !galleryh
+
+		a:hover
+			div
+				display: block
+				&.description
+
+
+
+#gallery
+	li
+		margin-bottom: 30px
+		+column(!pic)
+		&.last
+			+column(!pic,true)
+		a
+			width= !picw
+			height= !pich
+			div
+				width= !picw
+				height= !pich
+				&.description
+					p
+						width= !picw - 10
+						height= !pich
+				

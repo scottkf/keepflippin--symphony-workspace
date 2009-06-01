@@ -6,7 +6,7 @@
     <xsl:text>Comments</xsl:text>
     <xsl:if test="$is-logged-in = 'true'">
       <xsl:text> &#8212; </xsl:text>
-      <a href="{$root}/symphony/publish/comments/?filter=article:{/data/articles/entry/@id}">Manage</a>
+      <a href="{$root}/symphony/publish/comments/?filter=article:{/data/photos-single/entry/@id}">Manage</a>
     </xsl:if>
   </h2>
   <div id="comments">

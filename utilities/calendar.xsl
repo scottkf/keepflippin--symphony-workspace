@@ -3,7 +3,8 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:date="http://exslt.org/dates-and-times"
   xmlns:str="http://exslt.org/strings"
-	extension-element-prefixes="date str">
+	xmlns:math="http://exslt.org/math"
+	extension-element-prefixes="date str math">
 
 
 <xsl:import href="get-schedule.xsl" />
@@ -19,9 +20,15 @@ Modified by: Scott Tesoriere <http://github.com/scottkf>
 URL: http://gist.github.com/115859
 -->
 <xsl:param name="relative-day">
+	<xsl:variable name="day">
+		<xsl:call-template name="last-day-in-month">
+			<xsl:with-param name="year" select="$year"/>
+			<xsl:with-param name="month" select="$month" />
+		</xsl:call-template>
+	</xsl:variable>
 	<xsl:choose>
 		<xsl:when test="$year &gt;= 1 or $month &gt;= 1">
-			<xsl:value-of select="concat(format-number($year,'0000'),'-',format-number($month ,'00'),'-',$this-day)" />
+			<xsl:value-of select="concat(format-number($year,'0000'),'-',format-number($month ,'00'),'-',$day)" />
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:value-of select="$today" />
@@ -29,16 +36,27 @@ URL: http://gist.github.com/115859
 	</xsl:choose>
 </xsl:param>
 <xsl:param name="classes"/>
+
+<xsl:template name="last-day-in-month">
+	<xsl:param name="month" />
+	<xsl:param name="year" />
+	<xsl:choose>
+		<xsl:when test="$month = 2 and not($year mod 4) and ($year mod 100 or not ($year mod 400))">
+			<xsl:value-of select="29"/>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="substring('31283130313031303130313031', 2* $month - 1,2)"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
 <xsl:template name="calendar">
-
-
 	<!-- Calculate the offset to the first day in this month -->
 	<xsl:variable name="first-day-offset">
 		<xsl:text>-P</xsl:text>
 		<xsl:value-of select="date:day-in-month($relative-day) - 1" />
 		<xsl:text>D</xsl:text>
 	</xsl:variable>
-
 	<xsl:variable name="first-of-month"	select="date:add($relative-day, $first-day-offset)" />
 
 	<!-- Calculate the offset to the first Sunday before or on the
@@ -184,6 +202,7 @@ URL: http://gist.github.com/115859
 
 
 <xsl:template name="preceding-month">
+	<xsl:param name="date" />
 	<xsl:variable name="last-month"	select="date:add($date, '-P1M')" />
 	<xsl:call-template name="build-link">
 		<xsl:with-param name="month" select="$last-month" />
@@ -194,6 +213,7 @@ URL: http://gist.github.com/115859
 </xsl:template>
 
 <xsl:template name="following-month">
+	<xsl:param name="date" />
 	<xsl:variable name="next-month"	select="date:add($date, 'P1M')" />
 	<xsl:call-template name="build-link">
 		<xsl:with-param name="month" select="$next-month" />
@@ -205,6 +225,8 @@ URL: http://gist.github.com/115859
 
 
 <xsl:template name="build-link">
+	<xsl:param name="month" />
+	<xsl:param name="text" />
 	<a>
 		<xsl:attribute name="href">
 			<xsl:value-of select="$root" />
@@ -252,6 +274,7 @@ URL: http://gist.github.com/115859
 
 <!-- override this to change what goes in the td -->
 <xsl:template name="optional-hyperlink-to-date">
+	<xsl:param name="day" />
 	<xsl:call-template name="format-date">
     <xsl:with-param name="date" select="$day"/>
     <xsl:with-param name="format" select="'D'"/>
@@ -342,6 +365,7 @@ URL: http://gist.github.com/115859
 </xsl:template>
 
 <xsl:template name="calendar-week-setup">
+	<xsl:param name="date" />
   <xsl:param name="weekday-format"/>
   <table summary="calendar">
     <thead>
@@ -388,6 +412,7 @@ URL: http://gist.github.com/115859
 
 
 <xsl:template name="calendar-week-hours">
+	<xsl:param name="date" />
   <xsl:param name="minutes" select="'00'"/>
   <xsl:param name="am-pm" select="'AM'"/>
 	<xsl:param name="count" select="10"/>
@@ -399,7 +424,7 @@ URL: http://gist.github.com/115859
 			<xsl:otherwise><xsl:value-of select="$count"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:param>
-	<xsl:param name="24hour">
+	<xsl:param name="hour-two-four">
 		<xsl:choose>
 			<xsl:when test="$am-pm = 'PM'">
 				<xsl:value-of select="$count+12"/>
@@ -412,7 +437,16 @@ URL: http://gist.github.com/115859
 	
 	<xsl:variable name="relative">
 		<xsl:text>-P</xsl:text>
-		<xsl:value-of select="date:day-in-week($date)-2" />
+		<xsl:choose>
+			<xsl:when test="date:day-in-week($date) = 1">
+				<xsl:value-of select="date:day-in-week($date)+5"/>
+			</xsl:when>
+			<xsl:when test="date:day-in-week($date) >= 2">
+				<xsl:value-of select="date:day-in-week($date)-2" />
+			</xsl:when>
+			<xsl:otherwise>
+			</xsl:otherwise>
+		</xsl:choose>
 		<!-- -2 because it starts number from sunday which is 1 -->
 		<xsl:text>D</xsl:text>
 	</xsl:variable>
@@ -428,7 +462,7 @@ URL: http://gist.github.com/115859
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P0D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	
 			</ul>
     </td>
@@ -436,21 +470,21 @@ URL: http://gist.github.com/115859
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P1D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	    	
 			</ul>
     </td>
     <td>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P2D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	
     </td>
     <td>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P3D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	    	
 			</ul>
     </td>
@@ -458,7 +492,7 @@ URL: http://gist.github.com/115859
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P4D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	    	
 			</ul>
     </td>
@@ -466,7 +500,7 @@ URL: http://gist.github.com/115859
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P5D')" />
-				<xsl:with-param name="time" select="$24hour"/>
+				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	    	
 			</ul>
     </td>

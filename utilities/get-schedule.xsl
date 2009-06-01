@@ -27,7 +27,6 @@
 	    <xsl:with-param name="format" select="'d'"/>
 	  </xsl:call-template>
 	</xsl:variable>
-
 	<xsl:choose>
 		<!-- filter by class, since we can't do it through the DS, otherwise we lose all over events -->
 		<xsl:when test="$time = '' and entry[date/current = $day and name/@handle = 'closed']">
@@ -50,7 +49,7 @@
 	<xsl:variable name="entry-id" select="class/item/@id" />
 	<xsl:choose>
 		<!-- if the item has a class attached -->
-		<xsl:when test="class != ''">
+		<xsl:when test="class/item != ''">
 				<li class="{class/item/@handle}">
 					<a>
 						<xsl:attribute name="href">
@@ -59,8 +58,8 @@
 							<xsl:value-of select="class/item/@handle" />
 							<xsl:text>?short</xsl:text>
 						</xsl:attribute>
-						<xsl:attribute name="rel">
-							<xsl:text>facebox</xsl:text>
+						<xsl:attribute name="class">
+							<xsl:text>colorbox</xsl:text>
 						</xsl:attribute>
 						<xsl:value-of select="name" />
 					</a>
