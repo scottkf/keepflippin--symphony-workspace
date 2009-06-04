@@ -40,7 +40,7 @@
     <span class="date">
       <xsl:call-template name="format-date">
         <xsl:with-param name="date" select="publish-this-article-on"/>
-        <xsl:with-param name="format" select="'D'"/>
+        <xsl:with-param name="format" select="'m D'"/>
       </xsl:call-template>
     </span>
 		<div class="article-wide">

@@ -21,10 +21,25 @@
 
 <xsl:template match="page">
   <li>
-    <xsl:if test="@handle = $root-page">
+		<xsl:attribute name="id">
+			<xsl:value-of select="@handle"/>
+		</xsl:attribute>
+    <xsl:if test="(@handle = $current-page and ../../page != '') or @handle = $root-page">
       <xsl:attribute name="class">selected</xsl:attribute>
     </xsl:if>
-    <a href="{$root}/{@handle}/">
+		<xsl:variable name="handle">
+			<xsl:choose>
+				<xsl:when test="../../page != ''">
+					<xsl:value-of select="../@handle"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="@handle"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="@handle"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+    <a href="{$root}/{$handle}/">
       <xsl:value-of select="(name)"/>
     </a>
   </li>

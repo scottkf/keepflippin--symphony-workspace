@@ -6,6 +6,15 @@
 <xsl:import href="../utilities/get-archive.xsl"/>
 <xsl:import href="../utilities/get-comments.xsl"/>
 
+<xsl:template name="top">
+	<div>
+		<h2>The latest!</h2>
+		<p>
+			hello
+		</p>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
 	<xsl:choose>
 		<xsl:when test="$year != '' and $entry != ''">

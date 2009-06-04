@@ -11,6 +11,15 @@
 +blueprint-debug
 
 
+h1 a, h2 a, h3 a, h4 a, h5 a
+	color= !article_title_color
+	&:visited
+		color= !article_title_visited_color
+	&:hover
+		color= !article_hover_color
+
+
+
 body
 	background-color= !body_bg_color
 	+feedback-badge
@@ -53,8 +62,8 @@ a
 				+nav-hover("classes", 80px)
 			#franchising
 				+nav-hover("franchising", 114px)
-			#pictures
-				+nav-hover("pictures", 86px)
+			#photos
+				+nav-hover("photos", 86px)
 			#contact
 				+nav-hover("contact", 85px)
 			li
@@ -91,7 +100,7 @@ a
 				border-bottom: 3px solid white
 				a
 					border: 1px solid white
-					color: #9a1c1b
+					color= !page_header_color
 					&:hover
 						padding-left: 20px
 						padding-right: 20px
@@ -99,14 +108,11 @@ a
 						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
 						
 
-h2 a, h3 a
-	color= !article_title_color
-	&:visited
-		color= !article_title_visited_color
-	&:hover
-		color= !article_hover_color
-			
-
+#home 
+	#middle
+		#welcome-kf
+			background: url(../images/home-bg.jpg) repeat-x scroll bottom center
+			padding-top: 30px
 
 #middle
 	background-color: white
@@ -125,9 +131,68 @@ h2 a, h3 a
 		font: 1.2em "georgia, times, times new roman"
 		line-height: 140%
 
+	#welcome-kf
+		background: url(../images/other-bg.jpg) repeat-x scroll bottom center
+		border-bottom: 1px solid #e6e6e6
+		padding-top: 17px
+		color: #444
+		.nav
+			+horizontal-list
+			+piped-list
+			margin-bottom: 20px
+			li
+				font-size: 1.4em
+				&.selected
+					a
+						color= !page_header_color + #111
+						font-size: bigger
+				a
+		p
+			margin-bottom: 10px
+			font: 1.35em "georgia, times, times new roman"
+			line-height: 140%
+		h2
+			margin-bottom: 10px
+			font-weight: bold
+			line-height: 1.1em
+			font-size: 2.5em
+			letter-spacing: -0.04em
+			color= !page_header_color
+			a
+				color= !page_header_color
+		> div
+			+container
+			position: relative
+			#badge-home
+				position: absolute
+				background: url(../images/star-badge-home.png) no-repeat
+				height: 94px
+				width: 97px
+				top: 150px
+				left= !blueprint_grid_width * 17
+				z-index: 2
+			.introduction
+				margin-bottom: 20px
+				+column(10)
+				p
+					a:hover
+						color= #2e5378 - #111
+				h2
+					font-size: 3.5em
+					a
+						color= !page_header_color
+						&:hover
+							text-decoration: none
+			.introduction + div
+				+prepend(1)
+				+column(13, true)
+				margin-bottom: 20px
+				img
+					border: 1px solid #555
+	
 	#content 
 		+container
-		padding-top: 50px
+		padding-top: 30px
 		padding-bottom: 20px
 		.article,.article-wide 
 			h3
@@ -139,16 +204,17 @@ h2 a, h3 a
 						width: 184px
 						height: 138px
 						margin-bottom: 20px
-						img
-							width: 182px
-							height: 136px
-							display: block
-							border: 1px solid #b2ae96
-					&:hover
-						div
-							border= 1px "solid" #7e848e - #333
-							img
-								border= 1px "solid" #b2ae96 - #333
+					img
+						width: 182px
+						height: 136px
+						display: block
+						border: 1px solid #b2ae96
+						margin-bottom: 8px
+				&:hover
+					div
+						border= 1px "solid" #7e848e - #333
+					img
+						border= 1px "solid" #b2ae96 - #333
 				\+p
 					margin: 0px
 					padding: 0px
@@ -157,21 +223,45 @@ h2 a, h3 a
 			+column(5)
 		> .article + .article
 		
+		
+		ul#class
+			+column(24, true)
+			+horizontal-list(0px)
+			li
+				+column(12)
+				&.last
+					+column(12, true)
+				.left
+					height: 150px
+					+column(4)
+					margin-right: 0px
+					img
+					a
+				.right
+					height: 150px
+					+column(8)
+					margin-left: 15px
+					margin-right: 0px
+					h3
+						margin-bottom: .2em
+					h5
+						margin-bottom: .6em
+					a
+					p
+						white-space: normal
+						margin-bottom: 0px
+		
 		#right
 			+prepend(1)
 			+column(12,true)
-			.introduction
-				p
-					font: 1.35em "georgia, times, times new roman"
-					line-height: 140%
-					a:hover
-						color= #2e5378 - #111
-
-				h2
-					margin-bottom: 0px
+			h4
+			hr
+				color: #fff
+			.article
+				h3
 					a
-						&:hover
-							text-decoration: none
+						font-weight: bold
+				
 				
 
 
@@ -235,4 +325,3 @@ h2 a, h3 a
 		+column(24,true)
 		ul
 			text-align: center	
-			

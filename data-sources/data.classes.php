@@ -5,7 +5,7 @@
 	Class datasourceclasses extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'classes';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamSORT = 'class-name';
@@ -20,7 +20,8 @@
 				'class-name',
 				'ages',
 				'short-description',
-				'description'
+				'description',
+				'image'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -36,7 +37,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-27T19:05:36+00:00');	
+					 'release-date' => '2009-06-02T15:52:41+00:00');	
 		}
 		
 		public function getSource(){

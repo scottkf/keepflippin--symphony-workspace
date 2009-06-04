@@ -6,6 +6,15 @@
 <xsl:import href="../utilities/get-article.xsl"/>
 <xsl:import href="../utilities/calendar.xsl" />
 
+<xsl:template name="top">
+	<div>
+		<h2>Schedule</h2>
+		<p>
+			Showing only classes at <b>&#8220;<xsl:value-of select="/data/schedule-events-places-classes/entry/place/item"/>&#8221;</b>
+		</p>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
 	<div id="calendar">
 		<xsl:call-template name="calendar" />

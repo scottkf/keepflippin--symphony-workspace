@@ -40,11 +40,23 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
+		<xsl:if test="$current-page = 'directions'">
+	    <!-- <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAxNlWEKpbOHkXhcfIsQgzdRS6IlhYvigTexoEmVuvX9YqEp1AlhSBcZYf8lb4YEKLq_zXsBn8GeRmLQ" type="text/javascript"></script> -->
+			<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAxNlWEKpbOHkXhcfIsQgzdRT2IVV_TNAFZZ5jxU7R4sNNB_DWmBSThAin4OyApzkMegv1jMZTPnRRDA" type="text/javascript"></script>
+			<script type="text/javascript" src="{$workspace}/javascript/googlemaps.inc.js"></script>			
+			<xsl:text disable-output-escaping="yes"><![CDATA[
+			<script type="text/javascript">
+				$(document).ready(function() {
+					load()
+				})
+			</script>
+			]]></xsl:text>		
+		</xsl:if>
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 		<script type="text/javascript">
 		$(document).ready(function() { 
 			$("a[rel='locations']").colorbox({transition:"elastic"});
-			$('a.colorbox').colorbox({transition:"elastic"});
+			$('a.colorbox').colorbox({transition:"elastic", width:"55%"});
 			$("a[rel='gallery']").colorbox({transition:"elastic"});				
 		})
 		</script>
@@ -54,16 +66,22 @@
 </head>
 <body id="{$root-page}">
 	<xsl:if test="$short = 0">
-		<xsl:call-template name="header" />		
-	</xsl:if>
-	<div id="middle">
-		<div id="content">
-			<xsl:if test="$short = 0">
-				<div id="badge"></div>
-			</xsl:if>
-      <xsl:apply-templates />
+		<xsl:call-template name="header" />
+		<div id="middle">
+			<div id="welcome-kf">
+				<xsl:call-template name="top" />
+			</div>
+			<div id="content">
+				<xsl:if test="$short = 0">
+					<div id="badge"></div>
+				</xsl:if>
+	      <xsl:apply-templates />
+			</div>
 		</div>
-	</div>
+	</xsl:if>
+	<xsl:if test="$short = 1">
+		<xsl:apply-templates />
+	</xsl:if>
 	<xsl:if test="$short = 0">
 		<xsl:call-template name="footer" />		
 	</xsl:if>

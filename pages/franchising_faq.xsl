@@ -3,18 +3,24 @@
 
 <xsl:import href="../utilities/master.xsl"/>
 
+<xsl:template name="top">
+	<div>
+		<h2><a href="{$root}/franchising">Franchising</a></h2>
+			<ul class="nav">
+				<xsl:apply-templates select="/data/navigation/page[@handle = 'franchising']/page"/>
+			</ul>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
 
-	
+
 <p>
-	<img class="toppic" src="http://keepflippin.com/images/104.jpg" />
+	<img src="{$workspace}/images/franchise-picture.jpg" />
 </p>
-<div style="position: absolute; top: 550px; right: -20px;">
-	<a href="{$root}/franchising/contact"><img src="http://keepflippin.com/images/106.png" height="139" width="139" /></a>
-</div>
 <h3>
 	Steps to owning your own <b>Keep Flippin'</b></h3>
-	<ul class="orange" style="font-size: 10pt;"> 
+	<ul class="orange"> 
 		<li>Why us?</li>
 		<li>Franchise Requirements</li>
 		<li>Franchise Support</li>
@@ -40,7 +46,7 @@
 	<h3>Will I receive help on the purchase of inventory and supplies?</h3>
 	<p>
 		Absolutely! We will fit your needs to your own gym and provide:
-		<ul class="orange" style="font-size: 10pt;">
+		<ul class="orange">
 			<li><b>Our gym layout.</b></li>
 			<li><b>A scheduling system.</b></li>
 			<li><b>Initial on-site training, and continuing training to help your business evolve.</b></li>
@@ -95,7 +101,6 @@
 		<p>
 				<a href="{$root}/franchising/contact">Contact us</a>
 		</p>
-
 
 </xsl:template>
 	

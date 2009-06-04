@@ -1,114 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:exsl="http://exslt.org/common"
+    xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
+    extension-element-prefixes="exsl form">
 
-<xsl:import href="../utilities/master.xsl"/>
+<xsl:import href="../utilities/master.xsl" />
+<xsl:import href="../utilities/form.xsl" />
+
+<xsl:template name="top">
+	<div>
+		<h2><a href="{$root}/franchising">Franchising</a></h2>
+			<ul class="nav">
+				<xsl:apply-templates select="/data/navigation/page[@handle = 'franchising']/page"/>
+			</ul>
+	</div>
+</xsl:template>
+
+<xsl:variable name="event" select="/data/events/save-prospect" />
 
 <xsl:template match="data">
-	<div>
+	<p>To find out more about more about Keep Flippin' - or to get the franchise process moving - please fill out the application below to tell us about yourself.</p>
 	<h3>Personal Information</h3>
-	<table style="text-align: left; font-size: 8pt; width: 100%;">
-	  <tbody><tr>
-	    <th>First Name *</th><th>Last Name *</th>
-	  </tr>
-	  <tr>
-	    <td><label for="zemSubscriberFirstName" class="zemRequired zemSubscriberFirstName">first name</label> <input id="zemSubscriberFirstName" class="zemRequired" name="zemSubscriberFirstName" value="" size="50" maxlength="100" type="text" /></td>
-	    <td><label for="zemSubscriberLastName" class="zemRequired zemSubscriberLastName">last name</label> <input id="zemSubscriberLastName" class="zemRequired" name="zemSubscriberLastName" value="" size="21" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td colspan="2">Address</td><th>
-	  </th></tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberAddress" class="zemSubscriberAddress">address</label> <input id="zemSubscriberAddress" class="" name="zemSubscriberAddress" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td colspan="2">City</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberCity" class="zemSubscriberCity">city</label> <input id="zemSubscriberCity" class="" name="zemSubscriberCity" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td>State</td><td>Zip / Postal code</td>
-	  </tr>
-	  <tr>
-	    <td><label for="zemSubscriberState" class="zemSubscriberState">state</label> <input id="zemSubscriberState" class="" name="zemSubscriberState" value="" size="50" maxlength="100" type="text" /></td>
-	    <td><label for="zemSubscriberZip" class="zemSubscriberZip">zipcode</label> <input id="zemSubscriberZip" class="" name="zemSubscriberZip" value="" size="21" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td colspan="2">Country</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberCountry" class="zemSubscriberCountry">country</label> <input id="zemSubscriberCountry" class="" name="zemSubscriberCountry" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <th colspan="2">Phone *</th><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberPhone" class="zemRequired zemSubscriberPhone">phone</label> <input id="zemSubscriberPhone" class="zemRequired" name="zemSubscriberPhone" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td colspan="2">Best time to contact</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberContactTime" class="zemSubscriberContactTime">contact time</label> <input id="zemSubscriberContactTime" class="" name="zemSubscriberContactTime" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <th colspan="2">Email Address *</th><th></th>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberCity" class="zemRequired zemSubscriberCity">email address</label> <input id="zemSubscriberCity" class="zemRequired" name="zemSubscriberCity" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-	  <tr>
-	     <td>Additional Comments</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberComments" class="zemSubscriberComments">Additional Comments</label> <textarea id="zemSubscriberComments" class="" name="zemSubscriberComments" cols="70" rows="8"></textarea></td>
-	  </tr>
-	  <tr>
-	    <td><b>* indicates a required field</b></td>
-	  </tr>
-	</tbody></table>
-	
-	<h3>Business Information</h3>
-	<table style="text-align: left; font-size: 8pt; width: 100%;">
-	  <tbody><tr>
-
-	  </tr><tr>
-	    <td colspan="2">Liquid Capital</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberLiquidCapital" class="zemSubscriberLiquidCapital">liquid capital</label> <input id="zemSubscriberLiquidCapital" class="" name="zemSubscriberLiquidCapital" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-
-	  <tr>
-	    <td colspan="2">Time Frame</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberTimeFrame" class="zemSubscriberTimeFrame">time frame</label> <input id="zemSubscriberTimeFrame" class="" name="zemSubscriberTimeFrame" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-	  <tr>
-	    <td colspan="2">Place where you prefer to open your new business (City, State, Country please)</td><td></td>
-	  </tr>
-	  <tr>
-	    <td colspan="2"><label for="zemSubscriberPlace" class="zemSubscriberPlace">place of new business</label> <input id="zemSubscriberPlace" class="" name="zemSubscriberPlace" value="" size="75" maxlength="100" type="text" /></td>
-	  </tr>
-
-
-	    <tr><td><b>* indicates a required field</b></td>
-	  </tr>
-	  <tr><td><input id="zemSubmit" name="zem_contact_submit" value="Submit Form" type="submit" /></td></tr>
-	</tbody></table>
-
-	</div>
-
+	<h5>Required fields are indicated by an asterisk (*) and are in bold.</h5>
+	<xsl:apply-templates select="section-schema[@handle='prospects']">
+		<xsl:with-param name="event" select="/data/events/save-prospect" />
+		<xsl:with-param name="post">
+			<xsl:text>save-prospect</xsl:text>			
+		</xsl:with-param>
+		<xsl:with-param name="submit">
+			<xsl:text>Submit Information</xsl:text>
+		</xsl:with-param>
+		<xsl:with-param name="required">
+			<xsl:text> *</xsl:text>
+		</xsl:with-param>
+    <xsl:with-param name="errors">
+				<error handle="first-name">Please enter your First Name.</error>
+				<error handle="last-name">Please enter your Last Name.</error>
+				<error handle="street-address">Please enter your Physical Street Address.</error>
+				<error handle="city">Please enter your city.</error>
+				<error handle="state-province">Please enter your Full State or Province.</error>
+				<error handle="postal-code">Please enter your Postal Code.</error>
+				<error handle="country">Please enter your Country.</error>
+				<error handle="phone" type="missing">Please enter your Phone Number.</error>
+				<error handle="phone" type="invalid">Please enter a valid Phone Number: (555)-555-5555</error>
+				<error handle="best-time-to-contact">Please enter the time at which we can contact you.</error>
+				<error handle="liquid-capital">Please enter the amount of liquid capital you possess.</error>
+				<error handle="time-frame">Please enter the time frame in which you would like to open the business.</error>
+        <error handle="email-address" type="missing">Please enter your e-mail address.</error>
+        <error handle="email-address" type="invalid">Please enter a valid e-mail address.</error>
+				<error handle="place-where-you-prefer-to-open-your-new-business">Please enter a location that you wish to open your Keep Flippin' Facility.</error>
+    </xsl:with-param>
+		<xsl:with-param name="inputs">
+	    <input name="send-email[from]" value="fields[email-address]" type="hidden" />
+	    <input name="send-email[subject]" value="Franchisee Prospect submitted a form" type="hidden" />
+	    <input name="send-email[body]" value="fields[additional-comments]" type="hidden" />
+	    <input name="send-email[recipient]" value="scott" type="hidden" />
+			<input name="redirect" value="{$root}/franchising/contact/success/" type="hidden" />
+		</xsl:with-param>
+	</xsl:apply-templates>
 </xsl:template>
 
 </xsl:stylesheet>

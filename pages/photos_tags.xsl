@@ -4,6 +4,15 @@
 <xsl:import href="../utilities/master.xsl"/>
 <xsl:import href="../utilities/get-gallery.xsl"/>
 
+<xsl:template name="top">
+	<div>
+		<h2>Photos</h2>
+		<p>
+			Everything related to <b>&#8220;<xsl:value-of select="/data/photos-tags/entry/tags/item[@handle = $tags]"/>&#8221;</b>
+		</p>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
 	<ul id="gallery">
 	<xsl:apply-templates select="photos-tags/entry" mode="photo" />

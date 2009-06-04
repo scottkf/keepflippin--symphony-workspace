@@ -3,23 +3,26 @@
 
 <xsl:import href="../utilities/master.xsl"/>
 
+<xsl:template name="top">
+	<div>
+		<h2>Contact</h2>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
-  <h2>Biography</h2>
-  <h3>
-    <xsl:value-of select="website-owner/author/name"/>
-    <xsl:text> is a professional space monkey extraordinaire</xsl:text>
-  </h3>
-  <p><em><xsl:value-of select="$website-name"/></em> is running off a freshly installed copy of <a href="http://symphony21.com">Symphony CMS</a>.</p>
-  <p>Be sure to check back regularly as the site transforms from <em>fresh prince</em> to <em>whizz-bang candy steak</em>.</p>
-  <hr/>
-  <h2>Contact Me</h2>
-  <div id="guideline">
-    <h4>Notes</h4>
-    <ul>
-      <li>It's preferred to use the contact form rather than email. There is always a chance for emails to be picked up as spam.</li>
-      <li>I will generally reply to messages within 24 hours unless I am horribly swamped.</li>
-    </ul>
-  </div>
+	<h3>By Phone</h3>
+	<p>
+		561-745-2511
+	</p>
+	<h3>By Email</h3>
+	<p>
+		<a href="mailto:darylsue@keepflippin.com">Daryl Sue</a>
+	</p>
+	<h3>In person</h3>
+	<p>
+		<a href="{$root}/contact/directions">Go here for directions</a>
+	</p>
+	<h3>Or via form below</h3>
   <form action="" method="post">
     <xsl:for-each select="events/save-message">
       <p class="{@result}">
@@ -44,7 +47,7 @@
       </label>
       <label>Message<textarea name="fields[message]" rows="5" cols="21"><xsl:value-of select="events/save-message/post-values/message" /></textarea></label>
 
-      <input name="send-email[recipient]" value="{website-owner/author/username}" type="hidden" />
+      <input name="send-email[recipient]" value="scott" type="hidden" />
       <input name="send-email[sender-email]" value="fields[email]" type="hidden" />
       <input name="send-email[sender-name]" value="fields[name]" type="hidden" />
       <input name="send-email[subject]" value="fields[subject]" type="hidden" />

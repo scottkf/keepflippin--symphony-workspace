@@ -5,6 +5,15 @@
 <xsl:import href="../utilities/get-gallery.xsl"/>
 <xsl:import href="../utilities/get-comments.xsl"/>
 
+<xsl:template name="top">
+	<div>
+		<h2>Photos</h2>
+		<p>
+			hello
+		</p>
+	</div>
+</xsl:template>
+
 <xsl:template match="data">
 	<ul id="gallery">
 		<li>

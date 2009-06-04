@@ -25,4 +25,5 @@
 * html #gallery li.last { overflow-x: hidden; }
 #gallery li a { width: 260px; height: 195px; }
 #gallery li a div { width: 260px; height: 195px; }
+#gallery li a div.shade { opacity: 0.2; }
 #gallery li a div.description p { width: 250px; height: 195px; }

@@ -108,13 +108,13 @@
 	<div class="article">
 		<h3>
 			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
-				<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
+				<xsl:apply-templates select="/data/article-images/entry[article/item/@id=$entry-id]" mode="frontpage"/>
 				<xsl:value-of select="title"/>
 			</a>
 		</h3>
 		<xsl:copy-of select="substring(body/*,1,300)" />
 		<xsl:if test="string-length(body) &gt; 300">
-			<a href="{$root}/news/{title/@handle}/">
+			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
 				... Read more.
 			</a>
 		</xsl:if>

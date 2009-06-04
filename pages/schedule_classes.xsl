@@ -6,6 +6,19 @@
 <xsl:import href="../utilities/get-article.xsl"/>
 <xsl:import href="../utilities/calendar.xsl" />
 
+<xsl:template name="top">
+	<div>
+		<h2>Schedule</h2>
+		<p>
+			Filtering by <b>&#8220;<xsl:value-of select="/data/classes/entry/class-name[@handle = $classes]"/>&#8221;</b>
+			<!-- <xsl:if test="$places != ''">
+				and by <b>&#8220;<xsl:value-of select="/data/classes/entry/class-name[@handle = $classes]"/>&#8221;</b>
+			</xsl:if> -->
+		</p>
+	</div>
+</xsl:template>
+
+
 <xsl:template match="data">
 	<xsl:variable name="number_of_results" select="count(/data/*[starts-with(name(), 'schedule')]/entry[class/item/@handle = $classes]/date/current)"/>
 	<xsl:choose>

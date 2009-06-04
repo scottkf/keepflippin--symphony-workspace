@@ -8,33 +8,17 @@
 <xsl:import href="../utilities/master.xsl" />
 <xsl:import href="../utilities/form.xsl" />
 
-
+<xsl:template name="top">
+	<div>
+		<h2>Schedule</h2>
+		<p>
+			duplicate
+		</p>
+	</div>
+</xsl:template>
 
 <xsl:template match="data">
 	<xsl:if test="/data/events/login-info/@logged-in = 'true'">
-			<style type="text/css">
-			div#main, div#sidebar {
-				width: 340px;
-				float: left;
-			}
-			label {
-				display: block;
-				margin-bottom: 20px;
-			}
-			input, textarea, select {
-				display: block;
-				width: 300px;
-			}
-			label.checkbox input {
-				display: inline;
-				width: auto;
-			}
-			input.submit-button {
-				clear: left;
-				width: auto;
-			}
-		</style>
-		
 		<xsl:copy-of select="/data/events" />
 		<xsl:choose>
 			<xsl:when test="/data/events/duplicate-session[@type = 'created' and @result = 'success']">
@@ -51,6 +35,9 @@
 					<xsl:with-param name="event" select="/data/events/duplicate-event" />
 					<xsl:with-param name="post">
 						<xsl:text>duplicate-event</xsl:text>
+					</xsl:with-param>
+					<xsl:with-param name="inputs">
+						<input name="redirect" value="{$root}/symphony/publish/sessions/" type="hidden" />
 					</xsl:with-param>
 				</xsl:apply-templates>				
 			</xsl:when>

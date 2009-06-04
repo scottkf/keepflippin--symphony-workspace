@@ -58,8 +58,6 @@
 
 
 <xsl:template match="galleries/entry">
-	<h2><xsl:value-of select="title"/></h2>
-	<h4><xsl:value-of select="short-description"/></h4>
 	<ul id="gallery">
 		<xsl:apply-templates select="images/item" mode="photo" />
 	</ul>

@@ -17,6 +17,10 @@
 	<xsl:param name="values" />
 	<xsl:param name="event" />
 	<xsl:param name="post" />
+	<xsl:param name="errors"/>
+	<xsl:param name="inputs"/>
+	<xsl:param name="submit" select="'Submit'"/>
+	<xsl:param name="required" select="''"/>
 	<xsl:variable name="handle" select="@handle" />
 	<form action="" method="post">
 	<xsl:choose>
@@ -39,6 +43,8 @@
 					<xsl:with-param name="values" select="$values" />
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="post" select="$post" />	
+					<xsl:with-param name="errors" select="$errors" />	
+					<xsl:with-param name="required" select="$required" />	
 				</xsl:apply-templates>	
 			</xsl:for-each>
 		</xsl:when>
@@ -60,25 +66,35 @@
 				<xsl:with-param name="values" select="$values" />
 				<xsl:with-param name="event" select="$event" />
 				<xsl:with-param name="post" select="$post" />
+				<xsl:with-param name="errors" select="$errors" />	
+				<xsl:with-param name="required" select="$required" />	
 			</xsl:apply-templates>
 		</xsl:otherwise>
 	</xsl:choose>
+	<xsl:copy-of select="$inputs"/>
+	<input type="submit" name="action[{$post}]" value="{$submit}" class="submit-button" />
 	</form>
 </xsl:template>
 
 <xsl:template match="section-schema" mode="form">
+	<xsl:param name="errors" />
+	<xsl:param name="event"/>
+	<xsl:param name="parent_name" />
+	<xsl:param name="parent_id" />
+	<xsl:param name="values" />
+	<xsl:param name="id" />
+	<xsl:param name="post" />
 	<xsl:param name="multiple" />
+	<xsl:param name="required" />
 		<xsl:call-template name="form:validation-summary">
 				<xsl:with-param name="event" select="$event" />
-		    <xsl:with-param name="success-message" select="'The entry was saved.'"/>
-		    <xsl:with-param name="error-message" select="'The entry was not saved because of the following errors:'"/>
+		    <xsl:with-param name="success-message" select="'The form was saved.'"/>
+		    <xsl:with-param name="error-message" select="'The form was not saved because of the following errors:'"/>
 		    <xsl:with-param name="errors">
-		        <error handle="name">Session Name contained an error</error>
-		        <error handle="title">Post Title contained an error</error>
-		        <error handle="email-address" type="missing">Please enter your e-mail address</error>
-		        <error handle="email-address" type="invalid">Please enter a valid e-mail address</error>
-		        <error handle="content" type="missing,invalid">Post Content is missing or invalid</error>
-		    </xsl:with-param>
+					<xsl:if test="$errors != ''">
+						<xsl:copy-of select="$errors"/>
+					</xsl:if>
+				</xsl:with-param>
 		</xsl:call-template>
 		
 		<xsl:if test="*[@location='main']">
@@ -91,6 +107,7 @@
 					<xsl:with-param name="values" select="$values" />
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="id" select="$id" />
+					<xsl:with-param name="required" select="$required" />	
 				</xsl:apply-templates>
 			</div>
 		</xsl:if>
@@ -104,12 +121,11 @@
 					<xsl:with-param name="parent_id" select="$parent_id"/>
 					<xsl:with-param name="values" select="$values" />
 					<xsl:with-param name="event" select="$event" />
+					<xsl:with-param name="required" select="$required" />	
 					<xsl:with-param name="id" select="$id" />
 				</xsl:apply-templates>
 			</div>
 		</xsl:if>
-
-		<input type="submit" name="action[{$post}]" value="Submit" class="submit-button" />
 
 	
 </xsl:template>
@@ -121,6 +137,7 @@
 	<xsl:param name="values" />
 	<xsl:param name="event" />
 	<xsl:param name="id" />
+	<xsl:param name="required" />
 	<xsl:variable name="value" select="concat($values,'[@id=',$id,']/',name())"/>
 	<!-- <xsl:value-of select="$value"/> -->
 	<xsl:choose>
@@ -128,7 +145,17 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="class">
+					<xsl:if test="@required = 'yes'">
+						<xsl:value-of select="'required'"/>
+					</xsl:if>
+				</xsl:with-param>
+				<xsl:with-param name="text">
+					<xsl:value-of select="@label"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
@@ -165,7 +192,12 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="'Start Date'"/>
+				<xsl:with-param name="text">
+					<xsl:value-of select="'Start Date'"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<!-- start date -->
 					<xsl:call-template name="form:input">
@@ -203,7 +235,12 @@
 			<xsl:call-template name="form:label">
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="for" select="name()"/>
-					<xsl:with-param name="text" select="'End Date'"/>
+					<xsl:with-param name="text">
+						<xsl:value-of select="'End Date'"/>
+						<xsl:if test="@required = 'yes'">
+							<span><xsl:value-of select="$required" /></span>
+						</xsl:if>
+					</xsl:with-param>
 					<xsl:with-param name="child">					<!-- end date -->
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
@@ -239,7 +276,12 @@
 			<xsl:call-template name="form:label">
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="for" select="name()"/>
-					<xsl:with-param name="text" select="'Repeat every'"/>
+					<xsl:with-param name="text">
+						<xsl:value-of select="'Repeat Every'"/>
+						<xsl:if test="@required = 'yes'">
+							<span><xsl:value-of select="$required" /></span>
+						</xsl:if>
+					</xsl:with-param>
 					<xsl:with-param name="child">
 					<!-- units -->
 					<xsl:call-template name="form:input">
@@ -311,7 +353,12 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />			
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="text">
+					<xsl:value-of select="@label"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
@@ -349,7 +396,12 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />			
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="text">
+					<xsl:value-of select="@label"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:textarea">
 						<xsl:with-param name="value">
@@ -387,7 +439,12 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />			
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="text">
+					<xsl:value-of select="@label"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:select">
 						<xsl:with-param name="value">
@@ -428,7 +485,12 @@
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />			
 				<xsl:with-param name="for" select="name()"/>
-				<xsl:with-param name="text" select="@label"/>
+				<xsl:with-param name="text">
+					<xsl:value-of select="@label"/>
+					<xsl:if test="@required = 'yes'">
+						<span><xsl:value-of select="$required" /></span>
+					</xsl:if>
+				</xsl:with-param>
 				<xsl:with-param name="child">
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="event" select="$event" />
@@ -477,6 +539,9 @@
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="@label"/>
+							<xsl:if test="@required = 'yes'">
+								<span><xsl:value-of select="$required" /></span>
+							</xsl:if>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:with-param>

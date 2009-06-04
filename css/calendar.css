@@ -1,7 +1,5 @@
-#events { display: inline; float: left; margin-right: 15px; width: 185px; }
-* html #events { overflow-x: hidden; }
 
-#calendar { padding-left: 40px; display: inline; float: left; margin-right: 0; width: 705px; }
+#calendar { display: inline; float: left; margin-right: 0; width: 945px; }
 * html #calendar { overflow-x: hidden; }
 #calendar ul { margin: 0px; list-style-type: none; text-align: center; }
 #calendar table { border-collapse: separate; border-width: 1px 1px 1px 1px; }

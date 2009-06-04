@@ -2,13 +2,13 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="performances">
-	<h2>
-		<xsl:text>Upcoming performances</xsl:text>
+	<h3>
+		<a style="font-weight: bold" href="{$root}/schedule/week">Upcoming performances</a>
 		<xsl:if test="$is-logged-in = 'true'">
 			<xsl:text> &#8212; </xsl:text>
 			<a href="{$root}/symphony/publish/{section/@handle}/new/">Add</a>
 		</xsl:if>
-	</h2>
+	</h3>
 	<dl class="performance">
 		<xsl:apply-templates select="entry"/>
 	</dl>
