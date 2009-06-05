@@ -8,7 +8,7 @@
 				<h2><a href="{$root}/news/2009/summer-camp">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
 				<p>Come join us for Summer camp! There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}/news/2009/summer-camp">Read More...</a></p>
 			</div>
-			<div id="classes">
+			<div id="classes-bottom">
 				<h2><a href="{$root}/classes">Our Classes - for any skill level</a></h2>
 				<p>Our USA Program is comprised of three different skill levels: <a href="{$root}/classes/red">Red</a> for beginners, <a href="{$root}/classes/white">White</a> for Intermediate gymnasts, and
 	               <a href="{$root}/classes/blue">Blue</a> for Advanced gymnasts.</p>
@@ -29,7 +29,7 @@
 			<ul>
 				<li><a href="{$root}">home</a></li>
 				<li><a href="{$root}/classes">classes</a></li>
-				<li><a href="{$root}/schedule/week">schedule</a></li>
+				<li><a href="{$root}/schedule">schedule</a></li>
 				<li><a href="{$root}/franchising">franchising</a></li>
 				<li><a href="{$root}/summer-camp">summer camp</a></li>
 				<li><a href="{$root}/photos">pictures</a></li>

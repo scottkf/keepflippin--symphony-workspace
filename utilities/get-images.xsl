@@ -14,7 +14,7 @@
 </xsl:template>
 
 <xsl:template match="article-images/entry" mode="frontpage">
-	<img title="{description}">
+	<img title="{description}" alt="{description}">
 		<xsl:attribute name="src">
 			<xsl:value-of select="$root"/>
 			<xsl:text>/image/1/182/136/images/article_images/</xsl:text>
@@ -29,7 +29,7 @@
 			<xsl:if test="position() mod 4 = 0">
 				<xsl:attribute name="class">last-column</xsl:attribute>
 			</xsl:if>
-			<img title="{description}">
+			<img title="{description}" alt="{description}">
 				<xsl:attribute name="src">
 					<xsl:value-of select="$root"/>
 					<xsl:text>/image/2/133/88/2/uploads/</xsl:text>

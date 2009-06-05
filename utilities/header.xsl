@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="header">
-	<a id="feedback" href="#" />
+	<div><a id="feedback" href="#" /></div>
 	<div id="header">
 		<xsl:if test="$short = 0">
 			<div id="badge"></div>

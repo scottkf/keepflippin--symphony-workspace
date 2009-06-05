@@ -52,7 +52,7 @@
       <input name="send-email[sender-name]" value="fields[name]" type="hidden" />
       <input name="send-email[subject]" value="fields[subject]" type="hidden" />
       <input name="send-email[body]" value="fields[message],fields[subject],fields[email],fields[name]" type="hidden" />
-
+			<input name="fields[date-contacted]" value="{$today}" type="hidden" />
       <input id="submit" type="submit" name="action[save-message]" value="Send" />
   </form>
 </xsl:template>

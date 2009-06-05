@@ -73,9 +73,9 @@
 
 <xsl:template match="classes/entry" mode="full">
 	<div class="class">
-		<h2>
-			<b>For ages &#8212;<xsl:value-of select="ages" /></b>
-		</h2>
+		<h3>
+			For ages &#8212;<xsl:value-of select="ages" />
+		</h3>
 		<xsl:call-template name="build-schedule-link">
 			<xsl:with-param name="classname" select="class-name/@handle"/>
 		</xsl:call-template>

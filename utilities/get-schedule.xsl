@@ -51,7 +51,7 @@
 		<!-- if the item has a class attached -->
 		<xsl:when test="class/item != ''">
 				<li class="{class/item/@handle}">
-					<a>
+					<a title="{class/item}">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$root" />
 							<xsl:text>/classes/</xsl:text>

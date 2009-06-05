@@ -101,7 +101,6 @@
 						<xsl:value-of select="'/'"/>
 						<xsl:value-of select="title/@handle"/>
 						<xsl:value-of select="'/'"/>
-						<xsl:value-of select="title"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:attribute>

@@ -131,11 +131,13 @@ a
 	p
 		font: 1.2em "georgia, times, times new roman"
 		line-height: 140%
+	// homepage extra crap
 	#welcome-kf
 		background: url(../images/other-bg.jpg) repeat-x scroll bottom center
 		border-bottom: 1px solid #e6e6e6
 		padding-top: 17px
 		color: #444
+		// little star
 		#badge-home
 			position: absolute
 			background: url(../images/star-badge-home.png) no-repeat
@@ -200,7 +202,7 @@ a
 				margin-bottom: 3px
 			h3
 				font-size: 1.3em
-				color= !nav_background
+				color= !article_title_color
 			p
 				margin-bottom: 10px
 			ul
@@ -230,11 +232,7 @@ a
 				\+p
 					margin: 0px
 					padding: 0px
-		> .article
-			+column(5)
-			a
-				color= !nav_background
-		> .article + .article
+		// single article
 		.article-wide
 			ul
 				list-style-image: url(../images/icons/icon_bullet_orange.png)
@@ -249,10 +247,11 @@ a
 			p
 			h4
 				color= !page_header_color - #000
-				color= !nav_background
+				color= !article_title_color
 			.meta + p + img
 				float: right
 				border: 1px solid #aaa
+		// list of classes
 		ul#class
 			+column(24, true)
 			+horizontal-list(0px)
@@ -279,9 +278,38 @@ a
 					p
 						white-space: normal
 						margin-bottom: 0px
+		// home right side
+		#left
+			+column(11)
+			// left articles
+			> .article
+				+column(5)
+				a
+					color= !nav_background
+			> .article + .article
+			hr
+				clear: both
 		#right
 			+prepend(1)
 			+column(12,true)
+			position: relative
+			> ul
+				clear: both
+				+horizontal-list
+				li
+				
+					font-size: 1.5em
+					padding-top: 10px
+					padding-left: 0px
+					&.twitter
+						padding-top: 0px
+						img
+							height: 55px
+							width: 55px
+					a
+						img
+							height: 35px
+							width: 35px
 			h4
 			hr
 				color: #fff
@@ -319,7 +347,7 @@ a
 		line-height: 1.4em
 	#left
 		+column(7)
-		#classes
+		#classes-bottom
 			h2
 				color: #bcd0e8
 				> a
@@ -350,7 +378,6 @@ a
 			margin-bottom: 3px
 			a
 				color= !article_title_color + #333
-				color= #9A1C1B + #3b3b3b
 				font-size: 15px
 				font-weight: normal
 				&:hover
