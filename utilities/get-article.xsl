@@ -88,8 +88,23 @@
 	<xsl:param name="admin" />
 	<xsl:param name="entry-id" select="@id" />
 	<h3>
-		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
-			<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
+		<a>
+			<xsl:attribute name="href">
+				<xsl:value-of select="$root"/>
+				<xsl:choose>
+					<xsl:when test="alternate-link != ''">
+						<xsl:value-of select="alternate-link"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'/news/'"/>
+						<xsl:value-of select="substring(publish-this-article-on, 1, 4)"/>
+						<xsl:value-of select="'/'"/>
+						<xsl:value-of select="title/@handle"/>
+						<xsl:value-of select="'/'"/>
+						<xsl:value-of select="title"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
 			<xsl:value-of select="title"/>
 		</a>
 		<xsl:if test="$admin">
@@ -99,6 +114,28 @@
 		<xsl:copy-of select="body/*" />
 </xsl:template>
 
+<xsl:template match="news/entry" mode="short">
+	<xsl:param name="admin" />
+	<xsl:param name="entry-id" select="@id" />
+	<h3>
+		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+			<xsl:value-of select="title"/>
+		</a>
+		<xsl:if test="$admin">
+			<xsl:apply-templates select="." mode="admin" />
+		</xsl:if>
+	</h3>
+	<ul class="meta">
+	</ul>
+	<p>
+	<xsl:copy-of select="substring(body/*,1,200)" />
+	<xsl:if test="string-length(body) &gt; 200">
+		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+			... Read more.
+		</a>
+	</xsl:if>
+</p>
+</xsl:template>
 
 
 
@@ -125,10 +162,15 @@
 
 <xsl:template match="frontpage-articles/entry | frontpage-news-items/entry | news/*/*/entry | news/entry" mode="full">
 	<xsl:param name="entry-id" select="@id" />
+	<xsl:if test="../news != ''">
+		
 	<h3>
-		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/"><xsl:value-of select="title"/></a>
+		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+			<xsl:value-of select="title"/>
+		</a>
 		<xsl:apply-templates select="." mode="admin" />
 	</h3>
+	</xsl:if>
 	<ul class="meta">
 		<!-- <li class="icon-filed-under">
 			<xsl:apply-templates select="categories/item"/>
@@ -144,7 +186,7 @@
 		</xsl:if>
 	</ul>
 	<xsl:copy-of select="body/*[1]"/>
-	<xsl:apply-templates select="/data/article-images[entry/article/item/@id=$entry-id]" mode="frontpage"/>
+	<xsl:apply-templates select="/data/article-images/entry[article/item/@id = $entry-id]" mode="frontpage"/>
 	<xsl:copy-of select="body/*[position() &gt; 1]"/>
 </xsl:template>
 

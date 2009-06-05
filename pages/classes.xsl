@@ -7,7 +7,17 @@
 
 <xsl:template name="top">
 	<div>
-		<h2>Classes</h2>
+		<h2>
+		<xsl:choose>
+			<xsl:when test="$class != ''">
+				<xsl:value-of select="/data/classes/entry/class-name"/>
+				<xsl:apply-templates select="/data/classes/entry" mode="admin" />
+			</xsl:when>
+			<xsl:otherwise>
+				Classes
+			</xsl:otherwise>
+		</xsl:choose>
+		</h2>
 	</div>
 </xsl:template>
 
@@ -15,7 +25,6 @@
 	<xsl:choose>
 		<xsl:when test="$class != ''">
 		  <xsl:apply-templates select="classes/entry" mode="full" />
-			<xsl:call-template name="important" />
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:call-template name="classes" mode="short" />

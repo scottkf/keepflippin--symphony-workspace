@@ -10,10 +10,6 @@
 </xsl:template>
 
 <xsl:template name="important">
-	<h3>What happens when we move up a level?</h3>
-	<p class="info"> All gymnasts who move into the next level will receive a certificate of achievement. </p>
-	<h3>This is performance-based gymnastics, when is the show?</h3>
-	<p class="info">During the month of May all children will perform our end of the year show. They will receive a trophy for participating in the show. </p>
 	<h3>What do we wear?</h3>
 	<p>
 		Leotards for girls, Gym clothes for boys. Gymnasts will go barefoot. All hair must be pulled back and out of the face. Long hair must be in a ponytail.
@@ -78,16 +74,13 @@
 <xsl:template match="classes/entry" mode="full">
 	<div class="class">
 		<h2>
-			<a href="{$root}/{$root-page}/{$current-page}/{class-name/@handle}/"><xsl:value-of select="class-name"/></a>
-			<xsl:apply-templates select="." mode="admin" />
+			<b>For ages &#8212;<xsl:value-of select="ages" /></b>
 		</h2>
-		<h3>
-			Ages <xsl:copy-of select="ages" />
-		</h3>
 		<xsl:call-template name="build-schedule-link">
 			<xsl:with-param name="classname" select="class-name/@handle"/>
 		</xsl:call-template>
 		<xsl:copy-of select="description/*"/>
+		<xsl:call-template name="important" />
 	</div>
 </xsl:template>
 

@@ -28,9 +28,6 @@
 		Along with <span class="gym">gymnastics</span> our proud gymnasts learn <span class="bold">confidence</span>, develop <span class="bold">self-esteem</span> <i>and</i> stage presence. They glow with pride and accomplishment.  That is the essence of...
 	</p>
 
-	<p style="text-align: center;">
-		<img src="http://keepflippin.com/images/site/logo_blue_grad_text.png" /></p>
-
 		<p>
 			Please email <a href="mailto:darylsue@keepflippin.com">Daryl Sue</a> with questions or please <a href="http://keepflippin.com/contact">contact us</a> for further information. 
 		</p>

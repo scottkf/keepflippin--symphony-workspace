@@ -72,9 +72,6 @@
 				<xsl:call-template name="top" />
 			</div>
 			<div id="content">
-				<xsl:if test="$short = 0">
-					<div id="badge"></div>
-				</xsl:if>
 	      <xsl:apply-templates />
 			</div>
 		</div>

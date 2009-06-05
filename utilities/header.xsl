@@ -4,9 +4,9 @@
 <xsl:template name="header">
 	<a id="feedback" href="#" />
 	<div id="header">
-
-
-		
+		<xsl:if test="$short = 0">
+			<div id="badge"></div>
+		</xsl:if>
 		<div id="logo">
 			<a href="{$root}"><img src="{$workspace}/images/kf-logo.png" alt="keep flippin' logo"/></a>
 		</div>

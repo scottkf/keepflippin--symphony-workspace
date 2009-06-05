@@ -10,7 +10,6 @@
 </xsl:template>
 
 <xsl:template match="data">
-  <h2>Directions</h2>
 	<div id="map" style="width: 556px; height: 500px"></div>
 	<p>
 		You can use the controls on the top left side of the map to navigate around (zoom, pan, flip), and you can also get driving directions either <b>to</b> Keep Flippin' or <b>From</b> Keep Flippin'. Javascript must be enabled, and if you're interested in driving directions, popups must be enabled from Keep Flippin'.

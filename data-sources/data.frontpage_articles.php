@@ -21,7 +21,8 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'body',
-				'publish-this-article-on'
+				'publish-this-article-on',
+				'alternate-link'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -37,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T14:26:02+00:00');	
+					 'release-date' => '2009-06-05T01:24:27+00:00');	
 		}
 		
 		public function getSource(){

@@ -4,7 +4,6 @@
 <xsl:import href="get-images.xsl"/>
 
 <xsl:template name="article-list">
-	<h2>The latest...</h2>
   <xsl:apply-templates select="news/entry" />
 	<h2>
 		<xsl:choose>
@@ -44,7 +43,7 @@
       </xsl:call-template>
     </span>
 		<div class="article-wide">
-			<xsl:apply-templates select="." mode="full" />
+			<xsl:apply-templates select="." mode="short" />
 		</div>
   </div>
 </xsl:template>

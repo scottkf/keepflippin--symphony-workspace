@@ -23,6 +23,7 @@
 		<a href="{$root}/contact/directions">Go here for directions</a>
 	</p>
 	<h3>Or via form below</h3>
+	<h5>Required fields are indicated by an asterisk (*) and are in bold.</h5>
   <form action="" method="post">
     <xsl:for-each select="events/save-message">
       <p class="{@result}">
@@ -32,10 +33,9 @@
         </xsl:choose>
       </p>
     </xsl:for-each>
-    <fieldset>
-      <label class="required">Name <input type="text" name="fields[name]" value="{events/save-message/post-values/name}" /></label>
-      <label class="required">Email <input type="text" name="fields[email]" value="{events/save-message/post-values/email}" /></label>
-      <label class="required">Subject
+      <label class="required">Name *<input type="text" name="fields[name]" value="{events/save-message/post-values/name}" /></label>
+      <label class="required">Email *<input type="text" name="fields[email]" value="{events/save-message/post-values/email}" /></label>
+      <label class="required">Subject *
         <xsl:choose>
           <xsl:when test="events/save-message/post-values/subject">
             <input type="text" name="fields[subject]" value="{events/save-message/post-values/subject}" />
@@ -54,7 +54,6 @@
       <input name="send-email[body]" value="fields[message],fields[subject],fields[email],fields[name]" type="hidden" />
 
       <input id="submit" type="submit" name="action[save-message]" value="Send" />
-    </fieldset>
   </form>
 </xsl:template>
 

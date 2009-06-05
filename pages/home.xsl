@@ -10,7 +10,7 @@
 	<div>
 		<div id="badge-home"></div>
 		<div class="introduction">
-			<h2 class="header"><a href="{$root}/about">A Different Way of Doing Gymnastics.</a></h2>
+			<h2 class="header"><a href="{$root}/about">An Exciting Way of Doing Gymnastics.</a></h2>
 			<p>
 				Our gymnastics program is truly unique, it is performance based, rather than competitive. Each student is guided lovingly towards their goal - and beyond. <a href="{$root}/about">Learn more about Keep Flippin’...</a>
 			</p>

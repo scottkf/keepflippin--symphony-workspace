@@ -8,10 +8,17 @@
 
 <xsl:template name="top">
 	<div>
-		<h2>The latest!</h2>
-		<p>
-			hello
-		</p>
+		<h2>
+		<xsl:choose>
+			<xsl:when test="$year != '' and $entry != ''">
+				<xsl:value-of select="/data/news/entry/title"/>
+				<xsl:apply-templates select="/data/news/entry" mode="admin" />
+			</xsl:when>
+			<xsl:otherwise>
+				The latest...
+			</xsl:otherwise>
+		</xsl:choose>
+	</h2>
 	</div>
 </xsl:template>
 

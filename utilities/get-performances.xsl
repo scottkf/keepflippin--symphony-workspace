@@ -3,7 +3,7 @@
 
 <xsl:template match="performances">
 	<h3>
-		<a style="font-weight: bold" href="{$root}/schedule/week">Upcoming performances</a>
+		<a href="{$root}/schedule">Upcoming performances</a>
 		<xsl:if test="$is-logged-in = 'true'">
 			<xsl:text> &#8212; </xsl:text>
 			<a href="{$root}/symphony/publish/{section/@handle}/new/">Add</a>
