@@ -21,14 +21,14 @@
 
 <xsl:template match="data">
 	<xsl:variable name="number_of_results" select="count(schedule-events-classes-places/entry[class/item/@handle = $classes]/date/current)"/>
-	<xsl:choose>
+	<!-- <xsl:choose>
 		<xsl:when test="$number_of_results = 0">
 			Sorry, there aren't any <xsl:value-of select="classes/entry[class-name/@handle = $classes]/class-name"/> classes in this period.
 		</xsl:when>
 		<xsl:otherwise>
 			We found <xsl:value-of select="count(schedule-events-classes-places/entry[class/item/@handle = $classes]/date/current)"/> classes for this period.
 		</xsl:otherwise>
-	</xsl:choose>
+	</xsl:choose> -->
 	<div id="calendar">
 		<xsl:call-template name="calendar" />
 	</div>

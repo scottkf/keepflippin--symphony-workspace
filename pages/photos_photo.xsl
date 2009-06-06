@@ -8,9 +8,6 @@
 <xsl:template name="top">
 	<div>
 		<h2>Photos</h2>
-		<p>
-			hello
-		</p>
 	</div>
 </xsl:template>
 
@@ -24,13 +21,6 @@
 	<xsl:apply-templates select="comments"/>
   <hr/>
   <h2>Make a comment</h2>
-  <div id="guideline">
-    <h4>Rules</h4>
-    <ul>
-      <li>Please keep the language PG-13, my mum reads this blog. Hi mum!</li>
-      <li>Text is formatted with <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</li>
-    </ul>
-  </div>
   <form action="" method="post">
     <xsl:for-each select="events/save-comment">
       <p class="{@result}">
@@ -40,21 +30,20 @@
         </xsl:choose>
       </p>
     </xsl:for-each>
-    <fieldset>
-      <label>
-        <xsl:text>Name </xsl:text>
+      <label class="required">
+        <xsl:text>Name *</xsl:text>
         <input type="text" name="fields[author]" value="{events/save-comment/post-values/author}" />
       </label>
-      <label>
-        <xsl:text>Email </xsl:text>
+      <label class="required">
+        <xsl:text>Email *</xsl:text>
         <input type="text" name="fields[email]" value="{events/save-comment/post-values/email}" />
       </label>
       <label>
         <xsl:text>Website </xsl:text><small>http://</small>
         <input type="text" name="fields[website]" value="{events/save-comment/post-values/website}" />
       </label>
-      <label>
-        <xsl:text>Comment </xsl:text>
+      <label class="required">
+        <xsl:text>Comment *</xsl:text>
         <textarea name="fields[comment]" rows="5" cols="21"><xsl:value-of select="events/save-comment/post-values/comment" /></textarea>
       </label>
 
@@ -63,7 +52,6 @@
 			<input name="akismet[email]" value="email" type="hidden" />
 			<input name="akismet[url]" value="website" type="hidden" />
       <input id="submit" type="submit" name="action[save-comment]" value="Post Comment" />
-    </fieldset>
   </form>
 </xsl:template>
 

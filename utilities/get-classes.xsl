@@ -16,7 +16,7 @@
 		<b>NO midriffs, jeans, pants or buttons allowed</b>.
 	</p>
 	<h3>How do we deal with missed classes (make-ups)?</h3>
-	<p class="info">Gymnasts are allowed to do one make-up class per month. All make-ups must be done before the start of the next month. No make-ups will be carried over to the following month. All make-ups must be done during our open gym class only. This will keep classes consistent and to a low ratio. </p>	
+	<p class="info">Gymnasts have 30 days to complete a make-up class. All make-ups must be done before the start of the next session. All make-ups must be done during our open gym class only. This will keep classes consistent and to a low ratio. </p>	
 </xsl:template>
 
 <xsl:template match="classes/entry">
@@ -28,7 +28,7 @@
 <xsl:template name="classes" mode="short">
 	<xsl:param name="admin" />
 	<ul id="class">
-	<xsl:for-each select="classes/entry">
+	<xsl:for-each select="classes/entry[hidden = 'No']">
 	<li>
 		<xsl:if test="position() mod 2 = 0 or last() = position()">
 			<xsl:attribute name="class">
@@ -63,8 +63,10 @@
 
 <!-- if there's a session, use it, otherwise use a space -->
 <xsl:template name="build-schedule-link">
-	<xsl:param name="classname" />
-	<a href="{$root}/schedule/classes/+/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
+	<xsl:if test="classname != 'birthday-parties'">
+		<xsl:param name="classname" />
+		<a href="{$root}/schedule/classes/+/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
+	</xsl:if>
 </xsl:template>
 
 
@@ -73,14 +75,18 @@
 
 <xsl:template match="classes/entry" mode="full">
 	<div class="class">
-		<h3>
-			For ages &#8212;<xsl:value-of select="ages" />
-		</h3>
+		<xsl:if test="class-name/@handle != 'birthday-parties'">
+			<h3>
+				For ages &#8212;<xsl:value-of select="ages" />
+			</h3>			
+		</xsl:if>
 		<xsl:call-template name="build-schedule-link">
 			<xsl:with-param name="classname" select="class-name/@handle"/>
 		</xsl:call-template>
 		<xsl:copy-of select="description/*"/>
-		<xsl:call-template name="important" />
+		<xsl:if test="class-name/@handle != 'birthday-parties'">
+			<xsl:call-template name="important" />			
+		</xsl:if>
 	</div>
 </xsl:template>
 

@@ -33,6 +33,9 @@
 		<xsl:if test="$root-page = 'photos'">
 			<link rel="stylesheet" href="{$workspace}/css/gallery.css" type="text/css" media="screen, projection" />
 		</xsl:if>
+		<xsl:if test="$current-page = 'tags'">
+			<link rel="stylesheet" href="{$workspace}/css/pagination.css" type="text/css" media="screen, projection" />			
+		</xsl:if>
 		<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/colorbox.css" />

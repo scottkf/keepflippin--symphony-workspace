@@ -32,15 +32,18 @@
 		<xsl:when test="$time = '' and entry[date/current = $day and name/@handle = 'closed']">
 			<xsl:apply-templates select="entry[date/current = $day and name/@handle = 'closed']" mode="event" />
 		</xsl:when>
+		<xsl:when test="$time = '' and $classes = 'summer-camp'">
+			<xsl:apply-templates select="entry[class/item/@handle = 'summer-camp' and date/current = $day]" mode="event" />			
+		</xsl:when>
 		<xsl:when test="$time = '' and $classes != ''">
-			<xsl:apply-templates select="entry[date/current = $day and (class/item/@handle = $classes or not(class))]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and date/current = $day and (class/item/@handle = $classes or not(class))]" mode="event" />
 		</xsl:when>
 		<xsl:when test="$time != ''">
 			<xsl:variable name="day-in-seconds" select="date:seconds(concat($day,'T',$time,':00:00'))" />
-			<xsl:apply-templates select="entry[(date:day-in-week(date/current) = date:day-in-week($day)) and date:seconds(concat($day,'T',date/current/@time,':00')) &gt;= $day-in-seconds and date:seconds(concat($day,'T',date/current/@time,':00')) &lt; ($day-in-seconds + 3600)]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and (date:day-in-week(date/current) = date:day-in-week($day)) and date:seconds(concat($day,'T',date/current/@time,':00')) &gt;= $day-in-seconds and date:seconds(concat($day,'T',date/current/@time,':00')) &lt; ($day-in-seconds + 3600)]" mode="event" />
 		</xsl:when>
 		<xsl:when test="$time = ''">
-			<xsl:apply-templates select="entry[date/current = $day]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and date/current = $day]" mode="event" />
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
@@ -49,7 +52,7 @@
 	<xsl:variable name="entry-id" select="class/item/@id" />
 	<xsl:choose>
 		<!-- if the item has a class attached -->
-		<xsl:when test="class/item != ''">
+		<xsl:when test="class/item != '' and class/item/@handle != 'summer-camp'">
 				<li class="{class/item/@handle}">
 					<a title="{class/item}">
 						<xsl:attribute name="href">
@@ -76,6 +79,21 @@
 			<li>
 				<a href="#">
 					<xsl:value-of select="name" />
+					<xsl:if test="class/item/@handle = 'summer-camp'"><br />
+						<xsl:if test="string(date/start/@time) != string(date/end/@time)">
+							<small><em>
+								<xsl:call-template name="format-date">
+									<xsl:with-param name="date" select="date/start"/>
+									<xsl:with-param name="format" select="'t'" />
+								</xsl:call-template>
+								&#8212;
+								<xsl:call-template name="format-date">
+									<xsl:with-param name="date" select="date/end"/>
+									<xsl:with-param name="format" select="'t'" />
+								</xsl:call-template>
+							</em></small>							
+						</xsl:if>
+					</xsl:if>
 				</a>
 			</li>
 		</xsl:otherwise>

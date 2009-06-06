@@ -21,7 +21,8 @@
 				'ages',
 				'short-description',
 				'description',
-				'image'
+				'image',
+				'hidden'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -37,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-02T15:52:41+00:00');	
+					 'release-date' => '2009-06-06T00:51:03+00:00');	
 		}
 		
 		public function getSource(){

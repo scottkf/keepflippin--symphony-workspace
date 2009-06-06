@@ -12,6 +12,10 @@
 		public $dsParamPARAMOUTPUT = 'system:id';
 		public $dsParamSORT = 'class-name';
 		public $dsParamSTARTPAGE = '1';
+		
+		public $dsParamFILTERS = array(
+				'90' => '{$classes}',
+		);
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
 			$this->_dependencies = array();
@@ -25,7 +29,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-23T00:42:59+00:00');	
+					 'release-date' => '2009-06-06T01:08:22+00:00');	
 		}
 		
 		public function getSource(){

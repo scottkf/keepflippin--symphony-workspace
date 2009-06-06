@@ -266,6 +266,7 @@ URL: http://gist.github.com/115859
 						<xsl:value-of select="$classes"/>
 					</xsl:if>
 				</xsl:when>
+
 			</xsl:choose>
 		</xsl:attribute>
 		<xsl:value-of select="$text" />

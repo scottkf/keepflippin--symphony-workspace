@@ -3,6 +3,7 @@
 
 <xsl:import href="../utilities/master.xsl"/>
 <xsl:import href="../utilities/get-gallery.xsl"/>
+<xsl:import href="../utilities/pagination.xsl"/>
 
 <xsl:template name="top">
 	<div>
@@ -17,6 +18,18 @@
 	<ul id="gallery">
 	<xsl:apply-templates select="photos-tags/entry" mode="photo" />
 	</ul>
+
+   <xsl:call-template name="pagination">
+       <xsl:with-param name="pagination-element" select="/data/photos-tags/pagination" />
+       <xsl:with-param name="display-number" select="'3'" />
+			 <xsl:with-param name="url">
+			 	 <xsl:value-of select="$root"/>
+				<xsl:value-of select="'/photos/tags/'"/>
+				<xsl:value-of select="$tags"/>
+				<xsl:value-of select="'/$'"/>
+			 </xsl:with-param>
+   </xsl:call-template>
+
 </xsl:template>
 
 

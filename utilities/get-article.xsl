@@ -117,7 +117,22 @@
 	<xsl:param name="admin" />
 	<xsl:param name="entry-id" select="@id" />
 	<h3>
-		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+		<a>
+			<xsl:attribute name="href">
+				<xsl:value-of select="$root"/>
+				<xsl:choose>
+					<xsl:when test="alternate-link != ''">
+						<xsl:value-of select="alternate-link"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'/news/'"/>
+						<xsl:value-of select="substring(publish-this-article-on, 1, 4)"/>
+						<xsl:value-of select="'/'"/>
+						<xsl:value-of select="title/@handle"/>
+						<xsl:value-of select="'/'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
 			<xsl:value-of select="title"/>
 		</a>
 		<xsl:if test="$admin">
@@ -129,8 +144,23 @@
 	<p>
 	<xsl:copy-of select="substring(body/*,1,200)" />
 	<xsl:if test="string-length(body) &gt; 200">
-		<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
-			... Read more.
+		<a>
+			<xsl:attribute name="href">
+				<xsl:value-of select="$root"/>
+				<xsl:choose>
+					<xsl:when test="alternate-link != ''">
+						<xsl:value-of select="alternate-link"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'/news/'"/>
+						<xsl:value-of select="substring(publish-this-article-on, 1, 4)"/>
+						<xsl:value-of select="'/'"/>
+						<xsl:value-of select="title/@handle"/>
+						<xsl:value-of select="'/'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			... Read More
 		</a>
 	</xsl:if>
 </p>
@@ -143,7 +173,22 @@
 	<xsl:param name="entry-id" select="@id" />
 	<div class="article">
 		<h3>
-			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
+			<a>
+				<xsl:attribute name="href">
+					<xsl:value-of select="$root"/>
+					<xsl:choose>
+						<xsl:when test="alternate-link != ''">
+							<xsl:value-of select="alternate-link"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="'/news/'"/>
+							<xsl:value-of select="substring(publish-this-article-on, 1, 4)"/>
+							<xsl:value-of select="'/'"/>
+							<xsl:value-of select="title/@handle"/>
+							<xsl:value-of select="'/'"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:attribute>
 				<xsl:apply-templates select="/data/article-images/entry[article/item/@id=$entry-id]" mode="frontpage"/>
 				<xsl:value-of select="title"/>
 			</a>
@@ -184,8 +229,8 @@
 			</li>
 		</xsl:if>
 	</ul>
-	<xsl:copy-of select="body/*[1]"/>
 	<xsl:apply-templates select="/data/article-images/entry[article/item/@id = $entry-id]" mode="frontpage"/>
+	<xsl:copy-of select="body/*[1]"/>
 	<xsl:copy-of select="body/*[position() &gt; 1]"/>
 </xsl:template>
 

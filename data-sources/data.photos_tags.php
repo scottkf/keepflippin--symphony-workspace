@@ -6,18 +6,19 @@
 		
 		public $dsParamROOTELEMENT = 'photos-tags';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '20';
+		public $dsParamLIMIT = '9';
 		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamREQUIREDPARAM = '$tags';
 		public $dsParamPARAMOUTPUT = 'system:id';
 		public $dsParamSORT = 'system:id';
-		public $dsParamSTARTPAGE = '1';
+		public $dsParamSTARTPAGE = '{$page-number}';
 		
 		public $dsParamFILTERS = array(
 				'74' => '{$tags}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
+				'system:pagination',
 				'title',
 				'short-description',
 				'image',
@@ -37,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-01T18:06:03+00:00');	
+					 'release-date' => '2009-06-05T20:00:57+00:00');	
 		}
 		
 		public function getSource(){

@@ -5,7 +5,7 @@
 	<div id="footer">
 		<div id="left">
 			<div id="camp">
-				<h2><a href="{$root}/news/2009/summer-camp">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
+				<h2><a href="{$root}/summer-camp">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
 				<p>Come join us for Summer camp! There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}/news/2009/summer-camp">Read More...</a></p>
 			</div>
 			<div id="classes-bottom">
