@@ -46,15 +46,13 @@
 
 	<xsl:text disable-output-escaping="yes"><![CDATA[
 	<script type="text/javascript">
-	//<![CDATA[
 	$(function() {
 	  $('a#feedback').githubVoice('scottkf', 'keepflippin--on-symphony', {
 			limit : 10
 		})
 	});
-	//]]>]]&gt;
-	&lt;/script>
-</xsl:text>
+	</script>
+	]]></xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
