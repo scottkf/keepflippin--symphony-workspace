@@ -10,15 +10,22 @@
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
+		
+		public $dsParamFILTERS = array(
+				'102' => '{$location}',
+		);
+		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name',
 				'type',
+				'phone-number',
 				'street-address',
 				'suite',
 				'postal-code',
 				'city',
 				'state',
-				'country'
+				'country',
+				'images'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -34,7 +41,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-24T19:58:02+00:00');	
+					 'release-date' => '2009-06-06T15:48:06+00:00');	
 		}
 		
 		public function getSource(){

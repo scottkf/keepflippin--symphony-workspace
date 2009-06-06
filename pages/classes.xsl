@@ -6,7 +6,12 @@
 <xsl:import href="../utilities/get-classes.xsl"/>
 
 <xsl:template name="top">
-	<div id="birthdays">
+	<div>
+		<xsl:if test="$class = 'birthday-parties'">
+			<xsl:attribute name="id">
+				<xsl:value-of select="'birthdays'"/>
+			</xsl:attribute>
+		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="$class != ''">
 				<xsl:choose>

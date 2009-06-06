@@ -19,16 +19,12 @@ var html = [];
 var htmld = [];
 var htmlf = [];
 var k = 0;
-point[k] = new GLatLng(26.93455, -80.138011);
-address[k++] = "6761 W Indiantown Road<br>Jupiter, FL 33458<br>(561) 745-2511";
-
-
 function load() {
   if (GBrowserIsCompatible()) {
 
+
   map = new GMap2(document.getElementById("map"));
-  map.addControl(new GLargeMapControl());
-  map.addControl(new GMapTypeControl());
+	map.setUIToDefault();
   map.setCenter(point[0], 15);
 
   function htmlhead(i) { /* head */
@@ -69,6 +65,11 @@ function load() {
     htmld[i] = fhtmld(i);
     htmlf[i] = fhtmlf(i);
     GEvent.addListener(marker, "click", function() {
+			map.panTo(point[i]);
+      marker.openInfoWindowHtml(html[i]);
+    });
+   	GEvent.addDomListener(document.getElementById('place-addresses' + i), "click", function() {
+			map.panTo(point[i]);
       marker.openInfoWindowHtml(html[i]);
     });
     return marker;
@@ -82,9 +83,8 @@ function load() {
     } 
   }
 
+	createMarkers()
 
-
-  createMarkers();
 
 
   }

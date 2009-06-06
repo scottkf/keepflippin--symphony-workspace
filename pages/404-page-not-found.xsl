@@ -6,14 +6,14 @@
 
 <xsl:template name="top">
 	<div>
-		<h3>error!</h3>
+		<h2>Error - 404 not found</h2>
 	</div>
 </xsl:template>
 
 <xsl:template match="/data">
 
-			<img class="floatr" src="http://keepflippin.com/images/site/error.jpg" />
-			<img src="http://keepflippin.com/images/site/icons/icon_error.png" /> 
+			<img class="floatr" src="http://keepflippin.com/images/site/error.jpg" /><br />
+			<img src="http://keepflippin.com/images/site/icons/icon_error.png" />
 			<b>404 error! Page not found!</b>
 
 			<p>Well that's not at all useful. So, you're a bit lost... Perhaps you're a bit dizzy after <i>fifteen</i> flips. Maybe you need a <b>spot</b>?</p>

@@ -111,7 +111,7 @@ caption { background: #eee; }
 
 .showgrid { background: url(../images/grid.png); }
 
-h1 a, h2 a, h3 a, h4 a, h5 a { color: #b11737; }
+h1 a, h2 a, h3 a, h4 a, h5 a { font-family: Helvetica Neue,Arial,Helvetica,sans-serif; color: #b11737; }
 h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited { color: #b11737; }
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover { color: #555555; }
 
@@ -129,12 +129,12 @@ body#news div.list div.article-wide { display: inline; float: left; margin-right
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-#header { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; color: #8a8a8a; background: url(../images/upper-right-stars.png) no-repeat bottom right; height: 234px; }
+#header { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; color: #8a8a8a; background: url(../images/upper-right-stars.jpg) no-repeat bottom right; height: 234px; }
 #header { display: block; }
 #header #badge { position: absolute; background: url(../images/star-badge.png) no-repeat; height: 98px; width: 99px; top: 175px; margin-left: -70px; z-index: 2; }
-#header #logo { margin-top: 0px; margin-bottom: -10px; display: inline; float: left; margin-right: 15px; width: 625px; }
+#header #logo { margin-top: 0px; margin-bottom: -10px; display: inline; float: left; margin-right: 15px; width: 585px; }
 * html #header #logo { overflow-x: hidden; }
-#header #menu { display: inline; float: left; margin-right: 0; width: 305px; color: #677891; font-size: 14px; margin-top: 140px; }
+#header #menu { display: inline; float: left; margin-right: 0; width: 345px; color: #677891; font-size: 14px; margin-top: 140px; }
 * html #header #menu { overflow-x: hidden; }
 #header #menu ul { margin: 0; padding: 0; border: 0; overflow: hidden; display: inline-block; }
 #header #menu ul { display: block; }
@@ -170,10 +170,48 @@ a:hover { text-decoration: underline; }
 #header #nav ul li.selected a { border: 1px solid white; color: #9a1c1b; }
 #header #nav ul li.selected a:hover { padding-left: 20px; padding-right: 20px; padding-top: 6px; padding-bottom: 12px; }
 
+#locations #middle #content ul { list-style-type: none; margin-left: 0px; }
+#locations #middle #content h3 { margin-bottom: 10px; }
+#locations #middle #content h4 { margin-bottom: 1px; }
+#locations #middle #content #right ul { margin: 0; padding: 0; border: 0; overflow: hidden; display: inline-block; }
+#locations #middle #content #right ul { display: block; }
+#locations #middle #content #right ul li { list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
+#locations #middle #content #right ul li.first { padding-left: 0px; }
+#locations #middle #content #right ul li.last { padding-right: 0px; }
+#locations #middle #content #right ul li img { border: 1px solid #aaa; }
+
+#franchising #middle #content #left { color: #262626; display: inline; float: left; margin-right: 15px; width: 265px; }
+#franchising #middle #content #left ol { margin-left: 25px; }
+* html #franchising #middle #content #left { overflow-x: hidden; }
+#franchising #middle #content #right { display: inline; float: left; margin-right: 0; width: 665px; }
+* html #franchising #middle #content #right { overflow-x: hidden; }
+
 #home #middle #welcome-kf { background: url(../images/home-bg.jpg) repeat-x scroll bottom center; padding-top: 30px; }
 
+#about #middle #content #left { display: inline; float: left; margin-right: 15px; width: 585px; }
+* html #about #middle #content #left { overflow-x: hidden; }
+#about #middle #content #left h3 { background-color: #f5f5f5; padding: 10px; text-align: center; }
+#about #middle #content #left h4 { margin-top: 10px; margin-bottom: 10px; }
+#about #middle #content #right { display: inline; float: left; margin-right: 0; width: 305px; }
+* html #about #middle #content #right { overflow-x: hidden; }
+
+#contact #middle #content h2 { margin-bottom: 5px; }
+#contact #middle #content h3, #contact #middle #content h4 { margin-bottom: 5px; font-weight: bold; }
+#contact #middle #content h5 { margin-bottom: 3px; }
+#contact #middle #content hr { margin-bottom: 15px; color: #fff; }
+#contact #middle #content #left { display: inline; float: left; margin-right: 15px; width: 145px; }
+* html #contact #middle #content #left { overflow-x: hidden; }
+#contact #middle #content #left.directions { display: inline; float: left; margin-right: 15px; width: 585px; }
+* html #contact #middle #content #left.directions { overflow-x: hidden; }
+#contact #middle #content #left #map { border: 1px solid #ddd; margin-bottom: 10px; }
+#contact #middle #content #right { display: inline; float: left; margin-right: 0; width: 785px; }
+* html #contact #middle #content #right { overflow-x: hidden; }
+#contact #middle #content #right.directions { display: inline; float: left; margin-right: 0; width: 345px; }
+* html #contact #middle #content #right.directions { overflow-x: hidden; }
+#contact #middle #content #right.directions span h4 { margin-bottom: 2px; }
+
 #middle { background-color: white; border-bottom: 1px solid #fafafa; position: relative; }
-#middle p { font: 1.2em "georgia, times, times new roman"; line-height: 140%; }
+#middle p { line-height: 140%; }
 #middle #welcome-kf { background: url(../images/other-bg.jpg) repeat-x scroll bottom center; border-bottom: 1px solid #e6e6e6; padding-top: 17px; color: #444; }
 #middle #welcome-kf #badge-home { position: absolute; background: url(../images/star-badge-home.png) no-repeat; height: 94px; width: 97px; top: 155px; left: 412.5px; z-index: 2; }
 #middle #welcome-kf .nav { margin: 0; padding: 0; border: 0; overflow: hidden; display: inline-block; margin-bottom: 20px; }
@@ -186,7 +224,7 @@ a:hover { text-decoration: underline; }
 #middle #welcome-kf .nav li:first-child:before { content: ""; }
 #middle #welcome-kf .nav li { font-size: 1.4em; }
 #middle #welcome-kf .nav li.selected a { color: #ab2d2c; font-size: bigger; }
-#middle #welcome-kf p { margin-bottom: 10px; font: 1.35em "georgia, times, times new roman"; line-height: 140%; }
+#middle #welcome-kf p { margin-bottom: 10px; font: 1.25em "georgia", "times", "times new roman"; line-height: 140%; }
 #middle #welcome-kf h2 { margin-bottom: 10px; font-weight: bold; line-height: 1.1em; font-size: 2.5em; letter-spacing: -0.04em; color: #9a1c1b; }
 #middle #welcome-kf h2 a { color: #9a1c1b; }
 #middle #welcome-kf > div { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; position: relative; }
@@ -281,7 +319,7 @@ a:hover { text-decoration: underline; }
 #middle #content #right .article h3 a { font-weight: bold; font-size: 1.2em; }
 #middle #content #right .article + h3 { margin-bottom: 5px; }
 
-#footer { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; color: #8a8a8a; padding-top: 57px; padding-bottom: 50px; background: url(../images/lower-right-stars.jpg) no-repeat top right; }
+#footer { width: 945px; margin: 0 auto; overflow: hidden; display: inline-block; color: #8a8a8a; padding-top: 57px; padding-bottom: 50px; background: url(../images/lower-right-stars.jpg) no-repeat top right; z-index: 10; }
 #footer { display: block; }
 #footer ul { margin: 0; padding: 0; border: 0; overflow: hidden; display: inline-block; }
 #footer ul { display: block; }

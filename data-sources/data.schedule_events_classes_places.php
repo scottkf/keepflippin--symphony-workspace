@@ -7,16 +7,16 @@
 		public $dsParamROOTELEMENT = 'schedule-events-classes-places';
 		public $dsParamORDER = 'desc';
 		public $dsParamLIMIT = '99';
-		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamREQUIREDPARAM = '$classes';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
 				'118' => '{$ds-session}',
+				'98' => '{$ds-schedule-classes-events}',
 				'109' => '{$ds-schedule-places-events}',
 				'101' => '{$year:2009}-{$month:$this-month}-01 to {$year:2009}-{$month:$this-month}-31',
-				'98' => '{$ds-schedule-classes-events}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -30,7 +30,7 @@
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array('$ds-session', '$ds-schedule-places-events', '$ds-schedule-classes-events');
+			$this->_dependencies = array('$ds-session', '$ds-schedule-classes-events', '$ds-schedule-places-events');
 		}
 		
 		public function about(){
@@ -41,7 +41,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T01:10:20+00:00');	
+					 'release-date' => '2009-06-06T17:13:45+00:00');	
 		}
 		
 		public function getSource(){

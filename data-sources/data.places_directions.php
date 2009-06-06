@@ -2,24 +2,29 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourcefrontpage_news_items extends Datasource{
+	Class datasourceplaces_directions extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'frontpage-news-items';
+		public $dsParamROOTELEMENT = 'places-directions';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '3';
-		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'publish-this-article-on';
+		public $dsParamLIMIT = '20';
+		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamREQUIREDPARAM = '$location';
+		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'30' => 'yes',
-				'79' => 'no',
+				'102' => '{$location}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
-				'title',
-				'body',
-				'publish-this-article-on'
+				'name',
+				'phone-number',
+				'street-address',
+				'postal-code',
+				'city',
+				'state',
+				'country',
+				'latitude-longitude'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -29,17 +34,17 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Frontpage News Items',
+					 'name' => 'Places: Directions',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T03:21:36+00:00');	
+					 'release-date' => '2009-06-06T15:48:16+00:00');	
 		}
 		
 		public function getSource(){
-			return '6';
+			return '21';
 		}
 		
 		public function allowEditorToParse(){

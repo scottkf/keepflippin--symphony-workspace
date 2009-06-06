@@ -113,11 +113,11 @@
 			</xsl:call-template>
 			</a>
 		</p>
-		<p class="comments">
+		<!-- <p class="comments">
 			<a href="{$root}/photos/photo/{$id}">
 				<xsl:value-of select="count(/data/galleries-comments/entry/image/item[@id = $id])"/> comments
 			</a>
-		</p>
+		</p> -->
 </xsl:template>
 
 <xsl:template match="item" mode="photo">

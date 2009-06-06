@@ -12,8 +12,11 @@
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="{$root}/locations?short" rel="locations">Locations</a></li> 
-				<li><a href="{$root}">Community</a></li> 
+				<li><a href="{$root}/locations?short" title="Locations" rel="locations">Locations</a></li> 
+				<li><a href="{$root}/summer-camp">Summer Camp</a></li>
+				<li><a href="{$root}/news">News</a></li>
+				<li><a href="{$root}/about">About</a></li>
+				<!-- <li><a href="{$root}">Community</a></li>  -->
 				<xsl:choose>
 					<xsl:when test="/data/events/login-info/@logged-in = 'true'">
 						<li><a href="{$root}/symphony/logout/">Logout</a></li> 

@@ -3,6 +3,10 @@
 
 <xsl:import href="../utilities/master.xsl"/>
 
+<xsl:template name="head">
+	
+</xsl:template>
+
 <xsl:template name="top">
 	<div>
 		<h2>Contact</h2>
@@ -10,19 +14,35 @@
 </xsl:template>
 
 <xsl:template match="data">
-	<h3>By Phone</h3>
+	<h2><a href="{$root}/locations/keep-flippin-headquarters">Keep Flippin' Headquarters</a></h2>
 	<p>
-		561-745-2511
+		<a href="{$root}/contact/directions/keep-flippin-headquarters">
+		6761 W. Indiantown Rd.<br />
+		Suite #28<br />
+		Jupiter, FL. 33458
+		</a>
 	</p>
-	<h3>By Email</h3>
+	<hr />
+	<div id="left">
+	<h5>Phone</h5>
+	<p>
+		(561)-745-2511
+	</p>
+	<h5>Email</h5>
 	<p>
 		<a href="mailto:darylsue@keepflippin.com">Daryl Sue</a>
 	</p>
-	<h3>In person</h3>
+	<h5>In person</h5>
 	<p>
-		<a href="{$root}/contact/directions">Go here for directions</a>
+		<a href="{$root}/contact/directions/keep-flippin-headquarters">Directions via Google</a>
 	</p>
-	<h3>Or via form below</h3>
+	<h5>Franchising</h5>
+	<p>
+		<a href="{$root}/franchising/contact">Contact</a>
+	</p>
+	</div>
+	<div id="right">
+	<h4>Optionally, fill out the form below to send us an email</h4>
 	<h5>Required fields are indicated by an asterisk (*) and are in bold.</h5>
   <form action="" method="post">
     <xsl:for-each select="events/save-message">
@@ -55,6 +75,7 @@
 			<input name="fields[date-contacted]" value="{$today}" type="hidden" />
       <input id="submit" type="submit" name="action[save-message]" value="Send" />
   </form>
+	</div>
 </xsl:template>
 
 </xsl:stylesheet>

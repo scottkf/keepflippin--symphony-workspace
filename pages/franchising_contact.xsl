@@ -21,7 +21,7 @@
 
 <xsl:template match="data">
 	<p>To find out more about more about Keep Flippin' - or to get the franchise process moving - please fill out the application below to tell us about yourself.</p>
-	<h3>Personal Information</h3>
+	<h3>Information</h3>
 	<h5>Required fields are indicated by an asterisk (*) and are in bold.</h5>
 	<xsl:apply-templates select="section-schema[@handle='prospects']">
 		<xsl:with-param name="event" select="/data/events/save-prospect" />

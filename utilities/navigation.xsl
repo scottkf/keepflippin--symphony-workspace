@@ -34,6 +34,11 @@
 					<xsl:value-of select="'/'"/>
 					<xsl:value-of select="@handle"/>
 				</xsl:when>
+				<xsl:when test="@handle = 'schedule'">
+					<xsl:value-of select="@handle"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="$this-session"/>
+				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="@handle"/>
 				</xsl:otherwise>

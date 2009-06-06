@@ -11,7 +11,8 @@
 #gallery-list li p.tags a, #gallery-list li p.title a, #gallery-list li p.date a, #gallery-list li p.comments a, #gallery li p.tags a, #gallery li p.title a, #gallery li p.date a, #gallery li p.comments a { display: inline; }
 #gallery-list li p.tags.comments, #gallery-list li p.title.comments, #gallery-list li p.date.comments, #gallery-list li p.comments.comments, #gallery li p.tags.comments, #gallery li p.title.comments, #gallery li p.date.comments, #gallery li p.comments.comments { font-size: 1em; }
 #gallery-list li p.tags.tags, #gallery-list li p.title.tags, #gallery-list li p.date.tags, #gallery-list li p.comments.tags, #gallery li p.tags.tags, #gallery li p.title.tags, #gallery li p.date.tags, #gallery li p.comments.tags { font-size: 1em; margin-top: .2em; }
-#gallery-list li p.tags.date, #gallery-list li p.title.date, #gallery-list li p.date.date, #gallery-list li p.comments.date, #gallery li p.tags.date, #gallery li p.title.date, #gallery li p.date.date, #gallery li p.comments.date { margin-top: .3em; font-size: 1em; }
+#gallery-list li p.tags.date, #gallery-list li p.title.date, #gallery-list li p.date.date, #gallery-list li p.comments.date, #gallery li p.tags.date, #gallery li p.title.date, #gallery li p.date.date, #gallery li p.comments.date { margin-top: .3em; font-size: .8em; }
+#gallery-list li p.tags.title, #gallery-list li p.title.title, #gallery-list li p.date.title, #gallery-list li p.comments.title, #gallery li p.tags.title, #gallery li p.title.title, #gallery li p.date.title, #gallery li p.comments.title { font-size: 1em; }
 #gallery-list li a, #gallery li a { text-decoration: none; display: block; position: relative; width: 160px; height: 120px; }
 #gallery-list li a div, #gallery li a div { width: 160px; height: 120px; display: none; }
 #gallery-list li a div.shade, #gallery li a div.shade { background-color: #000000; left: 0; position: absolute; top: 0; z-index: 5; opacity: 0.8; }

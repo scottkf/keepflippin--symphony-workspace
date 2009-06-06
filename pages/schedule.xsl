@@ -11,7 +11,7 @@
 	<div>
 		<h2>Schedule</h2>
 		<ul class="nav">
-			<li><a href="{$root}/schedule/calendar">View the monthly calendar</a></li>
+			<li><a href="{$root}/schedule/calendar/{$this-session}">View the monthly calendar</a></li>
 		</ul>
 	</div>
 </xsl:template>
@@ -20,7 +20,7 @@
 	<xsl:choose>
 		<xsl:when test="$session != ''">
 			<xsl:if test="$session != '+'">
-				<h2><xsl:value-of select="$session"/> schedule</h2>
+				<h3><xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/> schedule</h3>
 			</xsl:if>
 			<xsl:if test="$places != ''">
 				<h4>Filtering by place: &#8220;<xsl:value-of select="schedule/entry/place/item"/>&#8221;</h4>

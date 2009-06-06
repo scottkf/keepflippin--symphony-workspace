@@ -476,10 +476,12 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P2D')" />
 				<xsl:with-param name="time" select="$hour-two-four"/>
 			</xsl:apply-templates>    	
+			</ul>
     </td>
     <td>
 			<ul>

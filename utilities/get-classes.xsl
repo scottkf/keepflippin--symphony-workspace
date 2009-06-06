@@ -63,9 +63,9 @@
 
 <!-- if there's a session, use it, otherwise use a space -->
 <xsl:template name="build-schedule-link">
-	<xsl:if test="classname != 'birthday-parties'">
-		<xsl:param name="classname" />
-		<a href="{$root}/schedule/classes/+/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
+	<xsl:param name="classname" />
+	<xsl:if test="$classname != 'birthday-parties'">
+		<a href="{$root}/schedule/classes/{$this-session}/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
 	</xsl:if>
 </xsl:template>
 

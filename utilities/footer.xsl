@@ -33,7 +33,7 @@
 				<li><a href="{$root}/franchising">franchising</a></li>
 				<li><a href="{$root}/summer-camp">summer camp</a></li>
 				<li><a href="{$root}/photos">pictures</a></li>
-				<li><a href="{$root}">search</a></li>
+				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>
 				<li><a href="{$root}">sitemap</a></li>
 			</ul>

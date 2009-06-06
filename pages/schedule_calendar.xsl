@@ -10,7 +10,7 @@
 	<div>
 		<h2>Schedule</h2>
 		<ul class="nav">
-			<li><a href="{$root}/schedule">View the weekly schedule</a></li>
+			<li><a href="{$root}/schedule/{$this-session}">View the weekly schedule</a></li>
 		</ul>
 	</div>
 </xsl:template>
