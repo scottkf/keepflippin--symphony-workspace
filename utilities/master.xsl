@@ -55,7 +55,7 @@
 		})
 		</script>
 		]]></xsl:text>		
-		<link rel="alternate" type="application/rss+xml" href="/rss/" />
+		<link rel="alternate" type="application/rss+xml" href="{$root}/rss/" />
 	</xsl:if>
 </head>
 <body id="{$root-page}">
