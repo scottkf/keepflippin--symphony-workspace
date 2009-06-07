@@ -8,7 +8,12 @@
 
 <xsl:template name="top">
 	<div>
-		<h2>Schedule</h2>
+		<h2>
+			<xsl:if test="$session != ''">
+				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
+			</xsl:if>
+			Schedule
+		</h2>
 		<ul class="nav">
 			<li><a href="{$root}/schedule/{$this-session}">View the weekly schedule</a></li>
 		</ul>

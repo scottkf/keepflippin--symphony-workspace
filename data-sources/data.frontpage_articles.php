@@ -5,23 +5,23 @@
 	Class datasourcefrontpage_articles extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'frontpage-articles';
-		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '3';
+		public $dsParamORDER = 'asc';
+		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamPARAMOUTPUT = 'system:id';
-		public $dsParamSORT = 'publish-this-article-on';
+		public $dsParamSORT = 'important';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'29' => '2007-01-21 to {$today}',
 				'30' => 'yes',
-				'79' => 'yes',
+				'29' => '2007-01-21 to {$today}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'body',
 				'publish-this-article-on',
+				'important',
 				'alternate-link'
 		);
 
@@ -38,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-05T01:24:27+00:00');	
+					 'release-date' => '2009-06-07T23:39:48+00:00');	
 		}
 		
 		public function getSource(){

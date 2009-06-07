@@ -6,18 +6,15 @@
 //	+column(5)
 #calendar
 	+column(24,true)
-	ul
-		margin: 0px
-		list-style-type: none
-		text-align: center
 
 	table
 		border-collapse: separate
 		border-width: 1px 1px 1px 1px
+		table-layout: automatic
 
 		td, th 
-			width: 80px
-			height: 80px
+			width: 50px
+			height: 50px
 			overflow: hidden
 			text-align: left
 			vertical-align: top
@@ -28,8 +25,8 @@
 
 		th
 			text-align: center
-			height: 10px
 			border-bottom: 1px solid #ccc
+			font-size: 1.2em
 			&.month-nav 
 				border-bottom: 0px
 				height: 10px
@@ -39,6 +36,30 @@
 
 		td 
 			border-bottom: 1px dashed #ccc
+			ul
+				margin: 0px
+				list-style-type: none
+				text-align: center
+				li
+					&.open-gym
+						a
+					&.blue
+						a
+					&.white
+					&.tuition-due
+						a
+							color: #444
+							font-weight: bold
+							font-size: 1.1em
+			
+			&.hour
+				border-right: 1px solid #ccc
+				width: 40px
+				vertical-align: middle
+				text-align: center
+				font-size: 1.2em
+				font-weight: bold
+				height: 20px
 
 			&:hover, &.month-nav:hover
 				background-position: 0px -81px

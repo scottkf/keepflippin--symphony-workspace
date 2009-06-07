@@ -12,18 +12,17 @@
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'45' => '{$ds-frontpage-articles:$ds-articles:$ds-drafts}',
+				'45' => '{$ds-frontpage-articles:$ds-news:$ds-drafts}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'image',
-				'article',
-				'description'
+				'article'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array('$ds-frontpage-articles', '$ds-articles', '$ds-drafts');
+			$this->_dependencies = array('$ds-frontpage-articles', '$ds-news', '$ds-drafts');
 		}
 		
 		public function about(){
@@ -34,7 +33,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-19T17:28:48+00:00');	
+					 'release-date' => '2009-06-07T23:43:52+00:00');	
 		}
 		
 		public function getSource(){

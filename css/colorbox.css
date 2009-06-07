@@ -32,6 +32,8 @@
 		#cboxLoadedContent{margin-bottom:5px;}
 		#cboxLoadedContent ul{margin-top: 8px; list-style-type: none;}
 		#cboxLoadedContent ul li h3{margin-bottom: 8px;}
+		#cboxLoadedContent #main{width: 250px;}
+		#cboxLoadedContent select{width: 100%;}
 		#cboxLoadingOverlay{background:url(../images/colorbox/loading_background.png) center center no-repeat;}
                 #cboxLoadingGraphic{background:url(../images/colorbox/loading.gif) center center no-repeat;}
                 #cboxTitle{position:absolute; bottom:-25px; left:0; text-align:center; width:100%; font-weight:bold; color:#949494;}

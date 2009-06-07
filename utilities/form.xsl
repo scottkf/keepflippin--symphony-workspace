@@ -19,10 +19,12 @@
 	<xsl:param name="post" />
 	<xsl:param name="errors"/>
 	<xsl:param name="inputs"/>
+	<xsl:param name="value" />
+	<xsl:param name="url" />
 	<xsl:param name="submit" select="'Submit'"/>
 	<xsl:param name="required" select="''"/>
 	<xsl:variable name="handle" select="@handle" />
-	<form action="" method="post">
+	<form action="{$url}" method="post">
 	<xsl:choose>
 		<xsl:when test="$multiple = 1">
 				<xsl:for-each select="dyn:evaluate($values)">
@@ -45,6 +47,7 @@
 					<xsl:with-param name="post" select="$post" />	
 					<xsl:with-param name="errors" select="$errors" />	
 					<xsl:with-param name="required" select="$required" />	
+					<xsl:with-param name="value" select="$value" />
 				</xsl:apply-templates>	
 			</xsl:for-each>
 		</xsl:when>
@@ -68,6 +71,7 @@
 				<xsl:with-param name="post" select="$post" />
 				<xsl:with-param name="errors" select="$errors" />	
 				<xsl:with-param name="required" select="$required" />	
+				<xsl:with-param name="value" select="$value" />
 			</xsl:apply-templates>
 		</xsl:otherwise>
 	</xsl:choose>
@@ -85,6 +89,7 @@
 	<xsl:param name="id" />
 	<xsl:param name="post" />
 	<xsl:param name="multiple" />
+	<xsl:param name="value" />
 	<xsl:param name="required" />
 		<xsl:call-template name="form:validation-summary">
 				<xsl:with-param name="event" select="$event" />
@@ -108,6 +113,7 @@
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="id" select="$id" />
 					<xsl:with-param name="required" select="$required" />	
+					<xsl:with-param name="value" select="$value" />
 				</xsl:apply-templates>
 			</div>
 		</xsl:if>
@@ -123,6 +129,7 @@
 					<xsl:with-param name="event" select="$event" />
 					<xsl:with-param name="required" select="$required" />	
 					<xsl:with-param name="id" select="$id" />
+					<xsl:with-param name="value" select="$value" />
 				</xsl:apply-templates>
 			</div>
 		</xsl:if>
@@ -137,8 +144,9 @@
 	<xsl:param name="values" />
 	<xsl:param name="event" />
 	<xsl:param name="id" />
+	<xsl:param name="value" />
 	<xsl:param name="required" />
-	<xsl:variable name="value" select="concat($values,'[@id=',$id,']/',name())"/>
+	<xsl:variable name="values" select="concat($values,'[@id=',$id,']/',name())"/>
 	<!-- <xsl:value-of select="$value"/> -->
 	<xsl:choose>
 		<xsl:when test="@type='input' or @type='order_entries' or @type='number'">
@@ -160,13 +168,16 @@
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate($value)"/>
+									<xsl:value-of select="dyn:evaluate($values)"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -191,7 +202,7 @@
 		<xsl:when test="@type='repeatingdate'">
 			<xsl:call-template name="form:label">
 				<xsl:with-param name="event" select="$event" />
-				<xsl:with-param name="for" select="name()"/>
+				<xsl:with-param name="for" select="concat(name(), '-date')"/>
 				<xsl:with-param name="text">
 					<xsl:value-of select="'Start Date'"/>
 					<xsl:if test="@required = 'yes'">
@@ -204,13 +215,21 @@
 						<xsl:with-param name="size" select="'5'" />
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]/start"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate(concat($value,'/start'))"/>
+									<xsl:value-of select="dyn:evaluate(concat($values,'/start'))"/>
+									<xsl:text> </xsl:text>
+									<xsl:call-template name="format-date">
+										<xsl:with-param name="date" select="dyn:evaluate(concat($values,'/start'))"/>
+										<xsl:with-param name="format" select="'t'" />
+									</xsl:call-template>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -234,7 +253,7 @@
 			</xsl:call-template>
 			<xsl:call-template name="form:label">
 					<xsl:with-param name="event" select="$event" />
-					<xsl:with-param name="for" select="name()"/>
+					<xsl:with-param name="for" select="concat(name(), '-date')"/>
 					<xsl:with-param name="text">
 						<xsl:value-of select="'End Date'"/>
 						<xsl:if test="@required = 'yes'">
@@ -245,13 +264,21 @@
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]/end"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate(concat($value,'/end'))"/>
+									<xsl:value-of select="dyn:evaluate(concat($values,'/end'))"/>
+									<xsl:text> </xsl:text>
+									<xsl:call-template name="format-date">
+										<xsl:with-param name="date" select="dyn:evaluate(concat($values,'/end'))"/>
+										<xsl:with-param name="format" select="'t'" />
+									</xsl:call-template>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -287,13 +314,16 @@
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]/@units"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate(concat($value,'/@units'))"/>
+									<xsl:value-of select="dyn:evaluate(concat($values,'/@units'))"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -317,13 +347,16 @@
 					<xsl:call-template name="form:select">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]/@mode"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 											<xsl:value-of select="$parent_id"/>
 										</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate(concat($value,'/@mode'))" />
+									<xsl:value-of select="dyn:evaluate(concat($values,'/@mode'))" />
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -363,13 +396,16 @@
 					<xsl:call-template name="form:input">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate($value)"/>
+									<xsl:value-of select="dyn:evaluate($values)"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -406,13 +442,16 @@
 					<xsl:call-template name="form:textarea">
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate($value)"/>
+									<xsl:value-of select="dyn:evaluate($values)"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -449,13 +488,16 @@
 					<xsl:call-template name="form:select">
 						<xsl:with-param name="value">
 							<xsl:choose>
-								<xsl:when test="$id = 0 or dyn:evaluate(concat($value,'/item/@id')) &lt;= 0">
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
+								<xsl:when test="$id = 0 or dyn:evaluate(concat($values,'/item/@id')) &lt;= 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 											<xsl:value-of select="$parent_id"/>
 										</xsl:when>
 								<xsl:otherwise>
-									<xsl:for-each select="dyn:evaluate(concat($value,'/item'))">
+									<xsl:for-each select="dyn:evaluate(concat($values,'/item'))">
 										<xsl:value-of select="@id"/><xsl:text> </xsl:text>
 									</xsl:for-each>
 								</xsl:otherwise>
@@ -496,13 +538,16 @@
 						<xsl:with-param name="event" select="$event" />
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate($value)"/>
+									<xsl:value-of select="dyn:evaluate($values)"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>
@@ -550,13 +595,16 @@
 						<xsl:with-param name="event" select="$event" />
 						<xsl:with-param name="value">
 							<xsl:choose>
+								<xsl:when test="exsl:node-set($value)/value[@handle = name(current())]">
+									<xsl:value-of select="exsl:node-set($value)/value[@handle = name(current())]"/>
+								</xsl:when>
 								<xsl:when test="$id = 0">
 								</xsl:when>
 								<xsl:when test="$parent_name != '' and $parent_id != '' and $parent_name = name()">
 									<xsl:value-of select="$parent_id"/>
 								</xsl:when>
 								<xsl:otherwise>
-									<xsl:value-of select="dyn:evaluate($value)"/>
+									<xsl:value-of select="dyn:evaluate($values)"/>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:with-param>

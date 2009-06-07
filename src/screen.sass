@@ -56,7 +56,7 @@ a
 		+column(9,true)
 		color: #677891
 		font-size: 14px
-		margin-top: 140px
+		margin-top: 110px
 		ul
 			+horizontal-list
 			+piped-list
@@ -73,9 +73,11 @@ a
 			#franchising
 				+nav-hover("franchising", 114px)
 			#photos
-				+nav-hover("photos", 86px)
+				+nav-hover("media", 70px)
 			#contact
 				+nav-hover("contact", 85px)
+			#schedule
+				+nav-hover("schedule", 96px)
 			li
 				font-size= !nav_font_size
 				background= !nav_background 
@@ -117,6 +119,20 @@ a
 						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
 						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
 
+#showteam
+	#middle	
+		#content
+			#left
+				+column(17)
+			#right
+				+column(7, true)
+				h4
+					margin-bottom: 7px
+				table
+					tr
+						td
+							padding-left: 0px
+							padding-top: 0px
 #locations
 	#middle
 		#content
@@ -133,7 +149,21 @@ a
 					li
 						img
 							border: 1px solid #aaa
-			
+
+#photos
+	#middle
+		#content
+			#left
+				+column(14)
+				h4
+					margin-bottom: 0px
+					font-size: 1.5em
+				h5
+					margin-bottom: 12px
+			#right
+				+prepend(1)
+				+column(9, true)
+
 #franchising
 	#middle
 		#content
@@ -238,6 +268,7 @@ a
 			font-size: 2.5em
 			letter-spacing: -0.04em
 			color= !page_header_color
+			text-transform: capitalize
 			a
 				color= !page_header_color
 		> div

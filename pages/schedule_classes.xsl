@@ -10,7 +10,7 @@
 	<div>
 		<h2>Schedule</h2>
 		<p>
-			Filtering by <b>&#8220;<xsl:value-of select="/data/classes/entry/class-name[@handle = $classes]"/>&#8221;</b>
+			Filtering by <b>&#8220;<xsl:value-of select="/data/schedule-events-classes-places/entry/class/item[@handle = $classes]"/>&#8221;</b>
 			<!-- <xsl:if test="$places != ''">
 				and by <b>&#8220;<xsl:value-of select="/data/classes/entry/class-name[@handle = $classes]"/>&#8221;</b>
 			</xsl:if> -->

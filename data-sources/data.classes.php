@@ -8,12 +8,13 @@
 		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamSORT = 'class-name';
+		public $dsParamSORT = 'sort-order';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
 				'id' => '{$ds-events-list}',
 				'90' => '{$class}',
+				'154' => 'no',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -38,7 +39,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T00:51:03+00:00');	
+					 'release-date' => '2009-06-07T17:44:42+00:00');	
 		}
 		
 		public function getSource(){

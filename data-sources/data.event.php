@@ -2,17 +2,18 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourceduplicate_event extends Datasource{
+	Class datasourceevent extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'duplicate-event';
+		public $dsParamROOTELEMENT = 'event';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '9999';
+		public $dsParamLIMIT = '1';
 		public $dsParamREDIRECTONEMPTY = 'yes';
+		public $dsParamREQUIREDPARAM = '$event';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'118' => '{$ds-duplicate-session}',
+				'id' => '{$event}',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
@@ -26,18 +27,18 @@
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array('$ds-duplicate-session');
+			$this->_dependencies = array();
 		}
 		
 		public function about(){
 			return array(
-					 'name' => 'Duplicate Event',
+					 'name' => 'Event',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-07T22:39:36+00:00');	
+					 'release-date' => '2009-06-07T18:19:37+00:00');	
 		}
 		
 		public function getSource(){

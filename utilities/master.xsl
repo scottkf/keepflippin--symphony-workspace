@@ -43,18 +43,15 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
+		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>
+		<xsl:if test="$is-logged-in = 'true' and $current-page = 'schedule'">
+			<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/datepicker.css" />
+			<script type="text/javascript" src="{$workspace}/javascript/datejs.core.js"></script>
+			<script type="text/javascript" src="{$workspace}/javascript/dates.js"></script>
+		</xsl:if>
 		<xsl:if test="$current-page = 'directions'">
 			<xsl:call-template name="head" />
 		</xsl:if>
-		<xsl:text disable-output-escaping="yes"><![CDATA[
-		<script type="text/javascript">
-		$(document).ready(function() { 
-			$("a[rel='locations']").colorbox({transition:"elastic", width:"55%"});
-			$('a.colorbox').colorbox({transition:"elastic", width:"55%"});
-			$("a[rel='gallery']").colorbox({transition:"elastic"});				
-		})
-		</script>
-		]]></xsl:text>		
 		<link rel="alternate" type="application/rss+xml" href="{$root}/rss/" />
 	</xsl:if>
 </head>

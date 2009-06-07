@@ -8,6 +8,7 @@
 
 
 <xsl:import href="get-schedule.xsl" />
+<xsl:import href="date-time.xsl" />
 <!--
 Name: XSLT Calendar 
 Description:  
@@ -45,7 +46,7 @@ URL: http://gist.github.com/115859
 			<xsl:value-of select="29"/>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:value-of select="substring('31283130313031303130313031', 2* $month - 1,2)"/>
+			<xsl:value-of select="substring('312831303130313130313031', 2* $month - 1,2)"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
@@ -416,8 +417,8 @@ URL: http://gist.github.com/115859
 	<xsl:param name="date" />
   <xsl:param name="minutes" select="'00'"/>
   <xsl:param name="am-pm" select="'AM'"/>
-	<xsl:param name="count" select="10"/>
-	<xsl:param name="end" select="8" />
+	<xsl:param name="count" select="9"/>
+	<xsl:param name="end" select="7" />
 	<xsl:param name="skip"/>
   <xsl:param name="hour">
 		<xsl:choose>
@@ -460,6 +461,17 @@ URL: http://gist.github.com/115859
 	<tr class="hour-row">
 		<td class="hour"><xsl:value-of select="concat($hour,':',$minutes,' ',$am-pm)"/></td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P1D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P0D')" />
@@ -468,6 +480,17 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P2D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P1D')" />
@@ -476,6 +499,17 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P3D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P2D')" />
@@ -484,6 +518,17 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P4D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P3D')" />
@@ -492,6 +537,17 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P5D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P4D')" />
@@ -500,6 +556,17 @@ URL: http://gist.github.com/115859
 			</ul>
     </td>
     <td>
+			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
+				<xsl:call-template name="add-event">
+					<xsl:with-param name="start" select="date:add($date, 'P6D')" />
+					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+					<xsl:with-param name="units" select="'1'" />
+					<xsl:with-param name="mode" select="'weeks'" />
+				</xsl:call-template>
+			</xsl:if>
 			<ul>
 			<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 				<xsl:with-param name="day" select="date:add($first-day-in-week,'P5D')" />
@@ -537,6 +604,32 @@ URL: http://gist.github.com/115859
 				<xsl:with-param name="skip" select="$skip" />
 			</xsl:call-template>
     </xsl:if>
+</xsl:template>
+
+
+<xsl:template name="add-event">
+	<xsl:param name="start" />
+	<xsl:param name="time" />
+	<xsl:param name="end" />
+	<xsl:param name="ses" />
+	<xsl:param name="place" />
+	<xsl:param name="units" />
+	<xsl:param name="mode" />
+	<xsl:variable name="mdate">
+		<xsl:call-template name="format-date">
+			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="format" select="'d'"/>
+		</xsl:call-template><xsl:text> </xsl:text>
+		<xsl:call-template name="format-date">
+			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="format" select="'M'"/>
+		</xsl:call-template><xsl:text> </xsl:text>
+		<xsl:call-template name="format-date">
+			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="format" select="'Y'"/>
+		</xsl:call-template>
+	</xsl:variable>
+	<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$end}&amp;session={$ses}&amp;place={$place}&amp;units={$units}&amp;mode={$mode}&amp;class=1">add</a></small>
 </xsl:template>
 
 

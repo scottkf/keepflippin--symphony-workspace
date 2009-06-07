@@ -23,10 +23,10 @@
 
 <xsl:template match="data">
 	<div id="left">
-		<xsl:apply-templates select="frontpage-articles/entry[position() &gt;= 2 and position() &lt;= 3]"	mode="left" />
+		<xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() &gt;= 2 and position() &lt;= 3]"	mode="left" />
 	</div>
 	<div id="right">
-	  <xsl:apply-templates select="frontpage-articles/entry[1]	"/>
+	  <xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() = 1]	"/>
 		<ul class="quicklinks">
 			<li class="twitter"><a href="http://twitter.com/keepflippin"><img src="{$workspace}/images/icons/twitterbird.jpg" alt="follow us on twitter" title="follow us on twitter" /></a></li>
 			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook_32.png" alt="view us on facebook" title="view us on facebook" /></a></li>

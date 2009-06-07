@@ -8,22 +8,20 @@
 		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'system:id';
+		public $dsParamSORT = 'name';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
 				'118' => '{$ds-session}',
-				'98' => '153,157,160,161,162,163,164,165,956',
-				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
+				'98' => '153,157,160,161,162,163,164,165,956,1030,1036',
 				'109' => '{$ds-schedule-places-events}',
+				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name',
 				'description',
-				'session',
 				'class',
-				'place',
 				'date'
 		);
 
@@ -40,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T02:56:51+00:00');	
+					 'release-date' => '2009-06-07T23:28:35+00:00');	
 		}
 		
 		public function getSource(){
