@@ -16,7 +16,18 @@
 <xsl:template match="data">
 	<h2><a href="{$root}/locations/keep-flippin-headquarters">Keep Flippin' Headquarters</a></h2>
 	<p>
-		<a href="{$root}/contact/directions/keep-flippin-headquarters">
+		<a>
+			<xsl:attribute name="href">
+				<xsl:choose>
+					<xsl:when test="$mobile = 'true'">
+						<xsl:value-of  select="'http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6761+W+Indiantown+Rd,+Jupiter,+FL+33458+(Keep+Flippin+Gymnastics)&amp;sll=37.649034,-95.712891&amp;sspn=40.268799,88.066406&amp;ie=UTF8&amp;ll=26.934677,-80.13756&amp;spn=0.011172,0.021501&amp;z=16&amp;iwloc=A'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$root"/>
+						<xsl:value-of select="'/contact/directions/keep-flippin-headquarters'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
 		6761 W. Indiantown Rd.<br />
 		Suite #28<br />
 		Jupiter, FL. 33458

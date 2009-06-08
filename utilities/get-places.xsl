@@ -23,15 +23,29 @@
 	<h3><xsl:value-of select="name"/></h3>
 	<h4>Address:</h4>
 	<small><strong>(Click it for a map)</strong></small>
-	<p> <a href="{$root}/contact/directions/{name/@handle}"><xsl:value-of select="street-address"/>
-	<xsl:if test="suite != ''">
-		suite# <xsl:value-of select="suite"/>, 
-	</xsl:if><br />
-	<xsl:value-of select="city"/>, <xsl:value-of select="state"/>, <xsl:value-of select="postal-code"/>, 
-	<xsl:value-of select="country"/><br />
-	<xsl:value-of select="phone-number"/>
-</a>
-</p>
+	<p> 
+		<a>
+			<xsl:attribute name="href">
+				<xsl:choose>
+					<xsl:when test="$mobile = 'true'">
+						<xsl:value-of  select="'http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6761+W+Indiantown+Rd,+Jupiter,+FL+33458+(Keep+Flippin+Gymnastics)&amp;sll=37.649034,-95.712891&amp;sspn=40.268799,88.066406&amp;ie=UTF8&amp;ll=26.934677,-80.13756&amp;spn=0.011172,0.021501&amp;z=16&amp;iwloc=A'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$root"/>
+						<xsl:value-of select="'/contact/directions/'"/>
+						<xsl:value-of select="name/@handle"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:value-of select="street-address"/>
+			<xsl:if test="suite != ''">
+				suite# <xsl:value-of select="suite"/>, 
+			</xsl:if><br />
+			<xsl:value-of select="city"/>, <xsl:value-of select="state"/>, <xsl:value-of select="postal-code"/>, 
+			<xsl:value-of select="country"/><br />
+			<xsl:value-of select="phone-number"/>
+		</a>
+	</p>
 	<h4>Type of Facility</h4>
 	<p>
 	<xsl:for-each select="type/item">
