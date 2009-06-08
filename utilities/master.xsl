@@ -44,7 +44,10 @@
 		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>
-		<xsl:if test="$is-logged-in = 'true' and $current-page = 'schedule'">
+		<xsl:if test="$current-page = 'calendar'">
+			<script type="text/javascript" src="{$workspace}/javascript/calendar.js"></script>			
+		</xsl:if>
+		<xsl:if test="$is-logged-in = 'true' and ($current-page = 'schedule' or $current-page = 'calendar')">
 			<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/datepicker.css" />
 			<script type="text/javascript" src="{$workspace}/javascript/datejs.core.js"></script>
 			<script type="text/javascript" src="{$workspace}/javascript/dates.js"></script>

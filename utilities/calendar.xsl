@@ -23,8 +23,26 @@ URL: http://gist.github.com/115859
 <xsl:param name="relative-day">
 	<xsl:variable name="day">
 		<xsl:call-template name="last-day-in-month">
-			<xsl:with-param name="year" select="$year"/>
-			<xsl:with-param name="month" select="$month" />
+			<xsl:with-param name="year">
+				<xsl:choose>
+					<xsl:when test="$year &gt; 0">
+						<xsl:value-of select="$year"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$this-year"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+			<xsl:with-param name="month">
+				<xsl:choose>
+					<xsl:when test="$month &gt; 0">
+						<xsl:value-of select="$month"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$this-month"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:variable>
 	<xsl:choose>
@@ -39,8 +57,8 @@ URL: http://gist.github.com/115859
 <xsl:param name="classes"/>
 
 <xsl:template name="last-day-in-month">
-	<xsl:param name="month" />
-	<xsl:param name="year" />
+	<xsl:param name="month"/>
+	<xsl:param name="year"/>
 	<xsl:choose>
 		<xsl:when test="$month = 2 and not($year mod 4) and ($year mod 100 or not ($year mod 400))">
 			<xsl:value-of select="29"/>
@@ -91,7 +109,7 @@ URL: http://gist.github.com/115859
 		</tr>
 		<tr>
 			<th>Sunday</th>
-			<th><a href="">Monday</a></th>
+			<th>Monday</th>
 			<th>Tuesday</th>
 			<th>Wednesday</th>
 			<th>Thursday</th>
@@ -281,6 +299,15 @@ URL: http://gist.github.com/115859
     <xsl:with-param name="date" select="$day"/>
     <xsl:with-param name="format" select="'D'"/>
   </xsl:call-template>
+	<xsl:call-template name="add-event">
+		<xsl:with-param name="start" select="$day" />
+		<xsl:with-param name="time" select="'12:00 pm'" />
+		<xsl:with-param name="end" select="concat($day, ' 12:00pm')" />
+		<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
+		<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
+		<xsl:with-param name="units" select="'1'" />
+		<xsl:with-param name="mode" select="'weeks'" />
+	</xsl:call-template>
 	<ul>
 		<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 			<xsl:with-param name="day" select="$day" />
@@ -420,6 +447,7 @@ URL: http://gist.github.com/115859
 	<xsl:param name="count" select="9"/>
 	<xsl:param name="end" select="7" />
 	<xsl:param name="skip"/>
+	<xsl:param name="limit" select="''"/>
   <xsl:param name="hour">
 		<xsl:choose>
 			<xsl:when test="$count = 0">12</xsl:when>
@@ -463,7 +491,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P1D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P0D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -482,7 +510,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P2D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P1D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -501,7 +529,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P3D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P2D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -520,7 +548,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P4D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P3D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -539,7 +567,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P5D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P4D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -558,7 +586,7 @@ URL: http://gist.github.com/115859
     <td>
 			<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 				<xsl:call-template name="add-event">
-					<xsl:with-param name="start" select="date:add($date, 'P6D')" />
+					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P5D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
 					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
@@ -625,21 +653,43 @@ URL: http://gist.github.com/115859
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
-	<xsl:variable name="mdate">
+	<xsl:variable name="fdate">
 		<xsl:call-template name="format-date">
-			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="date" select="$end"/>
 			<xsl:with-param name="format" select="'d'"/>
 		</xsl:call-template><xsl:text> </xsl:text>
 		<xsl:call-template name="format-date">
-			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="date" select="$end"/>
 			<xsl:with-param name="format" select="'M'"/>
 		</xsl:call-template><xsl:text> </xsl:text>
 		<xsl:call-template name="format-date">
-			<xsl:with-param name="date" select="$start"/>
+			<xsl:with-param name="date" select="$end"/>
 			<xsl:with-param name="format" select="'Y'"/>
-		</xsl:call-template>
-	</xsl:variable>
-	<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$end}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mode={$mode}&amp;class=1">add</a></small>
+		</xsl:call-template>	</xsl:variable>
+	<xsl:variable name="mdate">
+		<xsl:choose>
+		<xsl:when test="$start != ''">
+			<xsl:call-template name="format-date">
+				<xsl:with-param name="date" select="$start"/>
+				<xsl:with-param name="format" select="'d'"/>
+			</xsl:call-template><xsl:text> </xsl:text>
+			<xsl:call-template name="format-date">
+				<xsl:with-param name="date" select="$start"/>
+				<xsl:with-param name="format" select="'M'"/>
+			</xsl:call-template><xsl:text> </xsl:text>
+			<xsl:call-template name="format-date">
+				<xsl:with-param name="date" select="$start"/>
+				<xsl:with-param name="format" select="'Y'"/>
+			</xsl:call-template>			
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="'01' "/><xsl:text> </xsl:text>
+			<xsl:value-of select="$month"/><xsl:text> </xsl:text>
+			<xsl:value-of select="$year"/>
+		</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable><br />
+	<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mode={$mode}&amp;class=1">(+)</a></small>
 </xsl:template>
 
 

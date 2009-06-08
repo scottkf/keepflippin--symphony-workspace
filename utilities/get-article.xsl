@@ -142,7 +142,7 @@
 	<ul class="meta">
 	</ul>
 	<p>
-	<xsl:copy-of select="substring(body/*,1,200)" />
+	<xsl:copy-of select="body/p[1]/node()" />
 	<xsl:if test="string-length(body) &gt; 200">
 		<a>
 			<xsl:attribute name="href">

@@ -15,7 +15,7 @@
 			Schedule
 		</h2>
 		<ul class="nav">
-			<li><a href="{$root}/schedule/{$this-session}">View the weekly schedule</a></li>
+			<li><a href="{$root}/schedule/{$session}">View the weekly schedule</a></li>
 		</ul>
 	</div>
 </xsl:template>
@@ -30,6 +30,9 @@
 			</xsl:apply-templates>
 		</ul>
 	</div> -->
+	<div id="show-hide-links">
+		hello
+	</div>
 	<div id="calendar-month">
 		<xsl:call-template name="calendar" />
 	</div>

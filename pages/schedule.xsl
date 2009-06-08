@@ -16,7 +16,7 @@
 			Schedule
 		</h2>
 		<ul class="nav">
-			<li><a href="{$root}/schedule/calendar/{$this-session}">View the monthly calendar</a></li>
+			<li><a href="{$root}/schedule/calendar/{$session}">View the monthly calendar</a></li>
 		</ul>
 	</div>
 </xsl:template>

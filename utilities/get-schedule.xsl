@@ -5,10 +5,12 @@
 	xmlns:math="http://exslt.org/math"
 	extension-element-prefixes="date math">
 
+<xsl:import href="date-time.xsl" />
 
 <xsl:template match="/data/schedule*" mode="events">
 	<xsl:param name="day" />
 	<xsl:param name="time" />
+	<xsl:param name="limit" select="'3'" />
 	<xsl:variable name="y">
 		<xsl:call-template name="format-date">
 	    <xsl:with-param name="date" select="$day"/>
@@ -42,17 +44,49 @@
 		<xsl:when test="$time = ''">
 			<!-- grab all the regular events -->
 			<xsl:apply-templates select="entry[class/item/@handle = 'event' and date/current = $day]" mode="event" />			
-			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event' and date/current = $day]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event' and date/current = $day][position() &lt; $limit]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event' and date/current = $day][position() &gt;= $limit]" mode="event">
+				<xsl:with-param name="css-class">
+					<xsl:value-of select="'overflow'"/>
+				</xsl:with-param>
+				<xsl:with-param name="day" select="$day" />
+			</xsl:apply-templates>
+			<xsl:if test="count(entry[date/current = $day]) &gt; 0">
+				<li class="more" rel="{$d}">
+					<a href="javascript:Calendar.toggleClasses('{$d}')">&#8230; more</a>
+				</li>
+			</xsl:if>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 
 <xsl:template match="/data/schedule*/entry" mode="event">
+	<xsl:param name="css-class" />
+	<xsl:param name="day" />
 	<xsl:variable name="entry-id" select="class/item/@id" />
+	<xsl:variable name="d">
+		<xsl:call-template name="format-date">
+			<xsl:with-param name="date" select="$day"/>
+			<xsl:with-param name="format" select="'d'"/>
+		</xsl:call-template>
+	</xsl:variable>
 	<xsl:choose>
 		<!-- if the item has a class attached -->
 		<xsl:when test="class/item/@handle != 'summer-camp' and class/item/@handle != 'event'">
-				<li class="{class/item/@handle}">
+				<li>
+					<xsl:if test="$css-class != ''">
+						<xsl:attribute name="rel">
+							<xsl:value-of select="$d"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:attribute name="class">
+						<xsl:value-of select="class/item/@handle"/>
+						<xsl:if test="$css-class != ''">
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="$css-class"/>
+						</xsl:if>
+						<xsl:value-of select="' class'"/>
+					</xsl:attribute>
 					<a title="{class/item}">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$root" />
