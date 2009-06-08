@@ -91,7 +91,7 @@ URL: http://gist.github.com/115859
 		</tr>
 		<tr>
 			<th>Sunday</th>
-			<th>Monday</th>
+			<th><a href="">Monday</a></th>
 			<th>Tuesday</th>
 			<th>Wednesday</th>
 			<th>Thursday</th>
@@ -615,6 +615,16 @@ URL: http://gist.github.com/115859
 	<xsl:param name="place" />
 	<xsl:param name="units" />
 	<xsl:param name="mode" />
+	<xsl:variable name="pl">
+		<xsl:choose>
+			<xsl:when test="count($place) = 0">
+				<xsl:value-of select="'158'"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$place"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
 	<xsl:variable name="mdate">
 		<xsl:call-template name="format-date">
 			<xsl:with-param name="date" select="$start"/>
@@ -629,7 +639,7 @@ URL: http://gist.github.com/115859
 			<xsl:with-param name="format" select="'Y'"/>
 		</xsl:call-template>
 	</xsl:variable>
-	<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$end}&amp;session={$ses}&amp;place={$place}&amp;units={$units}&amp;mode={$mode}&amp;class=1">add</a></small>
+	<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$end}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mode={$mode}&amp;class=1">add</a></small>
 </xsl:template>
 
 

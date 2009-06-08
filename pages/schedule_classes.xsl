@@ -29,7 +29,7 @@
 			We found <xsl:value-of select="count(schedule-events-classes-places/entry[class/item/@handle = $classes]/date/current)"/> classes for this period.
 		</xsl:otherwise>
 	</xsl:choose> -->
-	<div id="calendar">
+	<div id="calendar-month">
 		<xsl:call-template name="calendar" />
 	</div>
 </xsl:template>

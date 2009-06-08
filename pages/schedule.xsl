@@ -24,9 +24,6 @@
 <xsl:template match="data">
 	<xsl:choose>
 		<xsl:when test="$session != ''">
-			<xsl:if test="$places != ''">
-				<h4>Filtering by place: &#8220;<xsl:value-of select="schedule/entry/place/item"/>&#8221;</h4>
-			</xsl:if>
 		</xsl:when>
 		<xsl:otherwise>
 		</xsl:otherwise>

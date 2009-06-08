@@ -13,7 +13,7 @@
 	<h3>
 		<a href="{$root}/locations/{name/@handle}"><xsl:value-of select="name"/></a>
 	</h3>
-	<a href="{$root}/schedule/places/{$this-session}/{$this-year}/{$this-month}/{name/@handle}">View classes at this location on the calendar</a><br />
+	<a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes at this location on the calendar</a><br />
 	<xsl:value-of select="city"/>, <xsl:value-of select="state"/> <xsl:value-of select="postal-code"/>
 	</li>
 </xsl:template>
@@ -43,7 +43,7 @@
 	</p>
 	<h4>Classes</h4>
 	<p>
-		<a href="{$root}/schedule/places/{$this-session}/{$this-year}/{$this-month}/{name/@handle}">View classes at this location on the calendar</a>
+		<a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes at this location on the calendar</a><br />
 	</p>
 	</div>
 	<div id='right'>

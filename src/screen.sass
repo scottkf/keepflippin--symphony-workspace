@@ -119,6 +119,31 @@ a
 						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
 						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
 
+#classes
+	#middle
+		#content
+			#badge-home
+				position: absolute
+				background: url(../images/star-find.png) no-repeat
+				height: 119px
+				width: 150px
+				top: 110px
+				left= !blueprint_grid_width * 23.5
+				z-index: 2
+			#left
+				+column(16)
+				h3
+					color= !article_title_color
+				h5
+					margin-bottom: 5px
+					font-size: 1.1em
+			#right
+				+column(6)
+				a
+					font-size: 1.2em
+				img
+					border: 1px solid #888
+
 #showteam
 	#middle	
 		#content
@@ -222,6 +247,8 @@ a
 				&.directions
 					+column(9, true)
 					span
+						display: block
+						padding-bottom: 10px
 						h4
 							margin-bottom: 2px
 

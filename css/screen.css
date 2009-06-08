@@ -172,6 +172,16 @@ a:hover { text-decoration: underline; }
 #header #nav ul li.selected a { border: 1px solid white; color: #9a1c1b; }
 #header #nav ul li.selected a:hover { padding-left: 20px; padding-right: 20px; padding-top: 6px; padding-bottom: 12px; }
 
+#classes #middle #content #badge-home { position: absolute; background: url(../images/star-find.png) no-repeat; height: 119px; width: 150px; top: 110px; left: 587.5px; z-index: 2; }
+#classes #middle #content #left { display: inline; float: left; margin-right: 15px; width: 625px; }
+* html #classes #middle #content #left { overflow-x: hidden; }
+#classes #middle #content #left h3 { color: #b11737; }
+#classes #middle #content #left h5 { margin-bottom: 5px; font-size: 1.1em; }
+#classes #middle #content #right { display: inline; float: left; margin-right: 15px; width: 225px; }
+* html #classes #middle #content #right { overflow-x: hidden; }
+#classes #middle #content #right a { font-size: 1.2em; }
+#classes #middle #content #right img { border: 1px solid #888; }
+
 #showteam #middle #content #left { display: inline; float: left; margin-right: 15px; width: 665px; }
 * html #showteam #middle #content #left { overflow-x: hidden; }
 #showteam #middle #content #right { display: inline; float: left; margin-right: 0; width: 265px; }
@@ -224,6 +234,7 @@ a:hover { text-decoration: underline; }
 * html #contact #middle #content #right { overflow-x: hidden; }
 #contact #middle #content #right.directions { display: inline; float: left; margin-right: 0; width: 345px; }
 * html #contact #middle #content #right.directions { overflow-x: hidden; }
+#contact #middle #content #right.directions span { display: block; padding-bottom: 10px; }
 #contact #middle #content #right.directions span h4 { margin-bottom: 2px; }
 
 #middle { background-color: white; border-bottom: 1px solid #fafafa; position: relative; }

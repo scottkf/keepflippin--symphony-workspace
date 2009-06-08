@@ -8,7 +8,6 @@
 		public $dsParamORDER = 'desc';
 		public $dsParamLIMIT = '20';
 		public $dsParamREDIRECTONEMPTY = 'yes';
-		public $dsParamREQUIREDPARAM = '$location';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
@@ -40,7 +39,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T15:48:16+00:00');	
+					 'release-date' => '2009-06-08T01:35:33+00:00');	
 		}
 		
 		public function getSource(){

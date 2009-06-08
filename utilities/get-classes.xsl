@@ -10,12 +10,12 @@
 </xsl:template>
 
 <xsl:template name="important">
-	<h3>What do we wear?</h3>
+	<h5>What do we wear?</h5>
 	<p>
 		Leotards for girls, Gym clothes for boys. Gymnasts will go barefoot. All hair must be pulled back and out of the face. Long hair must be in a ponytail.
 		<b>NO midriffs, jeans, pants or buttons allowed</b>.
 	</p>
-	<h3>How do we deal with missed classes (make-ups)?</h3>
+	<h5>How do we deal with missed classes (make-ups)?</h5>
 	<p class="info">Gymnasts have 30 days to complete a make-up class. All make-ups must be done before the start of the next session. All make-ups must be done during our open gym class only. This will keep classes consistent and to a low ratio. </p>	
 </xsl:template>
 
@@ -65,7 +65,7 @@
 <xsl:template name="build-schedule-link">
 	<xsl:param name="classname" />
 	<xsl:if test="$classname != 'birthday-parties'">
-		<a href="{$root}/schedule/classes/{$this-session}/{$this-year}/{$this-month}/{$classname}">Find a class time...</a>
+		<a id="badge-home" href="{$root}/schedule/classes/{$this-session}/{$this-year}/{$this-month}/{$classname}"></a>
 	</xsl:if>
 </xsl:template>
 
@@ -74,19 +74,24 @@
 
 
 <xsl:template match="classes/entry" mode="full">
-	<div class="class">
+	<xsl:call-template name="build-schedule-link">
+		<xsl:with-param name="classname" select="class-name/@handle"/>
+	</xsl:call-template>
+	<div id="left">
 		<xsl:if test="class-name/@handle != 'birthday-parties'">
 			<h3>
 				For ages &#8212;<xsl:value-of select="ages" />
 			</h3>			
 		</xsl:if>
-		<xsl:call-template name="build-schedule-link">
-			<xsl:with-param name="classname" select="class-name/@handle"/>
-		</xsl:call-template>
 		<xsl:copy-of select="description/*"/>
 		<xsl:if test="class-name/@handle != 'birthday-parties'">
 			<xsl:call-template name="important" />			
 		</xsl:if>
+	</div>
+	<div id="right">
+		<a href="{$root}/classes/{class-name/@handle}/">
+			<img src="{$root}/image/2/145/130/3{image/@path}/{image/filename}" />
+		</a><br />
 	</div>
 </xsl:template>
 

@@ -9,7 +9,7 @@
 		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamREQUIREDPARAM = '$classes';
-		public $dsParamSORT = 'system:id';
+		public $dsParamSORT = 'name';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -41,7 +41,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-06T17:13:45+00:00');	
+					 'release-date' => '2009-06-08T01:30:19+00:00');	
 		}
 		
 		public function getSource(){
