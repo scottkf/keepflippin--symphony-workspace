@@ -2,9 +2,7 @@
 @import blueprint.sass
 
 
-#events
-//	+column(5)
-#calendar
+#calendar, #calendar-month
 	+column(24,true)
 
 	table
@@ -87,3 +85,9 @@
 				background-color: #ddd
 
 			&.this-day:hover 
+
+#calendar-month
+	table
+		td
+			width: 80px
+			height: 80px

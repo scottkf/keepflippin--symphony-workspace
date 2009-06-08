@@ -30,7 +30,7 @@
 			</xsl:apply-templates>
 		</ul>
 	</div> -->
-	<div id="calendar">
+	<div id="calendar-month">
 		<xsl:call-template name="calendar" />
 	</div>
 </xsl:template>

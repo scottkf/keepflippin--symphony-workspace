@@ -1,18 +1,19 @@
+#calendar, #calendar-month { display: inline; float: left; margin-right: 0; width: 945px; }
+* html #calendar, * html #calendar-month { overflow-x: hidden; }
+#calendar table, #calendar-month table { border-collapse: separate; border-width: 1px 1px 1px 1px; table-layout: automatic; }
+#calendar table td, #calendar table th, #calendar-month table td, #calendar-month table th { width: 50px; height: 50px; overflow: hidden; text-align: left; vertical-align: top; background: white; background-repeat: no-repeat; color: #444; position: relative; }
+#calendar table th, #calendar-month table th { text-align: center; border-bottom: 1px solid #ccc; font-size: 1.2em; }
+#calendar table th.month-nav, #calendar-month table th.month-nav { border-bottom: 0px; height: 10px; font-weight: bold; font-size: 14px; }
+#calendar table td, #calendar-month table td { border-bottom: 1px dashed #ccc; }
+#calendar table td ul, #calendar-month table td ul { margin: 0px; list-style-type: none; text-align: center; }
+#calendar table td ul li.tuition-due a, #calendar-month table td ul li.tuition-due a { color: #444; font-weight: bold; font-size: 1.1em; }
+#calendar table td.hour, #calendar-month table td.hour { border-right: 1px solid #ccc; width: 40px; vertical-align: middle; text-align: center; font-size: 1.2em; font-weight: bold; height: 20px; }
+#calendar table td:hover, #calendar table td.month-nav:hover, #calendar-month table td:hover, #calendar-month table td.month-nav:hover { background-position: 0px -81px; color: #222; }
+#calendar table td.date_has_event, #calendar-month table td.date_has_event { background-position: 162px 0px; color: white; }
+#calendar table td.date_has_event:hover, #calendar-month table td.date_has_event:hover { background-position: 162px -81px; }
+#calendar table td.padding, #calendar-month table td.padding { background: url(../images/workspace/calendar/calpad.jpg); }
+#calendar table td.other-month, #calendar-month table td.other-month { background: #f0f0f0; color: #aaa; }
+#calendar table td.other-month a, #calendar-month table td.other-month a { color: #aaa; }
+#calendar table td.this-day, #calendar-month table td.this-day { background-position: 81px 0px; color: black; background-color: #ddd; }
 
-#calendar { display: inline; float: left; margin-right: 0; width: 945px; }
-* html #calendar { overflow-x: hidden; }
-#calendar table { border-collapse: separate; border-width: 1px 1px 1px 1px; table-layout: automatic; }
-#calendar table td, #calendar table th { width: 50px; height: 50px; overflow: hidden; text-align: left; vertical-align: top; background: white; background-repeat: no-repeat; color: #444; position: relative; }
-#calendar table th { text-align: center; border-bottom: 1px solid #ccc; font-size: 1.2em; }
-#calendar table th.month-nav { border-bottom: 0px; height: 10px; font-weight: bold; font-size: 14px; }
-#calendar table td { border-bottom: 1px dashed #ccc; }
-#calendar table td ul { margin: 0px; list-style-type: none; text-align: center; }
-#calendar table td ul li.tuition-due a { color: #444; font-weight: bold; font-size: 1.1em; }
-#calendar table td.hour { border-right: 1px solid #ccc; width: 40px; vertical-align: middle; text-align: center; font-size: 1.2em; font-weight: bold; height: 20px; }
-#calendar table td:hover, #calendar table td.month-nav:hover { background-position: 0px -81px; color: #222; }
-#calendar table td.date_has_event { background-position: 162px 0px; color: white; }
-#calendar table td.date_has_event:hover { background-position: 162px -81px; }
-#calendar table td.padding { background: url(../images/workspace/calendar/calpad.jpg); }
-#calendar table td.other-month { background: #f0f0f0; color: #aaa; }
-#calendar table td.other-month a { color: #aaa; }
-#calendar table td.this-day { background-position: 81px 0px; color: black; background-color: #ddd; }
+#calendar-month table td { width: 80px; height: 80px; }
