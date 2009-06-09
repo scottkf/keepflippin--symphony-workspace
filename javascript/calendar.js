@@ -1,7 +1,8 @@
 var Calendar = {
 
 		init: function() {
-			$("#show-hide-links").html("<a href=\"javascript:Calendar.showAllClasses()\">Show All Classes</a> | <a href=\"javascript:Calendar.hideAllClasses()\">Hide All Classes</a>");
+			if ($("td > ul > li.class").length > 0)
+				$("#show-hide-links").html("<a href=\"javascript:Calendar.showAllClasses()\">Show All Classes</a> | <a href=\"javascript:Calendar.hideAllClasses()\">Hide All Classes</a>");
 		},
 
 		toggleClasses: function(day) {

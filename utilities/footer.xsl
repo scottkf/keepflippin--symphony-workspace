@@ -19,7 +19,14 @@
 		</div>
 		<div id="news">
 			<h2><a href="{$root}/news">Latest News - learn about new happenings at keep flippin'</a></h2>
-         <xsl:apply-templates select="/data/frontpage-news-items/entry" />
+				<xsl:choose>
+					<xsl:when test="$current-page = 'home'">
+	         <xsl:apply-templates select="/data/frontpage-articles/entry[important = 'No']" />						
+					</xsl:when>
+					<xsl:otherwise>
+	         <xsl:apply-templates select="/data/frontpage-news-items/entry" />
+					</xsl:otherwise>
+				</xsl:choose>
 			<h3><a href="{$root}/news">Looking for further information? Please continue on and read more...</a></h3>
 		</div>
 

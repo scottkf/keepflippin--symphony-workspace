@@ -51,7 +51,7 @@
 				</xsl:with-param>
 				<xsl:with-param name="day" select="$day" />
 			</xsl:apply-templates>
-			<xsl:if test="count(entry[date/current = $day]) &gt; 0">
+			<xsl:if test="count(entry[class/item/@handle != 'event' and class/item/@handle != 'summer-camp' and date/current = $day]) &gt; 0">
 				<li class="more" rel="{$d}">
 					<a href="javascript:Calendar.toggleClasses('{$d}')">&#8230; more</a>
 				</li>

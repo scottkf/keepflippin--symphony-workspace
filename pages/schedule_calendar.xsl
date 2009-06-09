@@ -31,7 +31,6 @@
 		</ul>
 	</div> -->
 	<div id="show-hide-links">
-		hello
 	</div>
 	<div id="calendar-month">
 		<xsl:call-template name="calendar" />

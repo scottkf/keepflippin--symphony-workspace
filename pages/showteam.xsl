@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:exsl="http://exslt.org/common"
+	extension-element-prefixes="exsl">
 
 <xsl:import href="../utilities/master.xsl"/>
 <xsl:import href="../utilities/get-article.xsl"/>
@@ -17,8 +19,38 @@
 <xsl:template match="data">
 
 
+	<xsl:variable name="showteam">
+		<person handle="team">Alicia</person>
+		<person handle="team">Brittany</person>
+		<person handle="team">Haley</person>
+		<person handle="team">Collin</person>
+		<person handle="team">Megan</person>
+		<person handle="team">Amber</person>
+		<person handle="team">Morgane</person>
+		<person handle="team">BJ</person>
+		<person handle="team">Alexis</person>
+		<person handle="team">Julia</person>
+		<person handle="preteam">Lexi</person>
+		<person handle="preteam">Brooke</person>
+		<person handle="preteam">Rachael</person>
+		<person handle="preteam">Hannah</person>
+		<person handle="preteam">Ryan</person>
+	</xsl:variable>
+	<!-- <xsl:when test="exsl:node-set($value)/value[@handle = name(current())]"> -->
 
+	<xsl:variable name="team">
+		<xsl:for-each select="exsl:node-set($showteam)/person[@handle = 'team']">
+			<xsl:sort select="." />
+			<xsl:copy-of select="." />
+		</xsl:for-each>
+	</xsl:variable>
 
+	<xsl:variable name="preteam">
+		<xsl:for-each select="exsl:node-set($showteam)/person[@handle = 'preteam']">
+			<xsl:sort select="." />
+			<xsl:copy-of select="." />
+		</xsl:for-each>
+	</xsl:variable>
 
 	<div id="left">
 		<img class="toppic" src="http://keepflippin.com/images/67.jpg" />
@@ -36,20 +68,24 @@
 		</p>
 		<h4>Showteam Members</h4>
 		<table class="showteam">
-		   <tbody><tr><td>Alicia</td><td class="right">Amber</td></tr>
-		  <tr><td>BJ</td><td class="right">Brittany</td></tr>
-		  <tr><td>Collin</td><td class="right">Haley</td></tr>
-		  <tr><td>Kacie</td><td class="right">Lyara</td></tr>
-		  <tr><td>Megan</td><td class="right">Morgane</td></tr>
-		  <tr><td class="bottom">Savannah</td><td class="bottom" style="border-right: 0pt none;"></td></tr>
-
-		</tbody></table>
-	<h4>Preteam members</h4>
-	<table class="showteam">
-	  <tbody><tr><td>Alexis</td><td class="right">Julia</td></tr>
-	  <tr><td class="bottom">Ryan</td><td class="bottom" style="border-right: 0pt none;"></td></tr>
-
-	</tbody></table>
+		   <tbody>
+				<xsl:for-each select="exsl:node-set($team)/person">
+					<xsl:if test="position() mod 2 = 1">
+						<tr><td><xsl:value-of select="."/></td><td><xsl:value-of select="following-sibling::person[position()]"/></td></tr>
+					</xsl:if>
+				</xsl:for-each>
+			</tbody>
+		</table>
+		<h4>Preteam members</h4>
+		<table class="preteam">
+		   <tbody>
+				<xsl:for-each select="exsl:node-set($preteam)/person">
+					<xsl:if test="position() mod 2 = 1">
+						<tr><td><xsl:value-of select="."/></td><td><xsl:value-of select="following-sibling::person[position()]"/></td></tr>
+					</xsl:if>
+				</xsl:for-each>
+			</tbody>
+		</table>
 
 	</div>
 </xsl:template>
