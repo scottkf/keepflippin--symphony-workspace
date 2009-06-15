@@ -9,7 +9,7 @@
 		<div class="introduction">
 			<h2 class="header"><a href="{$root}/about">Summer Camp</a></h2>
 			<p>
-				Come join us for Summer camp, <strong><em>&#8220;Flippin' around the world in 8 weeks!&#8221;</em></strong> There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st.
+				Come join us for Summer camp, <strong><em>&#8220;Flippin' around the world in 8 weeks!&#8221;</em></strong> There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}/schedule/classes/summer-2009/2009/06/summer-camp/keep-flippin-headquarters">A schedule of activities</a> is below. To signup, or for further questions, <a href="{$root}/contact">contact us</a>.
 			</p>
 		</div>
 		<div>
