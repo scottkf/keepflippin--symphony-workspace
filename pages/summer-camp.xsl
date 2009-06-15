@@ -13,7 +13,7 @@
 			</p>
 		</div>
 		<div>
-			<a href="{$root}/showteam" title="about the showteam"><img src="{$workspace}/images/home-right.jpg" /></a>
+			<a href="{$root}/showteam" title="about the showteam"><img src="{$workspace}/images/summer_camp_banner.jpg" /></a>
 		</div>
 	</div>
 </xsl:template>
@@ -48,6 +48,11 @@
 	<li>ice cream party and much more!</li>
 	<li>A complete list for <a href="{$root}/schedule/classes/summer-{$this-year}/{$this-year}/06/summer-camp/keep-flippin-headquarters">June can be found here</a>, and <a href="{$root}/schedule/classes/summer-{$this-year}/{$this-year}/07/summer-camp/keep-flippin-headquarters">July, here.</a></li>
 	</ul><p><strong>PLEASE NOTE:</strong> No refunds, credits or changing days is allowed once registered. We are very strict about late pick-ups and will charge accordingly.</p>
+	<h3><em>Enough literature! How do I signup?</em></h3>
+	<p>
+	  By <a href="/contact">contacting us</a>
+    via plane, train or automobile! Though in person or perhaps on the phone is preferable. You can find out how to find us <a href="/contact">here, on the contact page</a>.
+  </p>
 	</div>
 </xsl:template>
 

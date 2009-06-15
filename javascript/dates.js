@@ -240,6 +240,11 @@
 			prepare(); update();
 		});
 	}
+
+	$(document).ready(function() {
+	  $().bind('cbox_complete', function(){
+	   doit();
+	});})
 	
 	
 /*-----------------------------------------------------------------*/

@@ -16,7 +16,11 @@
 </xsl:template>
 
 <xsl:template match="data">
-
+	<xsl:variable name="session-start">
+			<xsl:call-template name="session-starts">
+				<xsl:with-param name="session" select="$session"/>
+			</xsl:call-template>
+	</xsl:variable>
 	<h5>* indicates a required field</h5>
 	<xsl:if test="/data/events/login-info/@logged-in = 'true'">
 		<xsl:apply-templates select="section-schema[@handle='events']">
@@ -38,7 +42,7 @@
 				<value handle="class"><xsl:value-of select="$url-class"/></value>
 			</xsl:with-param>
 			<xsl:with-param name="inputs">
-				<input name="redirect" value="{$root}/schedule/{$session}" type="hidden" />
+				<input name="redirect" value="{$root}/schedule/{$session}/{$this-place}/{$session-start}" type="hidden" />
 			</xsl:with-param>
 		</xsl:apply-templates>
 	</xsl:if>

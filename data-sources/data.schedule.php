@@ -6,9 +6,9 @@
 		
 		public $dsParamROOTELEMENT = 'schedule';
 		public $dsParamORDER = 'asc';
-		public $dsParamLIMIT = '99';
+		public $dsParamLIMIT = '9999';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'name';
+		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -38,7 +38,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-08T00:25:30+00:00');	
+					 'release-date' => '2009-06-15T19:18:48+00:00');	
 		}
 		
 		public function getSource(){

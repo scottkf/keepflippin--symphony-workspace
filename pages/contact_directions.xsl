@@ -44,6 +44,9 @@
 			You can use the controls on the top left side of the map to navigate around (zoom, pan, flip), and you can also get driving directions either <b>to</b> Keep Flippin' or <b>From</b> Keep Flippin'. Javascript must be enabled, and if you're interested in driving directions, popups must be enabled from Keep Flippin'.
 		</p>
 		<p>
+			Click on a location name to go to that location in the map.
+		</p>
+		<p>
 			<xsl:for-each select="places-directions/entry">
 				<span>
 					<h4>

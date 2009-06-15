@@ -23,7 +23,6 @@ h1 a, h2 a, h3 a, h4 a, h5 a
 
 body
 	background-color= !body_bg_color
-	+feedback-badge
 	&#news
 		div.list
 			span.date
@@ -33,6 +32,24 @@ body
 
 a
 	+hover-link
+
+ul.quicklinks
+	clear: both
+	+horizontal-list
+	li
+	
+		font-size: 1.5em
+		padding-top: 10px
+		padding-left: 0px
+		&.twitter
+			padding-top: 0px
+			img
+				height: 55px
+				width: 55px
+		a
+			img
+				height: 35px
+				width: 35px
 
 
 #header
@@ -118,6 +135,20 @@ a
 						padding-right: 20px
 						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
 						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
+						
+#page-not-found
+	#middle
+		#content
+			#left
+				+column(17)
+				ul
+					+orange-list
+				p
+					img
+						float: left
+			#right
+				+prepend(1)
+				+column(5, true)
 
 #classes
 	#middle
@@ -130,7 +161,7 @@ a
 				top: 110px
 				left= !blueprint_grid_width * 23.5
 				z-index: 2
-			#left
+			#left, #right
 				+column(16)
 				h3
 					color= !article_title_color
@@ -141,8 +172,8 @@ a
 				+column(6)
 				a
 					font-size: 1.2em
-				img
-					border: 1px solid #888
+					img
+						border: 1px solid #888
 
 #showteam
 	#middle	
@@ -199,6 +230,8 @@ a
 				+column(7)
 			#right
 				+column(17, true)
+				h3
+					color= !article_title_color
 
 #home 
 	#middle
@@ -282,7 +315,7 @@ a
 				&.selected
 					a
 						color= !page_header_color + #111
-						font-size: bigger
+						font-size: 1.2em
 				a
 		p
 			margin-bottom: 10px
@@ -347,10 +380,12 @@ a
 				top: 150px
 			.introduction
 			.introduction + div
+				img
+					border: 1px solid #bbb
 	#content
-		.parties
+		#right.parties
 			img
-				margin-right: 80px
+				border: 0px
 				height: 100px
 				width: auto
 				float: right
@@ -407,10 +442,10 @@ a
 					padding-top: 0px
 			p
 			h4
-				color= !page_header_color - #000
 				color= !article_title_color
 			img
 				float: right
+				margin-left: 10px
 				display: block
 				border: 1px solid #aaa
 		// list of classes
@@ -465,24 +500,7 @@ a
 			+column(12,true)
 			position: relative
 			padding-left: 0px
-			> ul.quicklinks
-				clear: both
-				+horizontal-list
-				li
-				
-					font-size: 1.5em
-					padding-top: 10px
-					padding-left: 0px
-					&.twitter
-						padding-top: 0px
-						img
-							height: 55px
-							width: 55px
-					a
-						img
-							height: 35px
-							width: 35px
-			h4
+			h4, h3
 				color= !article_title_color
 			hr
 				color: #fff
@@ -551,7 +569,7 @@ a
 			margin-bottom: 3px
 			a
 				color= !article_title_color + #333
-				font-size: 15px
+				font-size: 14px
 				font-weight: normal
 				&:hover
 					color= !article_title_color + #555

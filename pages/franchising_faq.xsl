@@ -104,8 +104,11 @@
 
 
 		<a name="cost"></a>
-		<h3>How much does it cost to develop a Keep Flippin' Franchise?</h3>
-		<p><img src="http://keepflippin.com/images/102.jpg" height="544" width="550" /></p>
+		<h3>How much does it cost to develop a Keep Flippin' Franchise? *</h3>
+		<p>
+		  <img src="http://keepflippin.com/images/102.jpg" height="544" width="550" /><br />
+		  <strong><em>* Prices may very from state to state.</em></strong>
+		</p>
 
 
 		<a name="support"></a>

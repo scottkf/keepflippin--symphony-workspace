@@ -18,7 +18,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-02T16:46:40+00:00',
+					 'release-date' => '2009-06-13T22:39:12+00:00',
 					 'trigger-condition' => 'action[save-comment]');	
 		}
 

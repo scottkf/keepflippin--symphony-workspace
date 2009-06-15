@@ -42,24 +42,12 @@
 				<li><a href="{$root}/photos">pictures</a></li>
 				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>
-				<li><a href="{$root}">sitemap</a></li>
 			</ul>
 		</div>
 
 
 	</div>
 
-
-
-	<xsl:text disable-output-escaping="yes"><![CDATA[
-	<script type="text/javascript">
-	$(function() {
-	  $('a#feedback').githubVoice('scottkf', 'keepflippin--on-symphony', {
-			limit : 10
-		})
-	});
-	</script>
-	]]></xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>

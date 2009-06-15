@@ -299,6 +299,7 @@ URL: http://gist.github.com/115859
     <xsl:with-param name="date" select="$day"/>
     <xsl:with-param name="format" select="'D'"/>
   </xsl:call-template>
+	<br />
 	<xsl:call-template name="add-event">
 		<xsl:with-param name="start" select="$day" />
 		<xsl:with-param name="time" select="'12:00 pm'" />
@@ -688,7 +689,7 @@ URL: http://gist.github.com/115859
 			<xsl:value-of select="$year"/>
 		</xsl:otherwise>
 		</xsl:choose>
-	</xsl:variable><br />
+	</xsl:variable>
 	<xsl:if test="$is-logged-in">
 		<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mode={$mode}&amp;class=1">(+)</a></small>		
 	</xsl:if>

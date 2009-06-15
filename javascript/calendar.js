@@ -37,6 +37,6 @@ var Calendar = {
 		}	
 }
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	Calendar.init();
 })

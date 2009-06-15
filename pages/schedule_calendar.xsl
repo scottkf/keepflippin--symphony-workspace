@@ -7,6 +7,11 @@
 <xsl:import href="../utilities/calendar.xsl" />
 
 <xsl:template name="top">
+	<xsl:variable name="session-start">
+			<xsl:call-template name="session-starts">
+				<xsl:with-param name="session" select="$session"/>
+			</xsl:call-template>
+	</xsl:variable>
 	<div>
 		<h2>
 			<xsl:if test="$session != ''">
@@ -15,7 +20,7 @@
 			Schedule
 		</h2>
 		<ul class="nav">
-			<li><a href="{$root}/schedule/{$session}">View the weekly schedule</a></li>
+			<li><a href="{$root}/schedule/{$session}/{$this-place}/{$session-start}">View the weekly schedule</a></li>
 		</ul>
 	</div>
 </xsl:template>

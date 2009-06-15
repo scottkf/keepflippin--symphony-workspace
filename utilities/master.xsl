@@ -7,6 +7,7 @@
 <xsl:import href="../utilities/navigation.xsl"/>
 <xsl:import href="../utilities/date-time.xsl"/>
 <xsl:import href="../utilities/get-article.xsl"/>
+<xsl:import href="../utilities/next-session.xsl"/>
 
 <xsl:output method="xml"
 	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -16,6 +17,11 @@
 	indent="yes" />
 	
 <xsl:variable name="is-logged-in" select="/data/events/login-info/@logged-in"/>
+<xsl:variable name="next-session">
+	<xsl:call-template name="next-session">
+		<xsl:with-param name="session" select="$this-session"/>
+	</xsl:call-template>
+</xsl:variable>
 
 <xsl:template match="/">
 
@@ -24,6 +30,12 @@
 	<title>
 		<xsl:call-template name="page-title"/>
 	</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="description" content="Keep Flippin' is performance-based gymnastics. We are also franchising!" />
+  <meta name="keywords" content="gymnastic franchising, franchising, performance gymnastics, performance franchising, gymnastic franchise, franchise, keep flipping, keep flipping gymnastics" />
+  <meta name="copyright" content="Keep Flippin'" />
+  <meta name="company" content="Keep Flippin'" />
+	<script type="text/javascript" src="{$workspace}/javascript/analytics.js"></script>
 	<xsl:if test="$short = 0">
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 		<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
@@ -37,17 +49,15 @@
 			<link rel="stylesheet" href="{$workspace}/css/pagination.css" type="text/css" media="screen, projection" />			
 		</xsl:if>
 		<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
-		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/github-voice.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/colorbox.css" />
 		<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-		<script type="text/javascript" src="{$workspace}/javascript/github-voice/jquery.github-voice.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>
 		<xsl:if test="$current-page = 'calendar'">
 			<script type="text/javascript" src="{$workspace}/javascript/calendar.js"></script>			
 		</xsl:if>
-		<xsl:if test="$is-logged-in = 'true' and ($current-page = 'schedule' or $current-page = 'calendar')">
+		<xsl:if test="$is-logged-in = 'true' and ($current-page = 'schedule' or $current-page = 'calendar' or $root-page = 'schedule')">
 			<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/datepicker.css" />
 			<script type="text/javascript" src="{$workspace}/javascript/datejs.core.js"></script>
 			<script type="text/javascript" src="{$workspace}/javascript/dates.js"></script>

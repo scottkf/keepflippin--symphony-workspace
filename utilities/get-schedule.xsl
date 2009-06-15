@@ -29,13 +29,14 @@
 	    <xsl:with-param name="format" select="'d'"/>
 	  </xsl:call-template>
 	</xsl:variable>
+  <xsl:copy-of select="date"/>
 	<xsl:choose>
 		<!-- filter by class, since we can't do it through the DS, otherwise we lose all other events -->
 		<xsl:when test="$time = '' and entry[date/current = $day and name/@handle = 'closed']">
 			<xsl:apply-templates select="entry[date/current = $day and name/@handle = 'closed']" mode="event" />
 		</xsl:when>
 		<xsl:when test="$time = '' and $classes != ''">
-			<xsl:apply-templates select="entry[class/item/@handle != 'event' and date/current = $day and (class/item/@handle = $classes)]" mode="event" />
+			<xsl:apply-templates select="entry[class/item/@handle != 'event' and (date/current = $day or (date/start = $day and date/end = $day)) and (class/item/@handle = $classes)]" mode="event" />
 		</xsl:when>
 		<xsl:when test="$time != ''">
 			<xsl:variable name="day-in-seconds" select="date:seconds(concat($day,'T',format-number($time, '00'),':00:00'))" />
@@ -72,7 +73,7 @@
 	</xsl:variable>
 	<xsl:choose>
 		<!-- if the item has a class attached -->
-		<xsl:when test="class/item/@handle != 'summer-camp' and class/item/@handle != 'event'">
+		<xsl:when test="class/item/@handle != 'summer-camp' and class/item/@handle != 'team' and class/item/@handle != 'event'">
 				<li>
 					<xsl:if test="$css-class != ''">
 						<xsl:attribute name="rel">
@@ -90,7 +91,7 @@
 					<a title="{class/item}">
 						<xsl:attribute name="href">
 							<xsl:value-of select="$root" />
-							<xsl:text>/classes/</xsl:text>
+							<xsl:text>/classes/</xsl:text>									
 							<xsl:value-of select="class/item/@handle" />
 							<xsl:text>?short</xsl:text>
 						</xsl:attribute>
@@ -120,6 +121,9 @@
 			<li>
 				<xsl:attribute name="class">
 					<xsl:value-of select="name/@handle"/>
+					<xsl:if test="class/item/@handle = 'team'">
+						<xsl:value-of select="' class'"/>
+					</xsl:if>
 				</xsl:attribute>
 				<a href="#">
 					<xsl:value-of select="name" />

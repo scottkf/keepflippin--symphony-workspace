@@ -18,35 +18,15 @@
 
 <xsl:template match="data">
 
-
-	<xsl:variable name="showteam">
-		<person handle="team">Alicia</person>
-		<person handle="team">Brittany</person>
-		<person handle="team">Haley</person>
-		<person handle="team">Collin</person>
-		<person handle="team">Megan</person>
-		<person handle="team">Amber</person>
-		<person handle="team">Morgane</person>
-		<person handle="team">BJ</person>
-		<person handle="team">Alexis</person>
-		<person handle="team">Julia</person>
-		<person handle="preteam">Lexi</person>
-		<person handle="preteam">Brooke</person>
-		<person handle="preteam">Rachael</person>
-		<person handle="preteam">Hannah</person>
-		<person handle="preteam">Ryan</person>
-	</xsl:variable>
-	<!-- <xsl:when test="exsl:node-set($value)/value[@handle = name(current())]"> -->
-
 	<xsl:variable name="team">
-		<xsl:for-each select="exsl:node-set($showteam)/person[@handle = 'team']">
+		<xsl:for-each select="showteam/person[@handle = 'team']">
 			<xsl:sort select="." />
 			<xsl:copy-of select="." />
 		</xsl:for-each>
 	</xsl:variable>
 
 	<xsl:variable name="preteam">
-		<xsl:for-each select="exsl:node-set($showteam)/person[@handle = 'preteam']">
+		<xsl:for-each select="showteam/person[@handle = 'preteam']">
 			<xsl:sort select="." />
 			<xsl:copy-of select="." />
 		</xsl:for-each>

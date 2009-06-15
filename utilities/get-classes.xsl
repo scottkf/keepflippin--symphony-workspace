@@ -37,7 +37,7 @@
 		</xsl:if>
 		<div class='left'>
 				<a href="{$root}/classes/{class-name/@handle}/">
-					<img src="{$root}/image/2/145/130/3{image/@path}/{image/filename}" />
+					<img src="{$workspace}/{image/@path}/{image/filename}" />
 	 			</a>
 		</div>
 		<div class='right'>
@@ -77,22 +77,29 @@
 	<xsl:call-template name="build-schedule-link">
 		<xsl:with-param name="classname" select="class-name/@handle"/>
 	</xsl:call-template>
-	<div id="left">
-		<xsl:if test="class-name/@handle != 'birthday-parties'">
+	<xsl:choose>
+		<xsl:when test="class-name/@handle != 'birthday-parties'">
+			<div id="left">
+		  <xsl:if test="class-name/@handle != 'power-tumbling'">
 			<h3>
 				For ages &#8212;<xsl:value-of select="ages" />
-			</h3>			
-		</xsl:if>
-		<xsl:copy-of select="description/*"/>
-		<xsl:if test="class-name/@handle != 'birthday-parties'">
+			</h3>	
+  	  </xsl:if>
+			<xsl:copy-of select="description/*"/>
 			<xsl:call-template name="important" />			
-		</xsl:if>
-	</div>
+			</div>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:copy-of select="description/*"/>
+		</xsl:otherwise>
+	</xsl:choose>
+	<xsl:if test="class-name/@handle != 'birthday-parties' and $short=0">
 	<div id="right">
 		<a href="{$root}/classes/{class-name/@handle}/">
-			<img src="{$root}/image/2/145/130/3{image/@path}/{image/filename}" />
+			<img src="{$workspace}/{image/@path}/{image/filename}" />
 		</a><br />
 	</div>
+	</xsl:if>
 </xsl:template>
 
 

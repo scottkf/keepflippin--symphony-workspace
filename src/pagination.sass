@@ -6,6 +6,7 @@ ul.pagination
 		margin: 0
 		padding: 0
 		display: inline
+		width: 10px
 		a 
 			display: block
 			float: left
@@ -19,6 +20,9 @@ ul.pagination
 				&:hover
 					text-decoration: none
 					color: #fff
+			&.pagination-previous, &.pagination-next
+				color: #444
+				width: auto
 		span 
 			float: left
 			margin-right: 4px
@@ -28,5 +32,5 @@ ul.pagination
 				color: #fff
 		&.disabled 
 			a
-				color: #ddd
+				color: #aaa
 				cursor: default

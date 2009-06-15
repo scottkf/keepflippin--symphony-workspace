@@ -230,6 +230,12 @@
 		</xsl:if>
 	</ul>
 	<xsl:apply-templates select="/data/article-images/entry[article/item/@id = $entry-id]" mode="frontpage"/>
+  <h4>
+  <xsl:call-template name="format-date">
+    <xsl:with-param name="date" select="publish-this-article-on"/>
+    <xsl:with-param name="format" select="'M Y'"/>
+  </xsl:call-template>
+  </h4>
 	<xsl:copy-of select="body/*[1]"/>
 	<xsl:copy-of select="body/*[position() &gt; 1]"/>
 </xsl:template>

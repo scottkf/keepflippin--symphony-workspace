@@ -28,7 +28,7 @@
 	<div id="right">
 	  <xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() = 1]	"/>
 		<ul class="quicklinks">
-			<li class="twitter"><a href="http://twitter.com/keepflippin"><img src="{$workspace}/images/icons/twitterbird.jpg" alt="follow us on twitter" title="follow us on twitter" /></a></li>
+      <li class="twitter"><a href="http://twitter.com/keepflippin"><img src="{$workspace}/images/icons/twitterbird.jpg" alt="follow us on twitter" title="follow us on twitter" /></a></li>
 			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook_32.png" alt="view us on facebook" title="view us on facebook" /></a></li>
 			<li><a href="{$root}/rss"><img src="{$workspace}/images/icons/rss-32x32.png" alt="rss" title="rss" /></a></li>
 		</ul>

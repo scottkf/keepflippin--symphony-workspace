@@ -6,10 +6,10 @@
 		
 		public $dsParamROOTELEMENT = 'schedule-events-classes-places';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '99';
+		public $dsParamLIMIT = '9999';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamREQUIREDPARAM = '$classes';
-		public $dsParamSORT = 'name';
+		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -41,7 +41,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-08T01:30:19+00:00');	
+					 'release-date' => '2009-06-15T12:48:36+00:00');	
 		}
 		
 		public function getSource(){
