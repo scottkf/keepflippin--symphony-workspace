@@ -42,6 +42,7 @@
 				<li><a href="{$root}/photos">pictures</a></li>
 				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>
+        <li><a href="mailto:web@tesoriere.com">problem?</a></li>
 			</ul>
 		</div>
 

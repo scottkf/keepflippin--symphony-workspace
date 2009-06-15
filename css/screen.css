@@ -146,8 +146,9 @@ ul.quicklinks li a img { height: 35px; width: 35px; }
 #header #menu ul li { list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
 #header #menu ul li.first { padding-left: 0px; }
 #header #menu ul li.last { padding-right: 0px; }
-#header #menu ul li { padding: 0px; padding-right: 4px; }
-#header #menu ul li:before { content: "| "; }
+#header #menu ul li { padding: 0px; padding-left: 2px; padding-right: 2px; }
+#header #menu ul li:before { content: " |"; }
+#header #menu ul li:before, #header #menu ul x:-moz-any-link, #header #menu ul x:default { content: " | "; }
 #header #menu ul li:first-child:before { content: ""; }
 #header #menu ul a { color: #f3f6fb; }
 #header #nav { display: inline; float: left; margin-right: 0; width: 945px; }
@@ -260,8 +261,9 @@ ul.quicklinks li a img { height: 35px; width: 35px; }
 #middle #welcome-kf .nav li { list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
 #middle #welcome-kf .nav li.first { padding-left: 0px; }
 #middle #welcome-kf .nav li.last { padding-right: 0px; }
-#middle #welcome-kf .nav li { padding: 0px; padding-right: 4px; }
-#middle #welcome-kf .nav li:before { content: "| "; }
+#middle #welcome-kf .nav li { padding: 0px; padding-left: 2px; padding-right: 2px; }
+#middle #welcome-kf .nav li:before { content: " |"; }
+#middle #welcome-kf .nav li:before, #middle #welcome-kf .nav x:-moz-any-link, #middle #welcome-kf .nav x:default { content: " | "; }
 #middle #welcome-kf .nav li:first-child:before { content: ""; }
 #middle #welcome-kf .nav li { font-size: 1.4em; }
 #middle #welcome-kf .nav li.selected a { color: #ab2d2c; font-size: 1.2em; }
@@ -358,8 +360,9 @@ ul.quicklinks li a img { height: 35px; width: 35px; }
 #footer ul li { list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
 #footer ul li.first { padding-left: 0px; }
 #footer ul li.last { padding-right: 0px; }
-#footer ul li { padding: 0px; padding-right: 4px; }
-#footer ul li:before { content: "| "; }
+#footer ul li { padding: 0px; padding-left: 2px; padding-right: 2px; }
+#footer ul li:before { content: " |"; }
+#footer ul li:before, #footer ul x:-moz-any-link, #footer ul x:default { content: " | "; }
 #footer ul li:first-child:before { content: ""; }
 #footer p { font-weight: lighter; font-size: 13px; line-height: 1.4em; }
 #footer #left { display: inline; float: left; margin-right: 15px; width: 265px; }

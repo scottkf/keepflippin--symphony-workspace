@@ -35,12 +35,15 @@
 =piped-list()
 	li 
 		padding: 0px
-		padding-right: 4px
+		padding-left: 2px
+		padding-right: 2px
 	li:before
-		content: "| "
+		content: " |"
+	li:before, x:-moz-any-link, x:default
+		content: " | "
 	li:first-child:before
 		content: ""
-		
+
 =nav-hover(!name, !width)
 	&.selected
 		background-color: white	

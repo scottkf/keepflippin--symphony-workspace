@@ -4,7 +4,8 @@
 #calendar table td, #calendar table th, #calendar-month table td, #calendar-month table th { width: 50px; height: 50px; overflow: hidden; text-align: left; vertical-align: top; background: white; background-repeat: no-repeat; color: #444; position: relative; font-weight: bold; }
 #calendar table th, #calendar-month table th { text-align: center; border-bottom: 1px solid #ccc; font-size: 1.2em; }
 #calendar table th.month-nav, #calendar-month table th.month-nav { border-bottom: 0px; height: 10px; font-weight: bold; font-size: 14px; }
-#calendar table td, #calendar-month table td { border-bottom: 1px dashed #ccc; }
+#calendar table td, #calendar-month table td { border-right: 1px dashed #ccc; border-bottom: 1px dashed #ccc; }
+#calendar table td:last-child, #calendar-month table td:last-child { border-right: none; }
 #calendar table td ul, #calendar-month table td ul { font-weight: normal; margin: 0px; list-style-type: none; text-align: center; position: relative; }
 #calendar table td ul li.more, #calendar-month table td ul li.more { position: relative; bottom: 0px; margin-top: 5px; right: 0px; font-size: .9em; font-weight: bold; }
 #calendar table td ul li.overflow, #calendar-month table td ul li.overflow { display: none; }
