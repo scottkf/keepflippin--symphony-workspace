@@ -33,7 +33,7 @@
 			Please email <a href="mailto:darylsue@keepflippin.com">Daryl Sue</a> with questions or please <a href="{$root}/contact">contact us</a> for further information. 
 		</p>
 		<p>
-			<h4>Find a location</h4>
+			<h4><big>Find a location</big></h4>
 			To find a location near you, <a href="{$root}/locations">take a look at our list</a>.
 
 		</p>

@@ -35,7 +35,6 @@
   <meta name="keywords" content="gymnastic franchising, franchising, performance gymnastics, performance franchising, gymnastic franchise, franchise, keep flipping, keep flipping gymnastics" />
   <meta name="copyright" content="Keep Flippin'" />
   <meta name="company" content="Keep Flippin'" />
-	<script type="text/javascript" src="{$workspace}/javascript/analytics.js"></script>
 	<xsl:if test="$short = 0">
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 		<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
@@ -53,6 +52,7 @@
 		<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
+  	<script type="text/javascript" src="{$workspace}/javascript/analytics.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>
 		<xsl:if test="$current-page = 'calendar'">
 			<script type="text/javascript" src="{$workspace}/javascript/calendar.js"></script>			
