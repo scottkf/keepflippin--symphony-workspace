@@ -399,7 +399,7 @@ URL: http://gist.github.com/115859
   <xsl:param name="weekday-format"/>
   <table summary="calendar">
     <thead>
-      <tr>
+      <tr class="days">
         <th></th>
         <xsl:choose>
           <xsl:when test="$weekday-format='one-letter'">

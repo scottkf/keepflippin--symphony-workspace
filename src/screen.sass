@@ -4,12 +4,8 @@
 @import compass/utilities.sass
 @import compass/reset.sass
 @import forms.sass
-@import feedback.sass
 
 +blueprint-typography
-/+blueprint-utilities
-+blueprint-debug
-
 
 h1 a, h2 a, h3 a, h4 a, h5 a
 	font-family: Helvetica Neue,Arial,Helvetica,sans-serif
@@ -18,8 +14,6 @@ h1 a, h2 a, h3 a, h4 a, h5 a
 		color= !article_title_visited_color
 	&:hover
 		color= !article_hover_color
-
-
 
 body
 	background-color= !body_bg_color
@@ -37,11 +31,13 @@ body
 a
 	+hover-link
 
+ul.quicklinks, #header #menu ul, #header #nav ul, #footer ul, #locations #middle #content #right ul, #middle #welcome-kf .nav, #middle #content ul#class
+	+horizontal-list
+
+
 ul.quicklinks
 	clear: both
-	+horizontal-list
 	li
-	
 		font-size: 1.5em
 		padding-top: 10px
 		padding-left: 0px
@@ -54,7 +50,6 @@ ul.quicklinks
 			img
 				height: 35px
 				width: 35px
-
 
 #header
 	+container
@@ -79,14 +74,12 @@ ul.quicklinks
 		font-size: 14px
 		margin-top: 110px
 		ul
-			+horizontal-list
 			+piped-list
 			a
 				color: #f3f6fb
 	#nav
 		+column(24,true)
 		ul 
-			+horizontal-list
 			#welcome
 				+nav-hover("welcome", 100px)
 			#classes
@@ -108,7 +101,6 @@ ul.quicklinks
 				&:first-child
 					border-left: 1px solid #111d29
 				a
-					//font-family: "Gotham Medium"
 					height= !nav_height - !nav_font_size - 3
 					display: block
 					padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
@@ -207,7 +199,6 @@ ul.quicklinks
 				margin-bottom: 1px
 			#right
 				ul
-					+horizontal-list
 					li
 						img
 							border: 1px solid #aaa
@@ -315,7 +306,6 @@ ul.quicklinks
 			left= !blueprint_grid_width * 16.5
 			z-index: 2
 		.nav
-			+horizontal-list
 			+piped-list
 			margin-bottom: 20px
 			li
@@ -359,7 +349,6 @@ ul.quicklinks
 				margin-bottom: 20px
 				img
 					border: 1px solid #555
-
 
 // birthday parties - summer camp
 #middle
@@ -458,7 +447,6 @@ ul.quicklinks
 		// list of classes
 		ul#class
 			+column(24, true)
-			+horizontal-list(0px)
 			li
 				+column(11)
 				margin-bottom: 0px
@@ -557,7 +545,6 @@ ul.quicklinks
 	background: url(../images/lower-right-stars.jpg) no-repeat top right
 	z-index: 10
 	ul
-		+horizontal-list
 		+piped-list
 	p
 		font-weight: lighter
