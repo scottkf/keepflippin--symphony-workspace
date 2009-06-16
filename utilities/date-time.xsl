@@ -191,8 +191,10 @@ d/n/y t => 21/09/81 6:30pm
       <xsl:value-of select="format-number($day,'0')"/>
     </xsl:when>
     <xsl:when test="$format = 'D'">
-      <xsl:value-of select="format-number($day,'0')"/>
-      <sup><xsl:value-of select="$suffix"/></sup>
+      <span>
+        <xsl:value-of select="format-number($day,'0')"/>
+        <sup><xsl:value-of select="$suffix"/></sup>
+      </span>
     </xsl:when>
   </xsl:choose>
 </xsl:template>

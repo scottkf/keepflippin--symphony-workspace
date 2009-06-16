@@ -9,6 +9,26 @@
 		border-collapse: separate
 		border-width: 1px 1px 1px 1px
 		table-layout: automatic
+		background-color: white
+
+		tr
+			&.nav:hover
+				background-color: white
+			&.days:hover
+				background-color: white
+			&:hover
+				cursor: pointer
+				background-color: #f3f3f3
+				border-left: 1px solid #ccc
+				border-right: 1px solid #ccc
+				td
+					ul
+						li
+							a
+				td.hour
+					font-size: 1.5em
+					color: black
+		
 
 		td, th 
 			width: 50px
@@ -16,11 +36,12 @@
 			overflow: hidden
 			text-align: left
 			vertical-align: top
-			background: white
+			background-color: inherit
 			background-repeat: no-repeat
 			color: #444
 			position: relative
 			font-weight: bold
+			font-size: 1.1em
 
 		th
 			text-align: center
@@ -32,10 +53,40 @@
 				font-weight: bold
 				font-size: 14px
 
-
 		td
 			border-right: 1px dashed #ccc
 			border-bottom: 1px dashed #ccc
+			&.this-day:hover
+				background-color: #3B6795
+				ul
+					li
+						a
+			&.other-month:hover
+				ul
+					li
+						a
+							color: #555
+			&:hover
+				background-color: #3B6795
+				span
+					color: white
+				ul
+					img
+						border= 1px "inset" #7e848e - #333
+					p
+						color: #ddd
+					h5
+						color: white
+					li
+						a
+							color: #fff
+					li
+						&.tuition-due
+							a
+								color: #fff
+						&.class
+							a
+								color: #dfebfa
 			&:last-child
 				border-right: none
 			ul
@@ -44,7 +95,9 @@
 				list-style-type: none
 				text-align: center
 				position: relative
+				background-color: inherit
 				li
+					background-color: inherit
 					&.more
 						position: relative
 						bottom: 0px
@@ -66,6 +119,8 @@
 							font-size: 1.1em
 			
 			&.hour
+				&:hover
+					background-color: white
 				border-right: 1px solid #ccc
 				width: 40px
 				vertical-align: middle
@@ -89,7 +144,7 @@
 				background: url(../images/workspace/calendar/calpad.jpg)
 
 			&.other-month 
-				background: #f0f0f0
+				background: #ddd
 				color: #aaa
 				a
 					color: #aaa

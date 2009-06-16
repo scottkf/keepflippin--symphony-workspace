@@ -45,7 +45,20 @@
 	</p>
 	<h5>In person</h5>
 	<p>
-		<a href="{$root}/contact/directions/keep-flippin-headquarters">Directions via Google</a>
+		<a>
+			<xsl:attribute name="href">
+				<xsl:choose>
+					<xsl:when test="$mobile = 'true'">
+						<xsl:value-of  select="'http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6761+W+Indiantown+Rd,+Jupiter,+FL+33458+(Keep+Flippin+Gymnastics)&amp;sll=37.649034,-95.712891&amp;sspn=40.268799,88.066406&amp;ie=UTF8&amp;ll=26.934677,-80.13756&amp;spn=0.011172,0.021501&amp;z=16&amp;iwloc=A'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$root"/>
+						<xsl:value-of select="'/contact/directions/keep-flippin-headquarters'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+      Directions via Google
+		</a>
 	</p>
 	<h5>Franchising</h5>
 	<p>
@@ -57,12 +70,12 @@
 	<h5>Required fields are indicated by an asterisk (*) and are in bold.</h5>
   <form action="" method="post">
     <xsl:for-each select="events/save-message">
-      <p class="{@result}">
+      <label class="{@result}">
         <xsl:choose>
           <xsl:when test="@result = 'success'">Email sent.</xsl:when>
           <xsl:otherwise>The system encountered errors while sending your email. Please check if all the required fields have been filled.</xsl:otherwise>
         </xsl:choose>
-      </p>
+      </label>
     </xsl:for-each>
       <label class="required">Name *<input type="text" name="fields[name]" value="{events/save-message/post-values/name}" /></label>
       <label class="required">Email *<input type="text" name="fields[email]" value="{events/save-message/post-values/email}" /></label>

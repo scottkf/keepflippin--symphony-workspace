@@ -16,7 +16,7 @@
 			</p>
 		</div>
 		<div>
-			<a href="{$root}/showteam" title="about the showteam"><img src="{$workspace}/images/home-right.jpg" /></a>
+			<a href="{$root}/showteam" title="about the showteam"><img src="{$workspace}/images/home-right.jpg" alt="showteam group picture" /></a>
 		</div>
 	</div>
 </xsl:template>

@@ -35,6 +35,11 @@
   <meta name="keywords" content="gymnastic franchising, franchising, performance gymnastics, performance franchising, gymnastic franchise, franchise, keep flipping, keep flipping gymnastics" />
   <meta name="copyright" content="Keep Flippin'" />
   <meta name="company" content="Keep Flippin'" />
+  <!--
+    
+    Looking is learning, taking is learning, taking credit is :(
+    
+  -->
 	<xsl:if test="$short = 0">
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 		<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />

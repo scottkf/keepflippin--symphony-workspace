@@ -24,11 +24,15 @@ h1 a, h2 a, h3 a, h4 a, h5 a
 body
 	background-color= !body_bg_color
 	&#news
-		div.list
-			span.date
-				+column(1)
-			div.article-wide
-				+column(23,true)
+		#middle
+			#content
+				h2
+					letter-spacing: -0.03em
+				div.list
+					span.date
+						+column(1)
+					div.article-wide
+						+column(23,true)
 
 a
 	+hover-link
@@ -174,6 +178,8 @@ ul.quicklinks
 					font-size: 1.2em
 					img
 						border: 1px solid #888
+						
+						
 
 #showteam
 	#middle	
@@ -213,7 +219,7 @@ ul.quicklinks
 				+column(14)
 				h4
 					margin-bottom: 0px
-					font-size: 1.5em
+					font-size: 1.6em
 				h5
 					margin-bottom: 12px
 			#right
@@ -226,6 +232,7 @@ ul.quicklinks
 			#left
 				ol
 					margin-left: 25px
+					font-size: 1.2em
 				color= !body_bg_color
 				+column(7)
 			#right
@@ -260,9 +267,9 @@ ul.quicklinks
 		#content
 			h2
 				margin-bottom: 5px
+				font-weight: bold
 			h3, h4
 				margin-bottom: 5px
-				font-weight: bold
 			h5
 				margin-bottom: 3px
 			hr
@@ -283,6 +290,7 @@ ul.quicklinks
 						display: block
 						padding-bottom: 10px
 						h4
+							font-weight: bold
 							margin-bottom: 2px
 
 #middle
@@ -315,7 +323,6 @@ ul.quicklinks
 				&.selected
 					a
 						color= !page_header_color + #111
-						font-size: 1.2em
 				a
 		p
 			margin-bottom: 10px
@@ -453,28 +460,48 @@ ul.quicklinks
 			+column(24, true)
 			+horizontal-list(0px)
 			li
-				+column(12)
+				+column(11)
+				margin-bottom: 0px
+				padding-top: 15px
+				padding-bottom: 15px
+				padding-left: 15px
+				&:hover
+					background-color: #3B6795
+					.left
+						img
+							border= 1px "inset" #7e848e - #333
+					.right
+						p
+							color: white
+						h5
+							color: white
+						h3
+							a
+								color: #BCD0E8
 				&.last
-					+column(12, true)
+					+column(11, true)
 				.left
-					height: 150px
+					height: 130px
 					+column(4)
 					margin-right: 0px
 					img
+						border: 1px solid white
 					a
 				.right
-					height: 150px
-					+column(8)
+					height: 130px
+					+column(7)
 					margin-left: 15px
 					margin-right: 0px
 					h3
 						margin-bottom: .2em
+						font-size: 1.6em
 					h5
 						margin-bottom: .6em
 					a
 					p
 						white-space: normal
 						margin-bottom: 0px
+						font-size: 1.1em
 		// home right side
 		#left
 			+column(11)
@@ -536,7 +563,7 @@ ul.quicklinks
 		font-weight: lighter
 		font-size: 13px
 		line-height: 1.4em
-	#left
+	#highlighting
 		+column(7)
 		#classes-bottom
 			h2

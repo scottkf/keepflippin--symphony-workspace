@@ -3,7 +3,7 @@
 	
 <xsl:template name="footer">
 	<div id="footer">
-		<div id="left">
+		<div id="highlighting">
 			<div id="camp">
 				<h2><a href="{$root}/summer-camp">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
 				<p>Come join us for Summer camp! There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}/news/2009/summer-camp">Read More...</a></p>
@@ -39,11 +39,13 @@
 				<li><a href="{$root}/schedule">schedule</a></li>
 				<li><a href="{$root}/franchising">franchising</a></li>
 				<li><a href="{$root}/summer-camp">summer camp</a></li>
-				<li><a href="{$root}/photos">pictures</a></li>
+				<li><a href="{$root}/photos">media</a></li>
 				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>
-        <li><a href="mailto:web@tesoriere.com">problem?</a></li>
+        <li><a href="mailto:web@tesoriere.com">problems?</a></li>
+        <li><a href="http://tesoriere.com">made@tesoriere</a></li>
 			</ul>
+      <small>Copyright &#169; 2009 Keep Flippin' Gymnastics Franchising, Inc. All trademarks and registered trademarks appearing on keepflippin.com are the property of their respective owners.</small>
 		</div>
 
 

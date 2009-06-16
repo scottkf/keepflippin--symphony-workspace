@@ -92,7 +92,7 @@ URL: http://gist.github.com/115859
 
 		<!-- generate caption with name of month plus links to preceding
 		and following months -->
-		<tr>
+		<tr class="nav">
 			<th class="month-nav" colspan="7">
 				<xsl:call-template name="preceding-month">
 					<xsl:with-param name="date" select="$relative-day"/>
@@ -107,7 +107,7 @@ URL: http://gist.github.com/115859
 				</xsl:call-template>
 			</th>
 		</tr>
-		<tr>
+		<tr class="days">
 			<th>Sunday</th>
 			<th>Monday</th>
 			<th>Tuesday</th>
