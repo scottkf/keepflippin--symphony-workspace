@@ -34,13 +34,13 @@
 			<xsl:call-template name="gallery-list"/>
 		</div>
 		<div id="right">
-			<h3>On the web</h3>
+			<h4>On the web</h4>
         <ul class="quicklinks">
           <li class="twitter"><a href="http://twitter.com/keepflippin"><img src="{$workspace}/images/icons/twitterbird.jpg" alt="follow us on twitter" title="follow us on twitter" /></a></li>
     			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook_32.png" alt="view us on facebook" title="view us on facebook" /></a></li>
     			<li><a href="{$root}/rss"><img src="{$workspace}/images/icons/rss-32x32.png" alt="rss" title="rss" /></a></li>
         </ul>
-      <h3>Videos</h3>
+      <h4>Videos</h4>
       <p>
       	<a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf#/pages/Jupiter-FL/Keep-Flippin/208723055787?v=app_2392950137&amp;viewas=661097653">@facebook</a>
       </p>
