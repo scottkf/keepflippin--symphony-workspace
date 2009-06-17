@@ -50,8 +50,8 @@
 	</ul><p><strong>PLEASE NOTE:</strong> No refunds, credits or changing days is allowed once registered. We are very strict about late pick-ups and will charge accordingly.</p>
 	<h3><em>Enough literature! How do I signup?</em></h3>
 	<p>
-	  By <a href="/contact">contacting us</a>
-    via plane, train or automobile! Though in person or perhaps on the phone is preferable. You can find out how to find us <a href="/contact">here, on the contact page</a>.
+	  By <a href="{$root}/contact">contacting us</a>
+    via plane, train or automobile! Though in person or perhaps on the phone is preferable. You can find out how to find us <a href="{$root}/contact">here, on the contact page</a>.
   </p>
 	</div>
 </xsl:template>

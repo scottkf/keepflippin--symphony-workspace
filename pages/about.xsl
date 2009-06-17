@@ -17,7 +17,7 @@
 	<img class="toppic" src="{$workspace}/images/starroom.jpg" />
 	<p>
 		<h4>Our Program</h4>
-		<b>Keep Flippin's</b><span class="gym"> gymnastics</span> facility is truly unique. Our one of a kind program is <u>performance based</u>, rather than being competition-based. We embrace our mission to teach <span class="gym">gymnastics</span> and give our gymnasts the full range of the gymnastic experience. Each student is lovingly guided towards reaching their potential - <i>and beyond</i>. Our program teaches all aspects of <span class="gym">gymnastics</span> and apparatus.  We embrace our gymnasts at any age or skill level and will teach them everything they wish to learn.
+		<b>Keep Flippin's</b><span class="gym"> gymnastics</span> facility is truly unique. Our one of a kind program is <strong><em>performance-based</em></strong>, rather than being competition-based. We embrace our mission to teach <span class="gym">gymnastics</span> and give our gymnasts the full range of the gymnastic experience. Each student is lovingly guided towards reaching their potential - <i>and beyond</i>. Our program teaches all aspects of <span class="gym">gymnastics</span> and apparatus.  We embrace our gymnasts at any age or skill level and will teach them everything they wish to learn.
 	</p>
 	<h4>Our Record</h4>
 	<p>

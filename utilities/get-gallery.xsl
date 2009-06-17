@@ -7,7 +7,7 @@
 </xsl:template>
 
 <xsl:param name="gallerywidth" select="'160'"/>
-<xsl:param name="gallerycols" select="'5'" />
+<xsl:param name="gallerycols" select="'3'" />
 <xsl:param name="picwidth" select="'260'"/>
 <xsl:param name="piccols" select="'3'" />
 
@@ -40,8 +40,8 @@
 							<xsl:copy-of select="short-description"/>
 						</p>
 					</div>
+					<p class="title"><xsl:value-of select="title"/></p>
 				</a>
-				<p class="title"><xsl:value-of select="title"/></p>
 				<p class="tags">
 					tags: 
 					<xsl:for-each select="tags/item">

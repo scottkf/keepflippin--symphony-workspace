@@ -42,7 +42,7 @@
 				<li><a href="{$root}/photos">media</a></li>
 				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>
-        <li><a href="mailto:web@tesoriere.com">problems?</a></li>
+        <li><a href="{$root}/contact/Problem%20with%20the%20website">problems?</a></li>
         <li><a href="http://tesoriere.com">made@tesoriere</a></li>
 			</ul>
       <small>Copyright &#169; 2009 Keep Flippin' Gymnastics Franchising, Inc. All trademarks and registered trademarks appearing on keepflippin.com are the property of their respective owners.</small>

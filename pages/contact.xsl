@@ -62,7 +62,7 @@
 	</p>
 	<h5>Franchising</h5>
 	<p>
-		<a href="{$root}/franchising/contact">Contact</a>
+		<a href="{$root}/franchising/contact">Contact us</a>
 	</p>
 	</div>
 	<div id="right">
@@ -83,6 +83,10 @@
         <xsl:choose>
           <xsl:when test="events/save-message/post-values/subject">
             <input type="text" name="fields[subject]" value="{events/save-message/post-values/subject}" />
+          </xsl:when>
+          <xsl:when test="$subject">
+            <xsl:variable name="spaces" select="translate($subject, '+', ' ')" /> 
+            <input type="text" name="fields[subject]" value="{$spaces}" />
           </xsl:when>
           <xsl:otherwise>
             <input type="text" name="fields[subject]" value="General Enquiry" />

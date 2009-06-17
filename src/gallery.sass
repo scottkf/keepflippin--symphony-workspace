@@ -3,7 +3,7 @@
 @import compass/utilities.sass
 
 !galleryw = 160px
-!galleryh = 120px
+!galleryh = 138px
 !gallerycols = 5
 !picw = 260px
 !pich = 195px
@@ -21,7 +21,7 @@
 		&.last
 			+column(!gallery,true)
 		margin-right: 0px
-		p.tags, p.title, p.date, p.comments
+		p.tags, p.date, p.comments
 			margin-top: .2em
 			font-weight: normal
 			color: #222222
@@ -39,18 +39,20 @@
 			&.date
 				margin-top: .3em
 				font-size: .8em
-			&.title
-				font-size: 1em
 		a
 			text-decoration: none
 			display: block
 			position: relative
 			width= !galleryw
 			height= !galleryh
+			margin-bottom: 5px
+			& p.title
+				font-size: 1.1em
+				color: black
 			img
 			div
 				width= !galleryw
-				height= !galleryh
+				height= !galleryh - 18
 				display: none
 				&.shade
 					background-color: #000000
@@ -76,6 +78,8 @@
 						height= !galleryh
 
 		a:hover
+			& p.title
+				text-decoration: underline
 			div
 				display: block
 				&.description
