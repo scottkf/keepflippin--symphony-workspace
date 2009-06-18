@@ -2,7 +2,6 @@ form
 	overflow: hidden
 	background-color: #fff
 	margin-top: 20px
-
 	#main
 		+column(12)
 	#sidebar
@@ -16,7 +15,7 @@ form
 		margin: 1px
 
 	label
-		&.error, &.invalid
+		&.error, &.invalid, &.success
 			color: #b12123 
 			background-color: #EEEEEE
 			border: 1px solid #CCCCCC
@@ -30,6 +29,8 @@ form
 			font-weight: bold
 			input
 				background-color= #f1fdc6 + #111
+		&.success
+			color: black
 		display: block 
 		position: relative 
 		font-size: 1.1em 

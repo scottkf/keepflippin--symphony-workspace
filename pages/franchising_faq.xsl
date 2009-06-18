@@ -111,7 +111,7 @@
 		</p>
 
 
-		<a name="support"></a>
+		<a name="fee"></a>
 		<h3>How much is the fee for continuing support services?</h3>
 		<p>
 			The continuing supports services, or "royalty fee", is 6% of your gross sales and is paid weekly. This fee entitles you to use the KEEP FLIPPIN' GYMNASTICS service mark, use of distinctive system, marketing assistance, ongoing business development and counseling, and other benefits that come with being a KEEP FLIPPIN' GYMNASTICS franchise.

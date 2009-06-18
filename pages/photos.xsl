@@ -40,11 +40,23 @@
     			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook_32.png" alt="view us on facebook" title="view us on facebook" /></a></li>
     			<li><a href="{$root}/rss"><img src="{$workspace}/images/icons/rss-32x32.png" alt="rss" title="rss" /></a></li>
         </ul>
+      <h4>Programs&#160;<img src="{$workspace}/images/icons/icon_a_acrobat.png" alt="acrobat" /></h4>
+      <h5>from the end of the year show, <a href="http://get.adobe.com/reader/">in pdf format</a>.</h5>
+      <ul class="programs">
+        <xsl:for-each select="programs/entry">
+          <li>
+            <a href="{$workspace}{file/@path}/{file/filename}">
+              <img src="{$root}/image/1/120/160{thumbnail/@path}/{thumbnail/filename}" alt="program thumbnail" />
+              <h5><xsl:value-of select="title"/>&#160;<small>[<xsl:value-of select="file/@size"/>]</small></h5>
+              </a>
+          </li>
+        </xsl:for-each>
+      </ul>
       <h4>Videos</h4>
       <p>
       	<a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf#/pages/Jupiter-FL/Keep-Flippin/208723055787?v=app_2392950137&amp;viewas=661097653">@facebook</a>
       </p>
-	  </div>
+  	  </div>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>

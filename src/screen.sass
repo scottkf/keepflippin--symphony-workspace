@@ -31,7 +31,7 @@ body
 a
 	+hover-link
 
-ul.quicklinks, #header #menu ul, #header #nav ul, #footer ul, #locations #middle #content #right ul, #middle #welcome-kf .nav, #middle #content ul#class
+ul.quicklinks, #header #menu ul, #header #nav ul, #footer ul, #locations #middle #content #right ul, #middle #welcome-kf .nav, #middle #content ul#class, ul.programs
 	+horizontal-list
 
 
@@ -220,6 +220,21 @@ ul.quicklinks
 				h4
 					margin-bottom: 0px
 					font-size: 1.6em
+				ul.programs
+					li
+						padding-left: 0px
+						width: 120px
+						a
+							width: 120px
+							white-space: normal
+							text-align: center
+							img
+								border: 1px dashed #ddd
+							&:hover
+								img
+									border= 1px "solid" #aaa
+								h5
+									text-decoration: underline
 
 #franchising
 	#middle

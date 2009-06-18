@@ -2,20 +2,25 @@
 
 	require_once(TOOLKIT . '/class.datasource.php');
 	
-	Class datasourceschedule_classes_events extends Datasource{
+	Class datasourceprograms extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'schedule-classes-events';
+		public $dsParamROOTELEMENT = 'programs';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '99';
+		public $dsParamLIMIT = '20';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamREQUIREDPARAM = '$classes';
-		public $dsParamPARAMOUTPUT = 'system:id';
-		public $dsParamSORT = 'class-name';
+		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
-				'90' => '{$classes}',
+				'163' => 'end of the year show',
 		);
+		
+		public $dsParamINCLUDEDELEMENTS = array(
+				'title',
+				'file',
+				'thumbnail'
+		);
+
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
 			$this->_dependencies = array();
@@ -23,17 +28,17 @@
 		
 		public function about(){
 			return array(
-					 'name' => 'Schedule: Classes Events',
+					 'name' => 'Programs',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-17T14:39:26+00:00');	
+					 'release-date' => '2009-06-17T23:57:06+00:00');	
 		}
 		
 		public function getSource(){
-			return '19';
+			return '26';
 		}
 		
 		public function allowEditorToParse(){

@@ -93,7 +93,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </label>
-      <label>Message<textarea name="fields[message]" rows="5" cols="21"><xsl:value-of select="events/save-message/post-values/message" /></textarea></label>
+      <label>Message *<textarea name="fields[message]" rows="5" cols="21"><xsl:value-of select="events/save-message/post-values/message" /></textarea></label>
 
       <input name="send-email[recipient]" value="scott" type="hidden" />
       <input name="send-email[sender-email]" value="fields[email]" type="hidden" />
