@@ -214,6 +214,7 @@ URL: http://gist.github.com/115859
 		containing date:day-of-month($day) -->
 		<xsl:call-template name="optional-hyperlink-to-date">
 			<xsl:with-param name="day" select="$day" />
+			<xsl:with-param name="for-month" select="$for-month" />
 		</xsl:call-template>
 	</td>
 </xsl:template>
@@ -295,6 +296,7 @@ URL: http://gist.github.com/115859
 <!-- override this to change what goes in the td -->
 <xsl:template name="optional-hyperlink-to-date">
 	<xsl:param name="day" />
+	<xsl:param name="for-month" />
 	<xsl:call-template name="format-date">
     <xsl:with-param name="date" select="$day"/>
     <xsl:with-param name="format" select="'D'"/>
@@ -309,11 +311,13 @@ URL: http://gist.github.com/115859
 		<xsl:with-param name="units" select="'1'" />
 		<xsl:with-param name="mode" select="'weeks'" />
 	</xsl:call-template>
+  <xsl:if test="$for-month = date:month-in-year($day)">
 	<ul>
 		<xsl:apply-templates select="/data/*[starts-with(name(), 'schedule')]" mode="events">
 			<xsl:with-param name="day" select="$day" />
 		</xsl:apply-templates>
 	</ul>
+  </xsl:if>
 </xsl:template>
 
 
