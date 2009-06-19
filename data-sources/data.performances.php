@@ -10,6 +10,11 @@
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'start-date';
 		public $dsParamSTARTPAGE = '1';
+		
+		public $dsParamFILTERS = array(
+				'51' => 'later than {$today}',
+		);
+		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'start-date',
 				'end-date',
@@ -31,7 +36,7 @@
 							'website' => 'http://imac.local/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-05-20T14:32:42+00:00');	
+					 'release-date' => '2009-06-19T16:57:22+00:00');	
 		}
 		
 		public function getSource(){

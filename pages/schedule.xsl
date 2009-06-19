@@ -30,22 +30,31 @@
 			<xsl:with-param name="session" select="$session"/>
 		</xsl:call-template>
 	</xsl:variable>
-	<div>
-		<h2>
-			<xsl:if test="$session != '+' and $session != ''">
-				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
-			</xsl:if>
-			Schedule
-		</h2>
-		<ul class="nav">
-			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}">View the monthly calendar</a></li>
-			<li>
-				<a href="{$root}/schedule/{$current-session}/{$this-place}/{$session-start}">
-					View the Schedule for <xsl:value-of select="substring-before($current-session, '-')"/>&#160;<xsl:value-of select="substring-after($current-session, '-')"/>
-				</a>
-			</li>
-		</ul>
-	</div>
+	<div class="schedule">
+  	<div class="introduction">
+  		<h2>
+  			<xsl:if test="$session != '+' and $session != ''">
+  				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
+  			</xsl:if>
+  			Schedule
+  		</h2>
+  		<p>
+  		  All gymnasts will be evaluated before signing up for a class. Any Red, White or Blue class that does not specify a gender is a girls class. 
+  	  </p>
+  	  <h3>You can also view</h3>
+  		<ul>
+  			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}">The monthly calendar</a></li>
+  			<li>
+  				<a href="{$root}/schedule/{$current-session}/{$this-place}/{$session-start}">
+  					The schedule for <xsl:value-of select="substring-before($current-session, '-')"/>&#160;<xsl:value-of select="substring-after($current-session, '-')"/>
+  				</a>
+  			</li>
+  		</ul>
+  	</div>
+    <div>
+      <img src="{$workspace}/images/schedule-right.jpg" alt="schedule picture" />
+    </div>
+  </div>
 </xsl:template>
 
 <xsl:template match="data">
@@ -55,6 +64,7 @@
 		<xsl:otherwise>
 		</xsl:otherwise>
 	</xsl:choose>
+	<div id="badge-home"></div>
 	<div id="calendar">
 		<xsl:call-template name="calendar-by-week" />
 	</div>

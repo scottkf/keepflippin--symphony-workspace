@@ -37,7 +37,7 @@
 					</xsl:when>
 					<xsl:otherwise>
 						<h2>
-							<xsl:value-of select="/data/classes/entry/class-name"/>
+              <xsl:value-of select="/data/classes/entry/class-name"/>
 							<xsl:apply-templates select="/data/classes/entry" mode="admin" />
 						</h2>
 					</xsl:otherwise>

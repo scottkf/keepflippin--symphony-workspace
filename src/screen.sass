@@ -236,6 +236,26 @@ ul.quicklinks
 								h5
 									text-decoration: underline
 
+#schedule
+	#middle
+		#badge-home
+			top: 35px
+			left: 80px
+		#welcome-kf
+			background: url(../images/home-bg.jpg) repeat-x scroll bottom center
+			.introduction
+				+column(12)
+				h3, h4
+					color= !article_title_color
+					margin-bottom: 10px
+				ul
+					list-style-type: square
+					li
+						font-size: 1.1em
+			.introduction + div
+				+prepend(1)
+				+column(11, true)
+
 #franchising
 	#middle
 		#content
@@ -303,6 +323,17 @@ ul.quicklinks
 							font-weight: bold
 							margin-bottom: 2px
 
+// little star
+#badge-home
+	position: absolute
+	background: url(../images/star-badge-home.png) no-repeat
+	height: 94px
+	width: 97px
+	top: 155px
+	left= !blueprint_grid_width * 16.5
+	z-index: 2
+
+
 #middle
 	background-color: white
 	border-bottom: 1px solid #fafafa
@@ -315,15 +346,6 @@ ul.quicklinks
 		border-bottom: 1px solid #e6e6e6
 		padding-top: 17px
 		color: #444
-		// little star
-		#badge-home
-			position: absolute
-			background: url(../images/star-badge-home.png) no-repeat
-			height: 94px
-			width: 97px
-			top: 155px
-			left= !blueprint_grid_width * 16.5
-			z-index: 2
 		.nav
 			+piped-list
 			margin-bottom: 20px
