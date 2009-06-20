@@ -415,8 +415,12 @@ ul.quicklinks
 		#summercamp
 			#badge-home
 				top: 150px
+				left= !blueprint_grid_width * 23
 			.introduction
+				+column(14)
 			.introduction + div
+				+prepend(1)
+				+column(6, true)
 				img
 					border: 1px solid #bbb
 	#content
