@@ -10,12 +10,12 @@
 </xsl:template>
 
 <xsl:template name="important">
-	<h5>What do we wear?</h5>
+	<h3>What do we wear?</h3>
 	<p>
 		Leotards for girls, Gym clothes for boys. Gymnasts will go barefoot. All hair must be pulled back and out of the face. Long hair must be in a ponytail.
 		<b>NO midriffs, jeans, pants or buttons allowed</b>.
 	</p>
-	<h5>How do we deal with missed classes (make-ups)?</h5>
+	<h3>How do we deal with missed classes (make-ups)?</h3>
 	<p class="info">Gymnasts have 30 days to complete a make-up class. All make-ups must be done before the start of the next session. All make-ups must be done during our open gym class only. This will keep classes consistent and to a low ratio. </p>	
 </xsl:template>
 

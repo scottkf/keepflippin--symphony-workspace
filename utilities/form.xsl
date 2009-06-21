@@ -7,8 +7,8 @@
 	  xmlns:str="http://exslt.org/strings"
 		extension-element-prefixes="exsl form str dyn">
 		
-<xsl:import href="../utilities/form-controls.xsl"/>
 
+<xsl:import href="../utilities/form-controls.xsl"/>
 
 <xsl:template match="section-schema">
 	<xsl:param name="parent_name" />
@@ -19,7 +19,9 @@
 	<xsl:param name="post" />
 	<xsl:param name="errors"/>
 	<xsl:param name="inputs"/>
-	<xsl:param name="value" />
+	<xsl:param name="value">
+    <value name="dummy"></value>
+  </xsl:param>
 	<xsl:param name="url" />
 	<xsl:param name="submit" select="'Submit'"/>
 	<xsl:param name="required" select="''"/>

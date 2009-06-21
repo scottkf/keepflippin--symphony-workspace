@@ -43,7 +43,7 @@
 	<h3>No Prior Experience Necessary</h3>
 
 	<p>We have an extensive training program for the gymnastics and business operation of your gym. Our comprehensive program includes:
-	</p><ul><li>A two week training program at our Jupiter, Fl location, where you will learn all aspects of the business such as: coaching techniques, scheduling, advertising, marketing the all important performance portion of our program, and much more.</li>
+	</p><ul><li>A two week training program at our Jupiter, FL. location, where you will learn all aspects of the business such as: coaching techniques, scheduling, advertising, marketing the all important performance portion of our program, and much more.</li>
 	<li>Two weeks of training at your gym with our experienced team of advisors who will assist in the gym's set up as well as the implementation of all of our programs.</li>
 	<li>We also assist you in site selection.</li>
 </ul>

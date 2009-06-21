@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
-	version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:exsl="http://exslt.org/common"
-	xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
+  version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exsl="http://exslt.org/common"
   xmlns:str="http://exslt.org/strings"
-	extension-element-prefixes="exsl form str">
+  xmlns:form="http://nick-dunn.co.uk/xslt/form-controls"
+  extension-element-prefixes="exsl form str">
 
-<!--
-Name: Form Controls
-Description: An XSLT utility to create powerful HTML forms with Symphony
-Version: 1.0
-Author: Nick Dunn <http://github.com/nickdunn>
-URL: http://github.com/nickdunn/form-controls/tree/master
--->
+
 
 <!-- Class valid added to invalid form controls -->
 <xsl:variable name="form:invalid-class" select="'invalid'"/>
@@ -1010,7 +1004,6 @@ Returns: a nodeset of <option> elements
 			<xsl:with-param name="iterations" select="$iterations"/>
 			<xsl:with-param name="direction" select="$direction"/>
 		</xsl:call-template>
-	</xsl:if>  
+	</xsl:if>
 </xsl:template>
-
 </xsl:stylesheet>

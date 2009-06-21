@@ -5,7 +5,8 @@
 
 <xsl:template name="head">
   <!-- <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAxNlWEKpbOHkXhcfIsQgzdRS6IlhYvigTexoEmVuvX9YqEp1AlhSBcZYf8lb4YEKLq_zXsBn8GeRmLQ" type="text/javascript"></script> -->
-	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAxNlWEKpbOHkXhcfIsQgzdRT2IVV_TNAFZZ5jxU7R4sNNB_DWmBSThAin4OyApzkMegv1jMZTPnRRDA" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAxNlWEKpbOHkXhcfIsQgzdRSQpYNV-rR0_JKjyAAyW-5g9e3dnxQeafufwMR5AD6lqE91SNzymygmtQ" type="text/javascript"></script>
+
 	<script type="text/javascript" src="{$workspace}/javascript/googlemaps.inc.js"></script>			
 	<xsl:text disable-output-escaping="yes"><![CDATA[
 	<script type="text/javascript">
