@@ -13,7 +13,7 @@
 				<p>Our USA Program is comprised of three different skill levels: <a href="{$root}/classes/red">Red</a> for beginners, <a href="{$root}/classes/white">White</a> for Intermediate gymnasts, and
 	               <a href="{$root}/classes/blue">Blue</a> for Advanced gymnasts.</p>
 		
-				<p>In addition, we also have classes available <a href="{$root}/classes/middle-school">Middle School</a> and High School students, as well as <a
+				<p>In addition, we also have classes available <a href="{$root}/classes/middle-school">Middle School students</a>, <a href="{$root}/classes/adult-tumbling">High School students and adults</a>, as well as <a
 	               href="{$root}/classes/open-gym">Open Gym</a>, where students can focus on what they wish.</p>
 			</div>
 		</div>
