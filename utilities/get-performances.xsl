@@ -2,16 +2,18 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="performances">
-	<h3>
-		<a href="{$root}/schedule">Upcoming performances</a>
-		<xsl:if test="$is-logged-in = 'true'">
-			<xsl:text> &#8212; </xsl:text>
-			<a href="{$root}/symphony/publish/{section/@handle}/new/">Add</a>
-		</xsl:if>
-	</h3>
-	<dl class="performance">
-		<xsl:apply-templates select="entry"/>
-	</dl>
+  <xsl:if test="count(entry) &gt; 0">
+  	<h3>
+  		<a href="{$root}/schedule">Upcoming performances</a>
+  		<xsl:if test="$is-logged-in = 'true'">
+  			<xsl:text> &#8212; </xsl:text>
+  			<a href="{$root}/symphony/publish/{section/@handle}/new/">Add</a>
+  		</xsl:if>
+  	</h3>
+  	<dl class="performance">
+  		<xsl:apply-templates select="entry"/>
+  	</dl>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="performances/entry">

@@ -30,8 +30,11 @@ body
 
 a
 	+hover-link
+	&:hover
+		img
+			opacity: 0.95
 
-ul.quicklinks, #header #menu ul, #header #nav ul, #footer ul, #locations #middle #content #right ul, #middle #welcome-kf .nav, #middle #content ul#class, ul.programs
+ul.quicklinks, #header #menu ul, #header #nav ul, #bottom_nav ul, #locations #middle #content #right ul, #middle #welcome-kf .nav, #middle #content ul#class, ul.programs
 	+horizontal-list
 
 
@@ -306,14 +309,40 @@ ul.quicklinks
 				margin-bottom: 15px
 				color: #fff
 			#left
-				+column(4)
+				+column(6)
+				p
+					font-size: 1.1em
+					margin-bottom: 25px
+				h5
+					font-size: 1.3em
+					font-weight: bold
+					margin-bottom: 7px
+					color= !article_title_color
+					&.email
+						padding-left: 32px
+						background: url(../images/icons/mail-32.png) no-repeat scroll center left
+					&.phone
+						padding-left: 32px
+						background: url(../images/icons/network-wireless.png) no-repeat scroll center left
+					&.life
+						padding-left: 32px
+						background: url(../images/icons/chat-32.png) no-repeat scroll center left
+					&.franchising
+						padding-left: 32px
+						background: url(../images/icons/flip-icon.png) no-repeat scroll center left
+					img
+						height: 22px
+						width: 22px
 				&.directions
 					+column(15)
 				#map
 					border: 1px solid #ddd
 					margin-bottom: 10px
 			#right
-				+column(20, true)
+				+prepend(1)
+				+column(16, true)
+				h5
+					margin-bottom: 8px
 				&.directions
 					+column(9, true)
 					span
@@ -589,8 +618,6 @@ ul.quicklinks
 	padding-bottom: 50px
 	background: url(../images/lower-right-stars.jpg) no-repeat top right
 	z-index: 10
-	ul
-		+piped-list
 	p
 		font-weight: lighter
 		font-size: 13px
@@ -617,6 +644,19 @@ ul.quicklinks
 	#news
 		+prepend(1)
 		+column(16,true)
+		ul
+			+horizontal-list
+			li
+				a
+					&:hover
+						img
+							opacity: 0.80
+					img
+						height: 80px
+						width: 80px
+		h5
+			a
+				color= !article_title_color + #333
 		h2
 			color: #bcd0e8
 			> a
@@ -624,6 +664,9 @@ ul.quicklinks
 				+replace-text("latest_news.png", 0px, 0px)
 				height: 54px
 				width: 233px
+			> a.social
+				+replace-text("on_the_web.png", 0px, 0px)
+				width: 290px
 		h3
 			margin-bottom: 3px
 			a
@@ -640,4 +683,5 @@ ul.quicklinks
 	#bottom_nav
 		+column(24,true)
 		ul
+			+piped-list
 			text-align: center	

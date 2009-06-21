@@ -13,7 +13,7 @@
 			</p>
 		</div>
 		<div>
-			<a href="http://www.go-van-gogh.com/" alt="learning to paint at go van gogh" title="learning to paint at go van gogh"><img src="{$workspace}/images/summer_camp_banner-2.jpg" /></a>
+			<a href="#" alt="learning to paint at go van gogh" title="learning to paint at go van gogh"><img src="{$workspace}/images/summer_camp_banner-2.jpg" /></a>
 		</div>
 	</div>
 </xsl:template>

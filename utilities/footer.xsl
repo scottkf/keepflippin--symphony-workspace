@@ -27,7 +27,12 @@
 	         <xsl:apply-templates select="/data/frontpage-news-items/entry" />
 					</xsl:otherwise>
 				</xsl:choose>
-			<h3><a href="{$root}/news">Looking for further information? Please continue on and read more...</a></h3>
+			<h5><a href="{$root}/news">Please continue on and read more...</a></h5>
+			<h2><a class="social" href="#">On the web - you can also find us on the following</a></h2>
+  		<ul>
+        <li class="twitter"><a href="http://twitter.com/keepflippin"><img src="{$workspace}/images/icons/twitterbird.png" alt="follow us on twitter" title="follow us on twitter" /></a></li>
+  			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook.png" alt="view us on facebook" title="view us on facebook" /></a></li>
+  		</ul>
 		</div>
 
 		<hr />

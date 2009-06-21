@@ -1,22 +1,31 @@
 form
 	overflow: hidden
 	background-color: #fff
-	margin-top: 20px
 	#main
 		+column(12)
 	#sidebar
 		+prepend(1)
 		+column(10,true)
 	fieldset 
-		background: #c8e4b7 url("../images/grid.gif") repeat scroll 0% 0%
-		border: none
-		font-size: 90%
-		padding: 10px 15px
 		margin: 1px
-
+		+column(16, true)
+		#contact #middle #content &
+			> div
+				+column(15, true)
+				padding: 15px
+				background-color: #eaf0f6
+				h3
+					color: #294868
+			> div + div
+				background-color: transparent
+				+prepend(1)
+				+column(5, true)
+				padding-left: 30px
+				h3
+					color= !article_title_color
 	label
 		&.error, &.invalid, &.success
-			color: #b12123 
+			color: black
 			background-color: #EEEEEE
 			border: 1px solid #CCCCCC
 			font-size: 1.1em
@@ -25,10 +34,10 @@ form
 			padding: 10px
 			input
 				background-color= #f1fdc6 - #111
+				width: 95%
 		&.required
-			font-weight: bold
 			input
-				background-color= #f1fdc6 + #111
+				font-size: 1.2em
 		&.success
 			color: black
 		display: block 
@@ -41,7 +50,7 @@ form
 			font-size: 90% 
 			text-transform: none 
 			text-align: right 
-			margin-left: 40% 
+			margin-left: 40%
 			a:hover  
 				color: #ccc 
 				border-color: #888  
@@ -49,21 +58,33 @@ form
 
 	input[type="text"], textarea  
 		display: block 
-		width: 100% 
-		padding: 3px 0 
-		background-color: #f6f6f6 
-	
+		width: 95%
+		padding: 8px
+		margin-top: 4px
+		background-color: white
+		border: 1px solid #ccc
+
+	input[type="text"]
+		&:focus
+			background-color= #f1fdc6 + #111
 
 	textarea  
-		height: 200px 
+		height: 200px
 	
 
 	input[type="submit"]
 		display: block
 		clear: both
 
-
-	
+	input[type="submit"].send-message
+		background: transparent url(../images/submit-form.png) no-repeat scroll 0px 0
+		height: 54px
+		border: medium none
+		text-indent: -9999px
+		width: 350px
+		&:hover
+			cursor: pointer
+			opacity: 0.90
 
 	p.success  
 		color: #2c421b 

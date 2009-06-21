@@ -21,7 +21,7 @@
 <xsl:template match="places/entry">
 	<div id='left'>
 	<h3><xsl:value-of select="name"/></h3>
-	<h4>Address:</h4>
+	<h4>Address</h4>
 	<small><strong>(Click it for a map)</strong></small>
 	<p> 
 		<a>
