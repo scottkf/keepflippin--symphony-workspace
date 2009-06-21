@@ -13,7 +13,8 @@
 	<h3>
 		<a href="{$root}/locations/{name/@handle}"><xsl:value-of select="name"/></a>
 	</h3>
-	<a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes at this location on the calendar</a><br />
+	<a href="{$root}/locations/{name/@handle}">View information &amp; pictures
+	<a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes here on the calendar</a><br />
 	<xsl:value-of select="city"/>, <xsl:value-of select="state"/> <xsl:value-of select="postal-code"/>
 	</li>
 </xsl:template>
