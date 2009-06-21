@@ -2,9 +2,9 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="places">
-	<ul>
+	<ol>
 		<xsl:apply-templates select="entry" mode="short" />
-	</ul>
+	</ol>
 </xsl:template>
 
 
@@ -13,9 +13,24 @@
 	<h3>
 		<a href="{$root}/locations/{name/@handle}"><xsl:value-of select="name"/></a>
 	</h3>
-	<a href="{$root}/locations/{name/@handle}">View information &amp; pictures
-	<a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes here on the calendar</a><br />
+	<p>
+	  <xsl:value-of select="short-description"/>
+  </p>
+  <h5>
+	<xsl:value-of select="street-address"/>
+	<xsl:if test="suite != ''">
+		suite# <xsl:value-of select="suite"/>, 
+	</xsl:if><br />
 	<xsl:value-of select="city"/>, <xsl:value-of select="state"/> <xsl:value-of select="postal-code"/>
+	<xsl:text>, </xsl:text>
+	<xsl:value-of select="country"/>
+  <br />
+	<xsl:value-of select="phone-number"/><br />
+  </h5>
+  <ul>
+  	<li><a href="{$root}/locations/{name/@handle}">View contact information &amp; pictures</a></li>
+  	<li><a href="{$root}/schedule/{$this-session}/{name/@handle}/{$this-year}/{$this-month}">View classes on the calendar</a></li>
+  </ul>
 	</li>
 </xsl:template>
 

@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
   jQuery('a.colorbox').colorbox({transition:"elastic", width:"55%"});
-  jQuery("a[rel='locations']").colorbox({transition:"elastic"});
+  jQuery("a[rel='locations']").colorbox({transition:"elastic", width:"55%"});
   jQuery("a[rel='gallery']").colorbox({transition:"elastic"});
   jQuery("a.schedule-add").colorbox({transition:"elastic" });
 	var pageTracker = _gat._getTracker("UA-6824117-3");

@@ -11,7 +11,7 @@
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="{$root}/locations?short" rel="locations">Locations</a></li> 
+				<li><a href="{$root}/locations">Locations</a></li> 
 				<li><a href="{$root}/summer-camp">Summer Camp</a></li>
 				<li><a href="{$root}/showteam">Showteam</a></li>
 				<li><a href="{$root}/news">News</a></li>
