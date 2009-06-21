@@ -64,7 +64,7 @@
 <!-- if there's a session, use it, otherwise use a space -->
 <xsl:template name="build-schedule-link">
 	<xsl:param name="classname" />
-	<xsl:if test="$classname != 'birthday-parties'">
+	<xsl:if test="$classname != 'birthday-parties' and $short=0">
 		<a id="badge-home" href="{$root}/schedule/classes/{$this-session}/{$this-year}/{$this-month}/{$classname}"></a>
 	</xsl:if>
 </xsl:template>
