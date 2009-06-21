@@ -23,10 +23,10 @@
 
 <xsl:template match="data">
 	<div id="left">
-		<xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() &gt;= 2 and position() &lt;= 3]"	mode="left" />
+		<xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and @article-images &gt; 0]"	mode="left" />
 	</div>
 	<div id="right">
-	  <xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() = 1]	"/>
+	  <xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and @article-images = 0]	"/>
 	  <xsl:apply-templates select="performances"/>
 		<h4><a href="{$root}/news">Continue reading for the latest news...</a></h4>
 	</div>
