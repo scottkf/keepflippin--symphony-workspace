@@ -33,7 +33,7 @@
 	</xsl:variable>
 
 	<div id="left">
-		<img class="toppic" src="http://keepflippin.com/images/67.jpg" />
+		<img class="toppic" src="{$workspace}/images/67.jpg" />
 
 
 

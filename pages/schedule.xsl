@@ -16,6 +16,9 @@
 			<xsl:when test="$session = $next-session">
 				<xsl:value-of select="$this-session"/>
 			</xsl:when>
+			<xsl:otherwise>
+			  <xsl:value-of select="$this-session"/>
+		  </xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:variable name="session-start">
