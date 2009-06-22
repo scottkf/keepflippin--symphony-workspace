@@ -30,6 +30,16 @@
 			<xsl:with-param name="session" select="$session"/>
 		</xsl:call-template>
 	</xsl:variable>
+	<xsl:variable name="current-place">
+    <xsl:choose>
+      <xsl:when test="$places != ''">
+        <xsl:value-of select="$places"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$this-place"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 	<div class="schedule">
   	<div class="introduction">
   		<h2>
@@ -38,14 +48,19 @@
   			</xsl:if>
   			Schedule
   		</h2>
+  		<xsl:if test="$places != ''">
+    		<p>
+    			Showing only classes at <b>&#8220;<xsl:value-of select="translate($places, '-', ' ')"/>&#8221;</b>.
+  		  </p>  		  
+  		</xsl:if>
   		<p>
   		  All gymnasts will be evaluated before signing up for a class. Any Red, White or Blue class that does not specify a gender is a girls class. 
   	  </p>
   	  <h3>You can also view</h3>
   		<ul>
-  			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}">The monthly calendar</a></li>
+  			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}/{$current-place}">The monthly calendar</a></li>
   			<li>
-  				<a href="{$root}/schedule/{$current-session}/{$this-place}/{$session-start}">
+  				<a href="{$root}/schedule/{$current-session}/{$current-place}/{$session-start}">
   					The schedule for <xsl:value-of select="substring-before($current-session, '-')"/>&#160;<xsl:value-of select="substring-after($current-session, '-')"/>
   				</a>
   			</li>

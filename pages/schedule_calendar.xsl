@@ -12,16 +12,34 @@
 				<xsl:with-param name="session" select="$session"/>
 			</xsl:call-template>
 	</xsl:variable>
-	<div>
-		<h2>
-			<xsl:if test="$session != ''">
-				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
-			</xsl:if>
-			Schedule
-		</h2>
-		<ul class="nav">
-			<li><a href="{$root}/schedule/{$session}/{$this-place}/{$session-start}">View the weekly schedule</a></li>
-		</ul>
+	<xsl:variable name="current-place">
+    <!-- <xsl:choose>
+      <xsl:when test="$places != ''">
+        <xsl:value-of select="$places"/>
+      </xsl:when>
+      <xsl:otherwise> -->
+        <xsl:value-of select="$this-place"/>
+      <!-- </xsl:otherwise>
+    </xsl:choose> -->
+  </xsl:variable>
+	<div class="schedule">
+    <div class="introduction">
+  		<h2>
+  			<xsl:if test="$session != ''">
+  				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
+  			</xsl:if>
+  			Schedule
+  		</h2>
+      <!-- <xsl:if test="$places != ''">
+        <p>
+          Showing only classes at <b>&#8220;<xsl:value-of select="translate($places, '-', ' ')"/>&#8221;</b>.
+        </p>        
+      </xsl:if>      -->
+  	  <h3>You can also view</h3>
+  		<ul>
+  			<li><a href="{$root}/schedule/{$session}/{$current-place}/{$session-start}">View the weekly schedule</a></li>
+  		</ul>
+  	</div>
 	</div>
 </xsl:template>
 

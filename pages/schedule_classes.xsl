@@ -7,14 +7,26 @@
 <xsl:import href="../utilities/calendar.xsl" />
 
 <xsl:template name="top">
-	<div>
+	<div class="schedule">
+	  <div class="introduction">
 		<h2>Schedule</h2>
 		<p>
-			Showing only <b>&#8220;<xsl:value-of select="translate($classes, '-', ' ')"/>&#8221;</b> classes
-			<!-- <xsl:if test="$places != ''">
+			Showing only <b>&#8220;<xsl:value-of select="translate($classes, '-', ' ')"/>&#8221;</b>
+			<xsl:if test="$classes != 'summer-camp' and $classes != 'birthday-parties'">
+			 classes
+			</xsl:if>
+			.
+		</p>
+		<p>
+		   All gymnasts will be evaluated before signing up for a class. Any Red, White or Blue class that does not specify a gender is a girls class. 
+		<!-- <xsl:if test="$places != ''">
 				and by <b>&#8220;<xsl:value-of select="/data/classes/entry/class-name[@handle = $classes]"/>&#8221;</b>
 			</xsl:if> -->
 		</p>
+		<ul>
+			<li><a href="{$root}/schedule/{$session}/{$this-place}/{$year}/{$month}">View the entire schedule</a></li>
+		</ul>
+  	</div>
 	</div>
 </xsl:template>
 
