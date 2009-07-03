@@ -55,7 +55,7 @@
 	    <input name="send-email[from]" value="fields[email-address]" type="hidden" />
 	    <input name="send-email[subject]" value="Franchisee Prospect submitted a form" type="hidden" />
 	    <input name="send-email[body]" value="fields[additional-comments]" type="hidden" />
-	    <input name="send-email[recipient]" value="scott" type="hidden" />
+	    <input name="send-email[recipient]" value="darylsue" type="hidden" />
 			<input name="redirect" value="{$root}/franchising/contact/success/" type="hidden" />
 		</xsl:with-param>
 	</xsl:apply-templates>
