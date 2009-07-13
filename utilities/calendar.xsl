@@ -498,7 +498,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P0D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
@@ -517,7 +517,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P1D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
@@ -536,7 +536,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P2D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
@@ -555,7 +555,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P3D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
@@ -574,7 +574,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P4D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
@@ -593,7 +593,7 @@ URL: http://gist.github.com/115859
 				<xsl:call-template name="add-event">
 					<xsl:with-param name="start" select="date:add($first-day-in-week, 'P5D')" />
 					<xsl:with-param name="time" select="concat($hour, ' ', $am-pm)" />
-					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' or class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
+					<xsl:with-param name="end" select="concat(/data/schedule/entry[class/item/@handle != 'summer-camp' and class/item/@handle != 'event']/date/end, ' ',$hour + 1, ' ', $am-pm)" />
 					<xsl:with-param name="ses" select="/data/session/entry[name/@handle = $session]/@id" />
 					<xsl:with-param name="place" select="/data/schedule/entry/place/item/@id" />
 					<xsl:with-param name="units" select="'1'" />
