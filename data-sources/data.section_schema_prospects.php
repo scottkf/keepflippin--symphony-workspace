@@ -24,10 +24,10 @@
 					 'name' => 'Section Schema: Prospects',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://area83.keepflippin.com',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-21T20:35:28+00:00');	
+					 'release-date' => '2009-07-13T08:11:38+00:00');	
 		}
 		
 		public function getSource(){
