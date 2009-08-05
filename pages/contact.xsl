@@ -17,7 +17,7 @@
 	<div id="left">
 	<h5 class="phone">Call us</h5>
 	<p>
-		+1 (561)-745-2511
+		+1 (561) 745-2511
 	</p>
 	<h5 class="email">Contact us via email</h5>
 	<p>

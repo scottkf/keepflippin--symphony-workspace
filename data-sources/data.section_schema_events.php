@@ -27,7 +27,7 @@
 							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-07-13T08:11:38+00:00');	
+					 'release-date' => '2009-08-05T14:20:33+00:00');	
 		}
 		
 		public function getSource(){

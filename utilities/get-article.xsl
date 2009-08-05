@@ -2,6 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:import href="get-images.xsl"/>
+<xsl:import href="html-truncate.xsl" />
 
 <xsl:template name="single-article">
 	<div class="article-wide">
@@ -166,9 +167,6 @@
 </p>
 </xsl:template>
 
-
-
-
 <xsl:template match="frontpage-articles/entry" mode="left">
 	<xsl:param name="entry-id" select="@id" />
 	<div class="article">
@@ -193,8 +191,8 @@
 				<xsl:value-of select="title"/>
 			</a>
 		</h3>
-		<xsl:copy-of select="substring(body/*,1,300)" />
-		<xsl:if test="string-length(body) &gt; 300">
+		<xsl:apply-templates select="body" mode="truncate" />
+		<xsl:if test="string-length(body) &gt; 250">
 			<a href="{$root}/news/{substring(publish-this-article-on, 1, 4)}/{title/@handle}/">
 				... Read more.
 			</a>

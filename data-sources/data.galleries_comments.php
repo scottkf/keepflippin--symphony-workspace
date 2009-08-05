@@ -16,7 +16,8 @@
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
-				'image'
+				'image',
+				'comment: formatted'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -29,10 +30,10 @@
 					 'name' => 'Galleries: comments',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-01T18:13:21+00:00');	
+					 'release-date' => '2009-08-05T14:17:45+00:00');	
 		}
 		
 		public function getSource(){

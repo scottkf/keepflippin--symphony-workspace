@@ -18,7 +18,7 @@
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
-				'body',
+				'body: formatted',
 				'publish-this-article-on'
 		);
 
@@ -32,10 +32,10 @@
 					 'name' => 'Frontpage News Items',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-07T23:36:18+00:00');	
+					 'release-date' => '2009-08-05T14:17:12+00:00');	
 		}
 		
 		public function getSource(){

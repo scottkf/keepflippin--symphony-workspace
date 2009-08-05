@@ -1,18 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 	xmlns:exsl="http://exslt.org/common" 	extension-element-prefixes="exsl">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" extension-element-prefixes="exsl">
 
 <!--
-Name: HTML Truncate
-Version: 1.0
-Author: Allen Chang <allen@chaoticpattern.com>
-URL: http://symphony21.com/downloads/xslt/file/20036/
-
-Parameters:
-* limit (optional) number of characters to limit by
-* suffix (optional) the suffix character string to use when the text is truncated
-
-Example:
-<xsl:apply-templates select="path/to/your/body" mode="truncate"/>
+	Author: Allen Chang
+	Version: 1.1
+	Description: Truncates by character limit while gracefully retains HTML
+	Usage: <xsl:apply-templates select="path/to/your/body" mode="truncate"/>
 -->
 
 <xsl:strip-space elements="*"/>
@@ -45,7 +38,7 @@ Example:
 
 	<xsl:if test="$p &lt; $limit">
 		<xsl:element name="{name()}">
-			<xsl:apply-templates mode="truncate">
+			<xsl:apply-templates select="* | @* | text()" mode="truncate">
 				<xsl:with-param name="limit" select="$limit"/>
 				<xsl:with-param name="suffix" select="$suffix"/>
 			</xsl:apply-templates>
@@ -79,7 +72,7 @@ Example:
 </xsl:template>
 
 <xsl:template match="@*" mode="truncate">
-    <xsl:attribute name="{name(.)}">
+    <xsl:attribute name="{name()}">
         <xsl:value-of select="."/>
     </xsl:attribute>
 </xsl:template>

@@ -4,10 +4,10 @@
 <xsl:template name="footer">
 	<div id="footer">
 		<div id="highlighting">
-			<div id="camp">
+			<!-- <div id="camp">
 				<h2><a href="{$root}/summer-camp">Summer Camp - Gymnastics, field trips, games, and more!</a></h2>
 				<p>Come join us for Summer camp! There will be gymnastics, games, field trips, karate, movies, talent shows, ice cream parties and much much more! Camp starts on June 8th and goes through July 31st. <a href="{$root}/news/2009/summer-camp">Read More...</a></p>
-			</div>
+			</div> -->
 			<div id="classes-bottom">
 				<h2><a href="{$root}/classes">Our Classes - for any skill level</a></h2>
 				<p>Our USA Program is comprised of three different skill levels: <a href="{$root}/classes/red">Red</a> for beginners, <a href="{$root}/classes/white">White</a> for Intermediate gymnasts, and
@@ -19,14 +19,7 @@
 		</div>
 		<div id="news">
 			<h2><a href="{$root}/news">Latest News - learn about new happenings at keep flippin'</a></h2>
-				<xsl:choose>
-					<xsl:when test="$current-page = 'home'">
-	         <xsl:apply-templates select="/data/frontpage-articles/entry[important = 'No']" />						
-					</xsl:when>
-					<xsl:otherwise>
-	         <xsl:apply-templates select="/data/frontpage-news-items/entry" />
-					</xsl:otherwise>
-				</xsl:choose>
+	        	<xsl:apply-templates select="/data/frontpage-news-items/entry" />
 			<h5><a href="{$root}/news">Please continue on and read more...</a></h5>
 			<h2><a class="social" href="#">On the web - you can also find us on the following</a></h2>
   		<ul>

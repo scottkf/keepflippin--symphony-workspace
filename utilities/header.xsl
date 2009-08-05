@@ -12,7 +12,7 @@
 		<div id="menu">
 			<ul>
 				<li><a href="{$root}/locations">Locations</a></li> 
-				<li><a href="{$root}/summer-camp">Summer Camp</a></li>
+				<li><a href="{$root}/schedule/fall-2009">Fall Schedule</a></li>
 				<li><a href="{$root}/showteam">Showteam</a></li>
 				<li><a href="{$root}/news">News</a></li>
 				<li><a href="{$root}/about">About</a></li>

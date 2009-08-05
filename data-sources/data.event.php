@@ -18,7 +18,7 @@
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name',
-				'description',
+				'description: formatted',
 				'session',
 				'class',
 				'place',
@@ -35,10 +35,10 @@
 					 'name' => 'Event',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-07T18:19:37+00:00');	
+					 'release-date' => '2009-08-05T14:16:40+00:00');	
 		}
 		
 		public function getSource(){

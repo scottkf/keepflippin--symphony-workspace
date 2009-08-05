@@ -8,7 +8,7 @@
 		public $dsParamORDER = 'desc';
 		public $dsParamLIMIT = '20';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'date';
+		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
 		public $dsParamHTMLENCODE = 'yes';
 		
@@ -18,8 +18,7 @@
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
-				'body',
-				'date'
+				'body: formatted'
 		);
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
@@ -31,11 +30,11 @@
 			return array(
 					 'name' => 'RSS Articles',
 					 'author' => array(
-							'name' => 'Alistair Kearney',
-							'website' => 'http://symphony.local:8888/2',
-							'email' => 'alistair@symphony21.com'),
+							'name' => 'scott tesoriere',
+							'website' => 'http://localhost/kf',
+							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2008-12-12T04:29:23+00:00');	
+					 'release-date' => '2009-08-05T14:18:51+00:00');	
 		}
 		
 		public function getSource(){

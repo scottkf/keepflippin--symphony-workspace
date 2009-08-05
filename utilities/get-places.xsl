@@ -21,7 +21,8 @@
 	<xsl:if test="suite != ''">
 		suite# <xsl:value-of select="suite"/>, 
 	</xsl:if><br />
-	<xsl:value-of select="city"/>, <xsl:value-of select="state"/> <xsl:value-of select="postal-code"/>
+	<xsl:value-of select="city"/>, <xsl:value-of select="state"/><xsl:text> </xsl:text>
+	<xsl:value-of select="postal-code"/>
 	<xsl:text>, </xsl:text>
 	<xsl:value-of select="country"/>
   <br />

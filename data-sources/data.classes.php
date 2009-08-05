@@ -20,8 +20,8 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'class-name',
 				'ages',
-				'short-description',
-				'description',
+				'short-description: formatted',
+				'description: formatted',
 				'image',
 				'hidden'
 		);
@@ -36,10 +36,10 @@
 					 'name' => 'Classes',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-07T17:44:42+00:00');	
+					 'release-date' => '2009-08-05T14:15:08+00:00');	
 		}
 		
 		public function getSource(){

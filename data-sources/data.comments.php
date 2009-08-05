@@ -21,7 +21,7 @@
 				'website',
 				'date',
 				'image',
-				'comment',
+				'comment: formatted',
 				'authorised'
 		);
 
@@ -35,10 +35,10 @@
 					 'name' => 'Comments',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-01T17:41:08+00:00');	
+					 'release-date' => '2009-08-05T14:15:43+00:00');	
 		}
 		
 		public function getSource(){

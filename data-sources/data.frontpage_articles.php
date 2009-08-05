@@ -6,7 +6,7 @@
 		
 		public $dsParamROOTELEMENT = 'frontpage-articles';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '99';
+		public $dsParamLIMIT = '9999';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamPARAMOUTPUT = 'system:id';
 		public $dsParamSORT = 'publish-this-article-on';
@@ -15,11 +15,12 @@
 		public $dsParamFILTERS = array(
 				'29' => '2007-01-21 to {$today}',
 				'30' => 'yes',
+				'79' => 'yes',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
-				'body',
+				'body: formatted',
 				'publish-this-article-on',
 				'important',
 				'alternate-link'
@@ -35,10 +36,10 @@
 					 'name' => 'Frontpage Articles',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://localhost/kf',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-21T19:09:40+00:00');	
+					 'release-date' => '2009-08-05T15:52:58+00:00');	
 		}
 		
 		public function getSource(){
