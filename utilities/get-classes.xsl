@@ -80,13 +80,27 @@
 	<xsl:choose>
 		<xsl:when test="class-name/@handle != 'birthday-parties'">
 			<div id="left">
-		  <xsl:if test="class-name/@handle != 'power-tumbling'">
-			<h3>
-				For ages &#8212;<xsl:value-of select="ages" />
-			</h3>	
-  	  </xsl:if>
-			<xsl:copy-of select="description/*"/>
-			<xsl:call-template name="important" />			
+			  <xsl:if test="class-name/@handle != 'power-tumbling'">
+				<h3>
+					For ages &#8212; <xsl:value-of select="ages" />
+				</h3>	
+		  	  </xsl:if>
+				<xsl:copy-of select="description/*"/>
+				<xsl:call-template name="important" />			
+			  	<xsl:if test="class-name/@handle != 'power-tumbling' and class-name/@handle != 'tumble-with-me' and class-name/@handle != 'open-gym' and class-name/@handle != 'middle-school'">
+					<h3>What is the maximum number of students in a class?</h3>
+					<p>
+						<xsl:choose>
+						<xsl:when test="class-name/@handle = 'tumble-tots'">
+							Six students are allowed per class.
+						</xsl:when>
+						<xsl:otherwise>
+							Eight students are allowed per class.
+						</xsl:otherwise>
+						</xsl:choose>
+					</p>
+					
+				</xsl:if>
 			</div>
 		</xsl:when>
 		<xsl:otherwise>

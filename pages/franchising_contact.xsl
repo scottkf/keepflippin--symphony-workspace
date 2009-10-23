@@ -10,11 +10,18 @@
 
 <xsl:template name="top">
 	<div>
-		<h2><a href="{$root}/franchising">Franchising</a></h2>
-			<ul class="nav">
+  		<h2>
+  			Request further Franchising information
+  		</h2>
+  		<p>
+  		 Please fill out the form as completely as possible, though only fields with an asterisk (*) are required.
+  	  </p>
+  	  <h3>Additional information</h3>
+  		<ul>
+                       <li><a href="{$root}/franchising">Franchising Home</a></li>
 				<xsl:apply-templates select="/data/navigation/page[@handle = 'franchising']/page"/>
-			</ul>
-	</div>
+  		</ul>
+  	</div>
 </xsl:template>
 
 <xsl:variable name="event" select="/data/events/save-prospect" />

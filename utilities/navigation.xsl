@@ -38,6 +38,12 @@
 					<xsl:value-of select="@handle"/>
 					<xsl:value-of select="'/'"/>
 					<xsl:value-of select="$this-session"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="$this-place"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="$this-year"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="'09'"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="@handle"/>

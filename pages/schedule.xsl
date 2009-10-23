@@ -62,11 +62,11 @@
   	  <h3>You can also view</h3>
   		<ul>
   			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}/{$current-place}">The monthly calendar</a></li>
-  			<li>
+<!--  			<li>
   				<a href="{$root}/schedule/{$current-session}/{$current-place}/{$session-start}">
   					The schedule for <xsl:value-of select="substring-before($current-session, '-')"/>&#160;<xsl:value-of select="substring-after($current-session, '-')"/>
   				</a>
-  			</li>
+  			</li> -->
   		</ul>
   	</div>
     <div>

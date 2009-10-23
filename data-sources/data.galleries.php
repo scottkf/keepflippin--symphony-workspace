@@ -5,11 +5,11 @@
 	Class datasourcegalleries extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'galleries';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '99';
 		public $dsParamREDIRECTONEMPTY = 'yes';
 		public $dsParamPARAMOUTPUT = 'images';
-		public $dsParamSORT = 'title';
+		public $dsParamSORT = 'system:date';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -34,10 +34,10 @@
 					 'name' => 'Galleries',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://www.keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-15T19:17:48+00:00');	
+					 'release-date' => '2009-10-14T13:44:46+00:00');	
 		}
 		
 		public function getSource(){

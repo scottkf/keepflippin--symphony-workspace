@@ -5,11 +5,17 @@
 
 <xsl:template name="top">
 	<div>
-		<h2><a href="{$root}/franchising">Franchising</a></h2>
-			<ul class="nav">
+  		<h2>
+  			Franchising
+  		</h2>
+  		<p>
+  		  Below you can find further information about how you can become a part of a unique way of promoting gymnastics! 
+  	  </p>
+  	  <h3>Additional information</h3>
+  		<ul>
 				<xsl:apply-templates select="/data/navigation/page[@handle = 'franchising']/page"/>
-			</ul>
-	</div>
+  		</ul>
+  	</div>
 </xsl:template>
 
 <xsl:template match="data">

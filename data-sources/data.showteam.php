@@ -15,10 +15,10 @@
 					 'name' => 'Showteam',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://area83.keepflippin.com',
+							'website' => 'http://www.keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-21T23:37:21+00:00');	
+					 'release-date' => '2009-10-14T21:12:07+00:00');	
 		}
 		
 		public function getSource(){
@@ -33,27 +33,24 @@
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 				
 			try{
-				$xml = <<<XML
-	<showteam>
-				<person handle="team">Alicia</person>
-				<person handle="team">Brittany</person>
-				<person handle="team">Lyara</person>
-				<person handle="team">Haley</person>
-				<person handle="team">Collin</person>
-				<person handle="team">Megan</person>
-				<person handle="team">Amber</person>
-				<person handle="team">Morgane</person>
-				<person handle="team">BJ</person>
-				<person handle="team">Alexis</person>
-				<person handle="team">Julia</person>
-				<person handle="preteam">Lexi</person>
-				<person handle="preteam">Brooke</person>
-				<person handle="preteam">Rachel</person>
-				<person handle="preteam">Hannah</person>
-				<person handle="preteam">Ryan</person>
-				</showteam>
-XML;
-			$result = self::CRLF . '	' . trim($xml) . self::CRLF;
+				$result = "<showteam>
+				<person handle=\"team\">Alicia</person>
+				<person handle=\"team\">Brittany</person>
+				<person handle=\"team\">Lyara</person>
+				<person handle=\"team\">Haley</person>
+				<person handle=\"team\">Collin</person>
+				<person handle=\"team\">Amber</person>
+				<person handle=\"team\">Morgane</person>
+				<person handle=\"team\">BJ</person>
+				<person handle=\"team\">Alexis</person>
+				<person handle=\"team\">Ryan</person>
+				<person handle=\"team\">Julia</person>
+				<person handle=\"preteam\">Lexi</person>
+				<person handle=\"preteam\">Brooke</person>
+				<person handle=\"preteam\">Rachel</person>
+				<person handle=\"preteam\">Hannah</person>
+				<person handle=\"preteam\">Ryan</person>
+				</showteam>";
 			}
 			catch(Exception $e){
 				$result->appendChild(new XMLElement('error', $e->getMessage()));

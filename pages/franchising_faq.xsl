@@ -5,11 +5,18 @@
 
 <xsl:template name="top">
 	<div>
-		<h2><a href="{$root}/franchising">Franchising</a></h2>
-			<ul class="nav">
+  		<h2>
+  			Franchising FAQ
+  		</h2>
+  		<p>
+  		  Some frequently asked questions are below. If you still have any further questions, don't hestitate <a href="http://www.keepflippin.com/franchising/contact/">to contact us!</a>
+  	  </p>
+  	  <h3>Additional information</h3>
+  		<ul>
+                       <li><a href="{$root}/franchising">Franchising Home</a></li>
 				<xsl:apply-templates select="/data/navigation/page[@handle = 'franchising']/page"/>
-			</ul>
-	</div>
+  		</ul>
+  	</div>
 </xsl:template>
 
 <xsl:template match="data">
@@ -106,7 +113,7 @@
 		<a name="cost"></a>
 		<h3>How much does it cost to develop a Keep Flippin' Franchise? *</h3>
 		<p>
-		  <img src="http://keepflippin.com/images/102.jpg" height="544" width="550" /><br />
+		  <img src="http://keepflippin.com/workspace/images/102.jpg" height="544" width="550" /><br />
 		  <strong><em>* Prices may very from state to state.</em></strong>
 		</p>
 

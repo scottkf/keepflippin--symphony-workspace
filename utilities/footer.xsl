@@ -14,7 +14,7 @@
 	               <a href="{$root}/classes/blue">Blue</a> for Advanced gymnasts.</p>
 		
 				<p>In addition, we also have classes available <a href="{$root}/classes/middle-school">Middle School students</a>, <a href="{$root}/classes/adult-tumbling">High School students and adults</a>, as well as <a
-	               href="{$root}/classes/open-gym">Open Gym</a>, where students can focus on what they wish.</p>
+	               href="{$root}/classes/open-gym">Open Gym</a>, where students can focus on what they wish.</p><p>All of these classes are available at our Jupiter, FL location!</p>
 			</div>
 		</div>
 		<div id="news">

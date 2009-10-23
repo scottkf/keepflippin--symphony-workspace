@@ -15,10 +15,10 @@
 					 'name' => 'Navigation',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-07T15:47:09+00:00');	
+					 'release-date' => '2009-10-06T18:17:39+00:00');	
 		}
 		
 		public function getSource(){
@@ -33,118 +33,116 @@
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 				
 			try{
-				$xml = <<<XML
-	<navigation>
-	    <page handle="home">
+				$result = "<navigation>
+	    <page handle=\"services\">
 	        <name>Home</name>
 	        <types>
 	            <type>hidden</type>
 	            <type>index</type>
 	        </types>
 	    </page>
-	    <page handle="news">
+	    <page handle=\"news\">
 	        <name>News</name>
 	        <types>
 	            <type>hidden</type>
 	        </types>
 	    </page>
-	    <page handle="drafts">
+	    <page handle=\"drafts\">
 	        <name>Drafts</name>
 	        <types>
 	            <type>admin</type>
 	        </types>
 	    </page>
-	  <page handle="classes">
+	  <page handle=\"classes\">
 	      <name>Classes</name>
 	  </page>
-	    <page handle="schedule">
+	    <page handle=\"schedule\">
 	        <name>Schedule</name>
-	        <page handle="places">
+	        <page handle=\"places\">
 	            <name>By place</name>
 	        </page>
-	        <page handle="classes">
+	        <page handle=\"classes\">
 	            <name>By class</name>
 	        </page>
-	        <page handle="duplicate">
+	        <page handle=\"duplicate\">
 	            <name>Duplicate</name>
 	            <types>
 	                <type>admin</type>
 	                <type>hidden</type>
 	            </types>
 	        </page>
-	        <page handle="calendar">
+	        <page handle=\"calendar\">
 	            <name>Calendar</name>
 	            <types>
 	                <type>hidden</type>
 	            </types>
 	        </page>
 	    </page>
-	    <page handle="locations">
+	    <page handle=\"locations\">
 	        <name>Places</name>
 	        <types>
 	            <type>hidden</type>
 	        </types>
 	    </page>
-	    <page handle="franchising">
+	    <page handle=\"franchising\">
 	        <name>Franchising</name>
-	        <page handle="faq">
+	        <page handle=\"faq\">
 	            <name>Frequently Asked Questions</name>
 	        </page>
-	        <page handle="contact">
+	        <page handle=\"contact\">
 	            <name>Request Franchise Info</name>
-	            <page handle="success">
+	            <page handle=\"success\">
 	                <name>Success!</name>
 	            </page>
 	        </page>
 	    </page>
-	  <page handle="photos">
+	  <page handle=\"photos\">
 	      <name>Media</name>
-	      <page handle="tags">
+	      <page handle=\"tags\">
 	          <name>Photos by tag</name>
 	      </page>
-	      <page handle="photo">
+	      <page handle=\"photo\">
 	          <name>Photo &amp; Comments</name>
 	      </page>
 	  </page>
-	  <page handle="contact">
+	  <page handle=\"contact\">
 	      <name>Contact</name>
-	      <page handle="directions">
+	      <page handle=\"directions\">
 	          <name>Directions</name>
 	          <types>
 	              <type>hidden</type>
 	          </types>
 	      </page>
 	  </page>
-	    <page handle="404-page-not-found">
+	    <page handle=\"404-page-not-found\">
 	        <name>404: Page Not Found</name>
 	        <types>
 	            <type>404</type>
 	            <type>hidden</type>
 	        </types>
 	    </page>
-	    <page handle="rss">
+	    <page handle=\"rss\">
 	        <name>RSS</name>
 	        <types>
 	            <type>hidden</type>
 	            <type>XML</type>
 	        </types>
 	    </page>
-	    <page handle="maintenance">
+	    <page handle=\"maintenance\">
 	        <name>Maintenance</name>
 	        <types>
 	            <type>hidden</type>
 	            <type>maintenance</type>
 	        </types>
 	    </page>
-	    <page handle="about">
+	    <page handle=\"about\">
 	        <name>About kf</name>
 	        <types>
 	            <type>hidden</type>
 	        </types>
 	    </page>
 	</navigation>
-XML;
-			$result = self::CRLF . '	' . trim($xml) . self::CRLF;
+";
 			}
 			catch(Exception $e){
 				$result->appendChild(new XMLElement('error', $e->getMessage()));

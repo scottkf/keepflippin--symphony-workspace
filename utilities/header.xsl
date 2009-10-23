@@ -7,12 +7,12 @@
 			<a href="{$root}/about" id="badge" title="about us"></a>
 		</xsl:if>
 		<div id="logo">
-			<a href="{$root}"><img src="{$workspace}/images/kf-logo.png" alt="keep flippin' logo"/></a>
+			<a href="{$root}"><img src="{$workspace}/images/kf-logo.png" alt="keep flippin' of jupiter logo"/></a>
 		</div>
 		<div id="menu">
 			<ul>
 				<li><a href="{$root}/locations">Locations</a></li> 
-				<li><a href="{$root}/schedule/fall-2009/keep-flippin-headquarters/2009/09">Fall Schedule</a></li>
+				<li><a href="{$root}/halloween-carnival">Halloween Carnival</a></li>
 				<li><a href="{$root}/showteam">Showteam</a></li>
 				<li><a href="{$root}/news">News</a></li>
 				<li><a href="{$root}/about">About</a></li>

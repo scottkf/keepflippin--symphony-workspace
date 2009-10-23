@@ -24,11 +24,11 @@
     <p>
       Either way, <em>someone's</em> dizzy. So here's a list of some stuff you can do. If you can't decide, just click something!
       <ul>
-        <li><a href="http://imac.local/kf/classes">View a list of our classes,</a></li>
-        <li><a href="http://imac.local/kf/schedule/{$this-session}">Peek at the current schedule,</a></li>
-        <li><a href="http://imac.local/kf/franchising">Learn about opening your own Keep Flippin',</a></li>
-        <li><a href="http://imac.local/kf/photos">Have a look at pictures, press clipping, videos, and more fun stuff,</a></li>
-        <li><a href="http://imac.local/kf/contact">If all else fails, contact us!</a></li>      
+        <li><a href="{$root}/classes">View a list of our classes,</a></li>
+        <li><a href="{$root}/schedule/{$this-session}">Peek at the current schedule,</a></li>
+        <li><a href="{$root}/franchising">Learn about opening your own Keep Flippin',</a></li>
+        <li><a href="{$root}/photos">Have a look at pictures, press clippings, videos, and other various fun media, </a></li>
+        <li><a href="{$root}/contact">If all else fails, contact us!</a></li>      
       </ul>
     </p>
   </div>

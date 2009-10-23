@@ -30,16 +30,18 @@
 	<title>
 		<xsl:call-template name="page-title"/>
 	</title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <xsl:if test="$root-page = 'home'">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="description" content="Keep Flippin' is performance-based gymnastics. We are also franchising!" />
   <meta name="keywords" content="gymnastic franchising, franchising, performance gymnastics, performance franchising, gymnastic franchise, franchise, keep flipping, keep flipping gymnastics" />
+  </xsl:if>
   <meta name="copyright" content="Keep Flippin'" />
   <meta name="company" content="Keep Flippin'" />
-  <!--
+  <xsl:comment>
     
     Looking is learning, taking is learning, taking credit is :(
     
-  -->
+  </xsl:comment>
 	<xsl:if test="$short = 0">
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 		<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
