@@ -16,9 +16,9 @@
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://keepflippin.com',
-							'email' => 'scott@keepflippin.com'),
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-10-06T18:17:39+00:00');	
+					 'release-date' => '2010-08-04T20:35:22+00:00');	
 		}
 		
 		public function getSource(){
@@ -141,8 +141,7 @@
 	            <type>hidden</type>
 	        </types>
 	    </page>
-	</navigation>
-";
+	</navigation>";
 			}
 			catch(Exception $e){
 				$result->appendChild(new XMLElement('error', $e->getMessage()));

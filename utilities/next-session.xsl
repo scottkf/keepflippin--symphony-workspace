@@ -10,7 +10,7 @@
 		<xsl:when test="$s = 'fall'">
 			<xsl:value-of select="'winter'"/>
 			<xsl:text>-</xsl:text>
-			<xsl:value-of select="$y"/>			
+			<xsl:value-of select="$y + 1"/>			
 		</xsl:when>
 		<xsl:when test="$s = 'spring'">
 			<xsl:value-of select="'summer'"/>
@@ -23,9 +23,14 @@
 			<xsl:value-of select="$y"/>
 		</xsl:when>
 		<xsl:when test="$s = 'winter'">
-			<xsl:value-of select="'spring'"/>
+			<xsl:value-of select="'summer'"/>
 			<xsl:text>-</xsl:text>
-			<xsl:value-of select="$y + 1"/>			
+			<xsl:value-of select="$y"/>			
+		</xsl:when>
+		<xsl:when test="$s = 'summer'">
+			<xsl:value-of select="'fall'"/>
+			<xsl:text>-</xsl:text>
+			<xsl:value-of select="$y"/>			
 		</xsl:when>
 	</xsl:choose>
 		
@@ -45,7 +50,7 @@
 			<xsl:value-of select="'06'"/>
 		</xsl:when>
 		<xsl:when test="$s = 'winter'">
-			<xsl:value-of select="'11'"/>
+			<xsl:value-of select="'01'"/>
 		</xsl:when>
 		<xsl:when test="$s = 'fall'">
 			<xsl:value-of select="'09'"/>

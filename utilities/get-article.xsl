@@ -91,7 +91,6 @@
 	<h3>
 		<a>
 			<xsl:attribute name="href">
-				<xsl:value-of select="$root"/>
 				<xsl:choose>
 					<xsl:when test="alternate-link != ''">
 						<xsl:value-of select="alternate-link"/>
@@ -120,7 +119,6 @@
 	<h3>
 		<a>
 			<xsl:attribute name="href">
-				<xsl:value-of select="$root"/>
 				<xsl:choose>
 					<xsl:when test="alternate-link != ''">
 						<xsl:value-of select="alternate-link"/>
@@ -147,7 +145,6 @@
 	<xsl:if test="string-length(body) &gt; 200">
 		<a>
 			<xsl:attribute name="href">
-				<xsl:value-of select="$root"/>
 				<xsl:choose>
 					<xsl:when test="alternate-link != ''">
 						<xsl:value-of select="alternate-link"/>
@@ -173,7 +170,6 @@
 		<h3>
 			<a>
 				<xsl:attribute name="href">
-					<xsl:value-of select="$root"/>
 					<xsl:choose>
 						<xsl:when test="alternate-link != ''">
 							<xsl:value-of select="alternate-link"/>

@@ -64,6 +64,21 @@
 	<a href="{$root}/photos">Back to the gallery listing!</a>
 </xsl:template>
 
+<xsl:template match="videos/entry">
+        <li>
+        <a href="{link}">
+                <xsl:value-of select="title" />
+        </a>,
+        <xsl:call-template name="format-date">
+                <xsl:with-param name="date" select="date"/>
+                <xsl:with-param name="format" select="'M D, Y'"/>
+        </xsl:call-template>
+        <xsl:if test="showteam">
+                <br />
+                <small>- performed by the <a href="{$root}/showteam">showteam</a></small>                
+        </xsl:if>
+        </li>
+</xsl:template>
 
 <xsl:template name="photo">
 	<xsl:param name="date" />

@@ -1,0 +1,60 @@
+@import compass/utilities.sass
+
+!blueprint_font_family       = "Helvetica Neue, Arial, Helvetica, sans-serif"
+!blueprint_fixed_font_family = "'andale mono', 'lucida console', monospace"
+
+!blueprint_grid_columns = 24
+!blueprint_grid_width	= 25px
+!blueprint_grid_margin  = 15px
+
+!link_color = #447cb3
+!link_visited_color = #447cb3
+!link_hover_color = #bcd0e8
+
+!body_bg_color = #262626
+!body_bg_text_color = #8a8a8a
+
+!article_title_color = #b11737
+!article_title_visited_color = #b11737
+!article_hover_color = #555
+
+!page_header_color = #9a1c1b
+
+!nav_height = 36px
+!nav_font_size = 17px
+!nav_background = #3b6795
+
+=orange-list
+	&
+		list-style-image: url(../images/icons/icon_bullet_orange.png)
+		list-style-type: circle
+		li
+			margin-left: 5px
+			font-size: 1.1em
+
+=piped-list()
+	li 
+		padding: 0px
+		padding-left: 2px
+		padding-right: 2px
+	li:before
+		content: " |"
+	li:before, x:-moz-any-link, x:default
+		content: " | "
+	li:first-child:before
+		content: ""
+
+=nav-hover(!name, !width)
+	&.selected
+		background-color: white	
+		padding-bottom: 4px
+		padding-bottom: 5px\9
+	&.selected a
+		padding: 0px
+		padding-left: 19px
+		padding-right:19px
+		margin-top= (!nav_height - !nav_font_size - 3) / 2 + 3
+		margin-bottom= (!nav_height - !nav_font_size - 3) / 2 - 3
+		+replace-text("nav"-!name-".png", 50%, -18px)
+		height= !nav_font_size
+		width= !width

@@ -18,6 +18,7 @@
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
 				'file',
+				'file-link',
 				'thumbnail'
 		);
 
@@ -31,10 +32,10 @@
 					 'name' => 'Programs',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
+							'website' => 'http://keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-17T23:57:06+00:00');	
+					 'release-date' => '2010-05-03T12:50:52+00:00');	
 		}
 		
 		public function getSource(){

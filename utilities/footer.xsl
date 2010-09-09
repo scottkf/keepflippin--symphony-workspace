@@ -36,7 +36,7 @@
 				<li><a href="{$root}/classes">classes</a></li>
 				<li><a href="{$root}/schedule">schedule</a></li>
 				<li><a href="{$root}/franchising">franchising</a></li>
-				<li><a href="{$root}/summer-camp">summer camp</a></li>
+				<li><a href="{$root}/halloween-carnival">halloween carnival</a></li>
 				<li><a href="{$root}/photos">media</a></li>
 				<li><a href="{$root}/showteam">showteam</a></li>
 				<li><a href="{$root}/about">about kf</a></li>

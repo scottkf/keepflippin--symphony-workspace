@@ -5,7 +5,7 @@
 	Class datasourceperformances extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'performances';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '5';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'start-date';
@@ -33,10 +33,10 @@
 					 'name' => 'Performances',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://localhost/kf',
+							'website' => 'http://keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-08-05T14:18:05+00:00');	
+					 'release-date' => '2009-12-02T22:50:24+00:00');	
 		}
 		
 		public function getSource(){

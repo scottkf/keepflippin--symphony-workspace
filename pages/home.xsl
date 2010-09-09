@@ -12,7 +12,7 @@
 		<div class="introduction">
 			<h2 class="header"><a href="{$root}/about">An Exciting Way of Doing Gymnastics.</a></h2>
 			<p>
-				Our gymnastics program is truly unique, it is performance based, rather than competitive. Each student is guided lovingly towards their goal - and beyond. <a href="{$root}/about">Learn more about Keep Flippin’...</a>
+				Our gymnastics program is truly unique, it is performance based, rather than competitive. Each student is guided lovingly towards their goal - and beyond. Our motto is Safety, Enjoyment and Results. <a href="{$root}/about">Learn more about Keep Flippin’...</a>
 			</p>
 		</div>
 		<div>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" 
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:date="http://exslt.org/dates-and-times"
+        extension-element-prefixes="date">
 
 <xsl:import href="../utilities/master.xsl" />
 <xsl:import href="../utilities/get-archive.xsl"/>
@@ -28,7 +31,8 @@
   			<xsl:if test="$session != ''">
   				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
   			</xsl:if>
-  			Schedule
+  			Schedule <br /><small style="font-size: 0.7em; text-transform: lowercase">for <xsl:value-of select="date:month-name()" />
+</small>
   		</h2>
       <!-- <xsl:if test="$places != ''">
         <p>
@@ -37,7 +41,7 @@
       </xsl:if>      -->
   	  <h3>You can also view</h3>
   		<ul>
-  			<li><a href="{$root}/schedule/{$session}/{$current-place}/{$session-start}">View the weekly schedule</a></li>
+  			<li><a href="{$root}/schedule/{$session}/{$current-place}/{$session-start}">The weekly schedule</a></li>
   		</ul>
   	</div>
 	</div>

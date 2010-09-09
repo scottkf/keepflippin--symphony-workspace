@@ -7,7 +7,7 @@
 
 <xsl:import href="date-time.xsl" />
 
-<xsl:template match="/data/schedule*" mode="events">
+<xsl:template match="/data/schedule | /data/schedule-classes-events | /data/schedule-events-classes-places | /data/schedule-events-places-classes | /data/schedule-places-events" mode="events">
 	<xsl:param name="day" />
 	<xsl:param name="time" />
 	<xsl:param name="limit" select="'3'" />
@@ -61,7 +61,7 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="/data/schedule*/entry" mode="event">
+<xsl:template match="/data/schedule/entry | /data/schedule-classes-events/entry | /data/schedule-events-classes-places/entry | /data/schedule-events-places-classes/entry | /data/schedule-places-events/entry" mode="event">
 	<xsl:param name="css-class" />
 	<xsl:param name="day" />
 	<xsl:variable name="entry-id" select="class/item/@id" />
@@ -72,7 +72,6 @@
 		</xsl:call-template>
 	</xsl:variable>
 	<xsl:choose>
-		<!-- if the item has a class attached -->
 		<xsl:when test="class/item/@handle != 'summer-camp' and class/item/@handle != 'team' and class/item/@handle != 'event'">
 				<li>
 					<xsl:if test="$css-class != ''">

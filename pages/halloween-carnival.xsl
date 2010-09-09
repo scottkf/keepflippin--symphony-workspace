@@ -9,22 +9,22 @@
 		<div class="introduction">
 			<h2 class="header"><a href="{$root}/about">Halloween Carnival</a></h2>
 			<p>
-				Keep Flippin' Gymnastics presents our 7th annual Halloween Carnival. There will be games, a bounce house, food, <strong>fantastic prizes</strong>, raffles and a costume contest for children, parents and coaches!<br /><br />It will be held on <strong>Saturday, October 24th 2009</strong> from 5:00 to 8:00 P.M.
+				Keep Flippin' Gymnastics presents our 7th annual Halloween Carnival. There will be games, a bounce house, food, <strong>fantastic prizes</strong>, raffles and a costume contest for children, parents and coaches!<br /><br />It will be held on <strong>Saturday, October 23th 2010</strong> from 5:00 to 8:00 P.M.
 			</p>
 		</div>
 		<div>
-			<a href="#" alt="learning to paint at go van gogh" title="learning to paint at go van gogh"><img src="{$workspace}/gallery-images/halloween.jpg" /></a>
+			<a href="#" alt="halloween carnival 2009" title="halloween carnival 2009"><img src="{$workspace}/gallery-images/halloween-2009.JPG" /></a>
 		</div>
 	</div>
 </xsl:template>
 
 <xsl:template match="data">
 	<div id="left">
-	<h4><strong>Tickets go on sale Monday September 28th:</strong></h4><ul>
-	<li><em>$12.00</em> in advance, before <strong>10/24/09</strong></li>
+	<h4><strong>Tickets go on sale Monday September 27th:</strong></h4><ul>
+	<li><em>$12.00</em> in advance, before <strong>10/23/10</strong></li>
 	<li><em>$15.00</em> the day of the carnival</li></ul>
         <p><strong>Only 225 Tickets will be sold!</strong></p>
-        <h4><strong>On October 24th, there will be:</strong></h4><ul>
+        <h4><strong>On October 23th, there will be:</strong></h4><ul>
 	<li>Games</li>
 	<li>A Bounce House</li>
 	<li>Food</li>

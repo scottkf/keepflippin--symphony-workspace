@@ -3,13 +3,15 @@
 
 <xsl:template match="performances">
   <xsl:if test="count(entry) &gt; 0">
-  	<h3>
-  		<a href="{$root}/schedule">Upcoming performances</a>
+  	<h3 style="margin-bottom: 0px">
+                   
+  		<a name="performances">Upcoming performances</a>
   		<xsl:if test="$is-logged-in = 'true'">
   			<xsl:text> &#8212; </xsl:text>
   			<a href="{$root}/symphony/publish/{section/@handle}/new/">Add</a>
   		</xsl:if>
   	</h3>
+        <h4>by our <a href="{$root}/showteam">performing Showteam</a></h4>
   	<dl class="performance">
   		<xsl:apply-templates select="entry"/>
   	</dl>
@@ -20,7 +22,7 @@
 	<dt>
 		<xsl:call-template name="format-date">
 			<xsl:with-param name="date" select="start-date"/>
-			<xsl:with-param name="format" select="'d m t'"/>
+			<xsl:with-param name="format" select="'M d, t'"/>
 		</xsl:call-template>
 		<xsl:if test="end-date != ''">
 			<xsl:text> until </xsl:text>
@@ -29,7 +31,7 @@
 				<xsl:with-param name="format" select="'t'"/>
 			</xsl:call-template>
 			<xsl:text> &#8212; </xsl:text>
-		</xsl:if>
+		</xsl:if><xsl:text>&#160;</xsl:text>
 		<a>
 			<xsl:if test="url != ''">
 				<xsl:attribute name="href">

@@ -43,9 +43,12 @@
 	<div id="right">
 		<h3>Our Showteam</h3>
 		<p class="showteam">
-		Our Showteam has been featured at <a href="http://disney.com">Disney World</a> and <a href="http://www.universalorlando.com">Universal Studios!</a>
+		Our performing Showteam has been featured at <a href="http://disney.com">Disney World</a> and <a href="http://www.universalorlando.com">Universal Studios!</a></p><p>
 		Locally, they have appeared at <a href="http://www.artigras.org/">Artigras</a>, Jupiter/Tequesta Art Fair, <a href="http://www.jupiter.fl.us/JUBILEE/">Jupiter Jubilee</a>, Abacoa, <a href="http://www.sunfest.com/">SunFest</a> and numerous fairs. They also returned to "<a href="http://www.gktw.org/">Give Kids the World</a>", a resort for children with terminal illnesses in Kissimmee. Our Showteam's extraordinary talent, dedication and hard work inspires all of our gymnasts!
 		</p>
+                <xsl:if test="count(performances/entry) &gt; 0">
+                <p>A list of our performances <a href="{$root}#performances">can be found by clicking here</a>.</p>
+                </xsl:if>
 		<h4>Showteam Members</h4>
 		<table class="showteam">
 		   <tbody>

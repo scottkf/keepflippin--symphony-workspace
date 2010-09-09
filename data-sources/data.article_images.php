@@ -6,7 +6,7 @@
 		
 		public $dsParamROOTELEMENT = 'article-images';
 		public $dsParamORDER = 'asc';
-		public $dsParamLIMIT = '3';
+		public $dsParamLIMIT = '4';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
@@ -31,10 +31,10 @@
 					 'name' => 'Article Images',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://localhost/kf',
+							'website' => 'http://keepflippin.com',
 							'email' => 'scott@keepflippin.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-08-05T14:11:31+00:00');	
+					 'release-date' => '2010-02-19T19:43:22+00:00');	
 		}
 		
 		public function getSource(){

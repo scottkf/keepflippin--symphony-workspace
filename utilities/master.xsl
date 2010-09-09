@@ -28,7 +28,17 @@
 <html>
 <head>
 	<title>
-		<xsl:call-template name="page-title"/>
+              <xsl:choose>
+                <xsl:when test="$root-page = 'schedule'">
+  			<xsl:if test="$session != '+' and $session != ''">
+  				<xsl:value-of select="substring-before($session, '-')"/>&#160;<xsl:value-of select="substring-after($session,'-')"/>
+  			</xsl:if>
+  			Schedule
+                </xsl:when>
+                <xsl:otherwise>
+  		  <xsl:call-template name="page-title"/>
+                </xsl:otherwise>
+             </xsl:choose>
 	</title>
   <xsl:if test="$root-page = 'home'">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -63,6 +73,9 @@
 		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>
 		<xsl:if test="$current-page = 'calendar'">
 			<script type="text/javascript" src="{$workspace}/javascript/calendar.js"></script>			
+		</xsl:if>
+		<xsl:if test="$current-page = 'end-of-the-year-show-2010'">
+			<script type="text/javascript" src="{$workspace}/javascript/show.js"></script>			
 		</xsl:if>
 		<xsl:if test="$is-logged-in = 'true' and ($current-page = 'schedule' or $current-page = 'calendar' or $root-page = 'schedule')">
 			<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/datepicker.css" />

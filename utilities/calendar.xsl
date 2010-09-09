@@ -350,7 +350,7 @@ URL: http://gist.github.com/115859
         <xsl:value-of select="concat($year,'-01-01')"/>
       </xsl:when>
       <xsl:when test="$year and $month and not($day)">
-        <xsl:value-of select="concat($year,'-',$month,'-01')"/>
+        <xsl:value-of select="concat($year,'-',$month,'-05')"/>
       </xsl:when>
       <xsl:when test="$year and $month and $day">
         <xsl:value-of select="concat(format-number($year,'0000'),'-',format-number($month,'00'),'-',format-number($day,'00'))"/>
@@ -695,7 +695,7 @@ URL: http://gist.github.com/115859
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:if test="$is-logged-in">
-		<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mode={$mode}&amp;class=1">(+)</a></small>		
+		<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mde={$mode}&amp;class=1">(+)</a></small>		
 	</xsl:if>
 </xsl:template>
 

@@ -34,7 +34,7 @@
 			<xsl:with-param name="value">
 				<value handle="name"></value>
 				<value handle="session"><xsl:value-of select="$url-session"/></value>
-				<value handle="date" units="{$url-units}" mode="{$url-mode}">
+				<value handle="date" units="{$url-units}" mode="{$url-mde}">
 					<start><xsl:value-of select="$url-start"/></start>
 					<end><xsl:value-of select="$url-end"/></end>
 				</value>

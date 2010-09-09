@@ -1,0 +1,120 @@
+form
+	overflow: hidden
+	background-color: #fff
+	#main
+		+column(12)
+	#sidebar
+		+prepend(1)
+		+column(10,true)
+	fieldset 
+		margin: 1px
+		+column(16, true)
+		#contact #middle #content &
+			> div
+				+column(15, true)
+				padding: 15px
+				background-color: #eaf0f6
+				h3
+					color: #294868
+			> div + div
+				background-color: transparent
+				+prepend(1)
+				+column(5, true)
+				padding-left: 30px
+				h3
+					color= !article_title_color
+	label
+		&.error, &.invalid, &.success
+			color: black
+			background-color: #EEEEEE
+			border: 1px solid #CCCCCC
+			font-size: 1.1em
+			font-weight: bold
+			line-height: 140%
+			padding: 10px
+			input
+				background-color= #f1fdc6 - #111
+				width: 95%
+		&.required
+			input
+				font-size: 1.2em
+		&.success
+			color: black
+		display: block 
+		position: relative 
+		font-size: 1.1em 
+		margin-bottom: 10px 
+		small  
+			position: absolute 
+			right: 0 
+			font-size: 90% 
+			text-transform: none 
+			text-align: right 
+			margin-left: 40%
+			a:hover  
+				color: #ccc 
+				border-color: #888  
+	
+
+	input[type="text"], textarea  
+		display: block 
+		width: 95%
+		padding: 8px
+		margin-top: 4px
+		background-color: white
+		border: 1px solid #ccc
+
+	input[type="text"]
+		&:focus
+			background-color= #f1fdc6 + #111
+
+	textarea  
+		height: 200px
+	
+
+	input[type="submit"]
+		display: block
+		clear: both
+
+	input[type="submit"].send-message
+		background: transparent url(../images/submit-form.png) no-repeat scroll 0px 0
+		height: 54px
+		border: medium none
+		text-indent: -9999px
+		width: 350px
+		&:hover
+			cursor: pointer
+			opacity: 0.90
+
+	p.success  
+		color: #2c421b 
+		background-color: #8acd55 
+		padding: 5px 15px 
+		border-top: 1px solid #a9fa68 
+		border-bottom: 1px solid #6fa444 
+		margin: 1px !important 
+	
+
+	div.error
+		color: #5f311b 
+		background-color: #fda56d 
+		border-top: 1px solid #fcc8a4 
+		border-bottom: 1px solid #ae5832 
+		padding: 5px 5px 
+		margin: 1px 0px 10px !important 
+	
+
+
+	
+
+	&#publish-article  
+		text-align: center 
+		fieldset 
+			button#submit  
+				cursor: pointer 
+				color: #333 
+				background: url("../images/button.gif") 0 0 no-repeat 
+				width: 130px 
+				height: 30px 
+				border: none 
+

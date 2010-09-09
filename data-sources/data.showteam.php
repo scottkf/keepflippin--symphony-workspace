@@ -16,9 +16,9 @@
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://www.keepflippin.com',
-							'email' => 'scott@keepflippin.com'),
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-10-14T21:12:07+00:00');	
+					 'release-date' => '2010-07-07T21:13:54+00:00');	
 		}
 		
 		public function getSource(){
@@ -36,20 +36,20 @@
 				$result = "<showteam>
 				<person handle=\"team\">Alicia</person>
 				<person handle=\"team\">Brittany</person>
+				<person handle=\"team\">Kacie</person>
 				<person handle=\"team\">Lyara</person>
-				<person handle=\"team\">Haley</person>
-				<person handle=\"team\">Collin</person>
-				<person handle=\"team\">Amber</person>
 				<person handle=\"team\">Morgane</person>
 				<person handle=\"team\">BJ</person>
-				<person handle=\"team\">Alexis</person>
 				<person handle=\"team\">Ryan</person>
-				<person handle=\"team\">Julia</person>
-				<person handle=\"preteam\">Lexi</person>
-				<person handle=\"preteam\">Brooke</person>
-				<person handle=\"preteam\">Rachel</person>
-				<person handle=\"preteam\">Hannah</person>
-				<person handle=\"preteam\">Ryan</person>
+				<person handle=\"team\">Lexie</person>
+				<person handle=\"team\">Brooke</person>
+				<person handle=\"team\">Rachel</person>
+				<person handle=\"team\">Hannah</person>
+				<person handle=\"preteam\">Maya</person>
+				<person handle=\"preteam\">Danielle</person>
+				<person handle=\"preteam\">Macayla</person>
+				<person handle=\"preteam\">Hallie</person>
+				<person handle=\"preteam\">Gabrielle</person>
 				</showteam>";
 			}
 			catch(Exception $e){

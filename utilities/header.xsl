@@ -11,10 +11,10 @@
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="{$root}/locations">Locations</a></li> 
-				<li><a href="{$root}/halloween-carnival">Halloween Carnival</a></li>
-				<li><a href="{$root}/showteam">Showteam</a></li>
+				<!-- <li><a href="{$root}/locations">Locations</a></li> -->
 				<li><a href="{$root}/news">News</a></li>
+				<li><a href="{$root}/halloween-carnival">Halloween Carnival</a></li>
+                                <li><a href="{$root}/showteam">Showteam</a></li>
 				<li><a href="{$root}/about">About</a></li>
         <!-- <xsl:choose>
           <xsl:when test="/data/events/login-info/@logged-in = 'true'">

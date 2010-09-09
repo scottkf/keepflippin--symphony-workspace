@@ -41,9 +41,9 @@
 					<xsl:value-of select="'/'"/>
 					<xsl:value-of select="$this-place"/>
 					<xsl:value-of select="'/'"/>
-					<xsl:value-of select="$this-year"/>
-					<xsl:value-of select="'/'"/>
-					<xsl:value-of select="'09'"/>
+					<xsl:call-template name="session-starts">
+						<xsl:with-param name="session" select="$this-session"/>
+					</xsl:call-template>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="@handle"/>

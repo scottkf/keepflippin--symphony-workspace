@@ -61,12 +61,12 @@
   	  </p>
   	  <h3>You can also view</h3>
   		<ul>
-  			<li><a href="{$root}/schedule/calendar/{$session}/{$current-session-start}/{$current-place}">The monthly calendar</a></li>
-<!--  			<li>
-  				<a href="{$root}/schedule/{$current-session}/{$current-place}/{$session-start}">
-  					The schedule for <xsl:value-of select="substring-before($current-session, '-')"/>&#160;<xsl:value-of select="substring-after($current-session, '-')"/>
+  			<li><a href="{$root}/schedule/calendar/{$session}/{$this-year}/{$this-month}/{$current-place}">The monthly calendar</a></li>
+  			<!--<xsl:if test="$current-session = $next-session"><li>
+  				<a href="{$root}/schedule/{$next-session}/{$current-place}/{$session-start}">
+  					The schedule for <span style="text-transform: capitalize"><xsl:value-of select="substring-before($next-session, '-')"/></span>&#160;<xsl:value-of select="substring-after($next-session, '-')"/>
   				</a>
-  			</li> -->
+  			</li></xsl:if>-->
   		</ul>
   	</div>
     <div>
