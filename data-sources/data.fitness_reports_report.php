@@ -1,49 +1,56 @@
 <?php
 
 	require_once(TOOLKIT . '/class.datasource.php');
-	require_once(TOOLKIT . '/class.sectionmanager.php');
-	require_once(TOOLKIT . '/class.fieldmanager.php');
-	require_once(TOOLKIT . '/class.entrymanager.php');
 	
-	Class datasourcesection_schema_sessions extends Datasource{
+	Class datasourcefitness_reports_report extends Datasource{
 		
-		public $dsParamROOTELEMENT = 'section-schema';
+		public $dsParamROOTELEMENT = 'fitness-reports-report';
+		public $dsParamORDER = 'desc';
+		public $dsParamLIMIT = '100000';
+		public $dsParamREDIRECTONEMPTY = 'no';
+		public $dsParamSORT = 'system:id';
+		public $dsParamSTARTPAGE = '1';
 		
+		public $dsParamFILTERS = array(
+				'191' => '{$ds-fitness-reports}',
+		);
 		
-		
-		
-		
-		
+		public $dsParamINCLUDEDELEMENTS = array(
+				'data',
+				'member',
+				'activity',
+				'fitness-report'
+		);
+
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array("");
+			$this->_dependencies = array('$ds-fitness-reports');
 		}
 		
 		public function about(){
 			return array(
-					 'name' => 'Section Schema: Sessions',
+					 'name' => 'Fitness Reports: Report',
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://keepflippin.com',
 							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2010-10-02T00:50:38+00:00');	
+					 'release-date' => '2010-10-02T22:40:15+00:00');	
 		}
 		
 		public function getSource(){
-			return '22';
+			return '30';
 		}
 		
 		public function allowEditorToParse(){
-			return false;
+			return true;
 		}
 		
 		public function grab(&$param_pool){
 			$result = new XMLElement($this->dsParamROOTELEMENT);
 				
 			try{
-				$extension = $this->_Parent->ExtensionManager->create('section_schemas');
-				$extension->getSectionSchema($result, $this->getSource());
+				include(TOOLKIT . '/data-sources/datasource.section.php');
 			}
 			catch(Exception $e){
 				$result->appendChild(new XMLElement('error', $e->getMessage()));
@@ -51,9 +58,6 @@
 			}	
 
 			if($this->_force_empty_result) $result = $this->emptyXMLSet();
-			
-			
-			
 			return $result;
 		}
 	}

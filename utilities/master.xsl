@@ -55,7 +55,7 @@
 	<xsl:if test="$short = 0">
 		<link rel="icon" type="images/png" href="{$workspace}/images/icons/bookmark.png" />
 		<link rel="stylesheet" href="{$workspace}/css/screen.css" type="text/css" media="screen, projection" />
-		<xsl:if test="$root-page = 'schedule'">
+		<xsl:if test="$root-page = 'schedule' or $root-page = 'showteam'">
 			<link rel="stylesheet" href="{$workspace}/css/calendar.css" type="text/css" media="screen, projection" />
 		</xsl:if>
 		<xsl:if test="$root-page = 'photos'">

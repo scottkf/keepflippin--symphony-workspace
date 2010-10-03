@@ -18,20 +18,6 @@
 
 <xsl:template match="data">
 
-	<xsl:variable name="team">
-		<xsl:for-each select="showteam/person[@handle = 'team']">
-			<xsl:sort select="." />
-			<xsl:copy-of select="." />
-		</xsl:for-each>
-	</xsl:variable>
-
-	<xsl:variable name="preteam">
-		<xsl:for-each select="showteam/person[@handle = 'preteam']">
-			<xsl:sort select="." />
-			<xsl:copy-of select="." />
-		</xsl:for-each>
-	</xsl:variable>
-
 	<div id="left">
 		<img class="toppic" src="{$workspace}/images/67.jpg" />
 
@@ -48,13 +34,14 @@
 		</p>
                 <xsl:if test="count(performances/entry) &gt; 0">
                 <p>A list of our performances <a href="{$root}#performances">can be found by clicking here</a>.</p>
+                <p>Photos and videos of our performances <a href="{$root}/photos">can be found by clicking here</a>.</p>
                 </xsl:if>
 		<h4>Showteam Members</h4>
 		<table class="showteam">
 		   <tbody>
-				<xsl:for-each select="exsl:node-set($team)/person">
+				<xsl:for-each select="showteam-members/entry[type/item/@handle = 'team']">
 					<xsl:if test="position() mod 2 = 1">
-						<tr><td><xsl:value-of select="."/></td><td><xsl:value-of select="following-sibling::person[position()]"/></td></tr>
+						<tr><td><xsl:value-of select="name"/></td><td><xsl:value-of select="following-sibling::entry[position() and type/item/@handle = 'team']/name"/></td></tr>
 					</xsl:if>
 				</xsl:for-each>
 			</tbody>
@@ -62,9 +49,9 @@
 		<h4>Preteam members</h4>
 		<table class="preteam">
 		   <tbody>
-				<xsl:for-each select="exsl:node-set($preteam)/person">
+				<xsl:for-each select="showteam-members/entry[type/item/@handle = 'preteam']">
 					<xsl:if test="position() mod 2 = 1">
-						<tr><td><xsl:value-of select="."/></td><td><xsl:value-of select="following-sibling::person[position()]"/></td></tr>
+						<tr><td><xsl:value-of select="name"/></td><td><xsl:value-of select="following-sibling::entry[position() and type/item/@handle = 'preteam']/name"/></td></tr>
 					</xsl:if>
 				</xsl:for-each>
 			</tbody>

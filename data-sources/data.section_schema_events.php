@@ -24,10 +24,10 @@
 					 'name' => 'Section Schema: Events',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://www.keepflippin.com',
-							'email' => 'scott@keepflippin.com'),
+							'website' => 'http://keepflippin.com',
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-11-18T22:50:56+00:00');	
+					 'release-date' => '2010-10-02T00:50:38+00:00');	
 		}
 		
 		public function getSource(){
