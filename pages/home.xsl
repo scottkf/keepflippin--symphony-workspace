@@ -28,9 +28,11 @@
 	</div>
 	<div id="right">
 	  <xsl:apply-templates select="frontpage-articles/entry[important = 'Yes' and position() = 1]" mode="short"/>
-	  <xsl:apply-templates select="performances"/>
 		<h4><a href="{$root}/news">Continue reading for the latest news...</a></h4>
 	</div>
+<div style="height: 50px; width: 100%; clear:both"></div>
+	  <xsl:apply-templates select="performances"/>
+
 </xsl:template>
 
 </xsl:stylesheet>

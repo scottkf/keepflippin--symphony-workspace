@@ -12,8 +12,24 @@
 		<div id="menu">
 			<ul>
 				<!-- <li><a href="{$root}/locations">Locations</a></li> -->
-				<li><a href="{$root}/news">News</a></li>
-				<li><a href="{$root}/halloween-carnival">Halloween Carnival</a></li>
+				<li><a href="{$root}/news">News</a></li> 
+                                <li>
+                                    <a>
+                                        <xsl:attribute name="href">
+                                        <xsl:value-of select="$root" />
+					<xsl:value-of select="'/schedule'"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="$this-session"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:value-of select="$this-place"/>
+					<xsl:value-of select="'/'"/>
+					<xsl:call-template name="session-starts">
+						<xsl:with-param name="session" select="$this-session"/>
+					</xsl:call-template>
+                                        </xsl:attribute>
+                                        Schedule
+                                    </a>
+                                </li>
                                 <li><a href="{$root}/showteam">Showteam</a></li>
 				<li><a href="{$root}/about">About</a></li>
         <!-- <xsl:choose>

@@ -9,7 +9,7 @@
 		<div class="introduction">
 			<h2 class="header"><a href="{$root}/about">Halloween Carnival</a></h2>
 			<p>
-				Keep Flippin' Gymnastics presents our 7th annual Halloween Carnival. There will be games, a bounce house, food, <strong>fantastic prizes</strong>, raffles and a costume contest for children, parents and coaches!<br /><br />It will be held on <strong>Saturday, October 23th 2010</strong> from 5:00 to 8:00 P.M.
+				Keep Flippin' Gymnastics presents our 8th annual Halloween Carnival. There will be games, a bounce house, food, <strong>fantastic prizes</strong>, raffles and a costume contest for children, parents and coaches!<br /><br />It will be held on <strong>Saturday, October 23th 2010</strong> from 5:00 to 8:00 P.M.
 			</p>
 		</div>
  <div>

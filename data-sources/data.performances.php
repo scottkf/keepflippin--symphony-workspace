@@ -6,7 +6,7 @@
 		
 		public $dsParamROOTELEMENT = 'performances';
 		public $dsParamORDER = 'asc';
-		public $dsParamLIMIT = '5';
+		public $dsParamLIMIT = '10';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'start-date';
 		public $dsParamSTARTPAGE = '1';
@@ -34,9 +34,9 @@
 					 'author' => array(
 							'name' => 'scott tesoriere',
 							'website' => 'http://keepflippin.com',
-							'email' => 'scott@keepflippin.com'),
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-12-02T22:50:24+00:00');	
+					 'release-date' => '2010-10-08T22:24:17+00:00');	
 		}
 		
 		public function getSource(){

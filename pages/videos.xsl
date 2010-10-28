@@ -7,36 +7,15 @@
 
 <xsl:template name="top">
 	<div>
-		<xsl:choose>
-			<xsl:when test="$gallery != ''">
-				<h2>Photos</h2>
-				<p>
-				<b><xsl:value-of select="/data/galleries/entry/title"/></b> &#8212;
-				<xsl:value-of select="/data/galleries/entry/short-description"/>
-				</p>
-			</xsl:when>
-			<xsl:otherwise>
-				<h2>Media</h2>
-			</xsl:otherwise>
-		</xsl:choose>
+		<h2>Videos</h2>
 	</div>
 </xsl:template>
 
 <xsl:template match="data">
-	<xsl:choose>
-		<xsl:when test="$gallery != ''">
-			<xsl:call-template name="gallery" />
-		</xsl:when>
-		<xsl:otherwise>
-			<div id="tabs">
-			<div id="tabs-1">
-			<h4><a href="#tabs-2">Photos</a><a href="#tabs-2">Videos</a></h4>
+		<div id="left">
+			<h4>Photos</h4>
 			<h5>click on a gallery to view it's contents!</h5>
 			<xsl:call-template name="gallery-list"/>
-			</div>
-			<div id="tabs-2">
-				<h4>Videos</h4>
-			</div>
 		</div>
 		<div id="right">
 			<h4>On the web</h4>
@@ -62,9 +41,7 @@
           </li>
         </xsl:for-each>
       </ul>
-  	  </div>
-		</xsl:otherwise>
-	</xsl:choose>
+    </div>
 </xsl:template>
 
 

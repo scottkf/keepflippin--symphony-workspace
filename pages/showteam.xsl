@@ -19,7 +19,7 @@
 <xsl:template match="data">
 
 	<div id="left">
-		<img class="toppic" src="{$workspace}/images/67.jpg" />
+		<img class="toppic" src="{$workspace}/images/showteam-2010-limestone.jpg" />
 
 
 

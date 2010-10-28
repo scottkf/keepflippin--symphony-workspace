@@ -5,6 +5,7 @@ jQuery(document).ready(function() {
   jQuery("a.schedule-add").colorbox({transition:"elastic" });
 	var pageTracker = _gat._getTracker("UA-6824117-3");
 	pageTracker._trackPageview();
+	if (jQuery('#tabs').length > 0) jQuery("#tabs").tabs();
 	if (jQuery("#contact > #middle > #content > #right > form").length > 0) {
 		jQuery("#contact > #middle > #content > #right > form").submit(function() {
 			pageTracker._trackPageview('/contact/submit');			
