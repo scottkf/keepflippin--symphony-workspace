@@ -9,14 +9,14 @@
 
 h1 a, h2 a, h3 a, h4 a, h5 a
 	font-family: Helvetica Neue,Arial,Helvetica,sans-serif
-	color= !article_title_color
+	color: $article_title_color
 	&:visited
-		color= !article_title_visited_color
+		color: $article_title_visited_color
 	&:hover
-		color= !article_hover_color
+		color: $article_hover_color
 
 body
-	background-color= !body_bg_color
+	background-color: $body_bg_color
 	&#news
 		#middle
 			#content
@@ -53,7 +53,7 @@ ul.quicklinks
 
 #header
 	+container
-	color= !body_bg_text_color
+	color: $body_bg_text_color
 	background: url(../images/upper-right-stars.jpg) no-repeat bottom right
 	height: 234px
 	#badge
@@ -94,44 +94,44 @@ ul.quicklinks
 			#schedule
 				+nav-hover("schedule", 96px)
 			li
-				font-size= !nav_font_size
-				background= !nav_background 
+				font-size: $nav_font_size
+				background: $nav_background 
 				border-right: 1px solid #111d29
 				border-bottom: 2px solid #2c4d6f
 				padding: 0px
 				&:first-child
 					border-left: 1px solid #111d29
 				a
-					height= !nav_height - !nav_font_size - 3
+					height: $nav_height - $nav_font_size - 3
 					display: block
-					padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
-					padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
+					padding-top: ($nav_height - $nav_font_size - 3) / 2 - 2
+					padding-bottom: ($nav_height - $nav_font_size - 3) / 2 + 4
 					padding-left: 20px
 					padding-right: 20px
 					text-decoration: none
 					border: 1px solid #467db7
-					border-bottom= 2px "solid" #365e88
+					border-bottom: 2px "solid" #365e88
 					color: #bcd0e8
 					&:hover
 						color: white
 						padding-left: 19px
 						padding-right: 19px
-						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 1
-						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 3
-						border-left= 2px "solid" #365e88 - #111
-						border-right= 2px "solid" #365e88 - #111
+						padding-top: ($nav_height - $nav_font_size - 3) / 2 - 1
+						padding-bottom: ($nav_height - $nav_font_size - 3) / 2 + 3
+						border-left: 2px "solid" #365e88 - #111
+						border-right: 2px "solid" #365e88 - #111
 			li.selected
 				border-right: 1px solid black
 				background: white
 				border-bottom: 3px solid white
 				a
 					border: 1px solid white
-					color= !page_header_color
+					color: $page_header_color
 					&:hover
 						padding-left: 20px
 						padding-right: 20px
-						padding-top= (!nav_height - !nav_font_size - 3) / 2 - 2
-						padding-bottom= (!nav_height - !nav_font_size - 3) / 2 + 4
+						padding-top: ($nav_height - $nav_font_size - 3) / 2 - 2
+						padding-bottom: ($nav_height - $nav_font_size - 3) / 2 + 4
 						
 #page-not-found
 	#middle
@@ -156,12 +156,12 @@ ul.quicklinks
 				height: 119px
 				width: 150px
 				top: 110px
-				left= !blueprint_grid_width * 23.5
+				left: $blueprint_grid_width * 23.5
 				z-index: 2
 			#left, #right
 				+column(16)
 				h3
-					color= !article_title_color
+					color: $article_title_color
 				h5
 					margin-bottom: 5px
 					font-size: 1.1em
@@ -208,7 +208,7 @@ ul.quicklinks
 						img
 							border: 1px solid #aaa
 
-#photos
+#photos, #video
 	#middle
 		#content
 			#left
@@ -236,7 +236,7 @@ ul.quicklinks
 								border: 1px dashed #ddd
 							&:hover
 								img
-									border= 1px "solid" #aaa
+									border: 1px "solid" #aaa
 								h5
 									text-decoration: underline
 
@@ -250,7 +250,7 @@ ul.quicklinks
 			.introduction
 				+column(12)
 				h3, h4
-					color= !article_title_color
+					color: $article_title_color
 					margin-bottom: 10px
 				ul
 					list-style-type: square
@@ -267,12 +267,12 @@ ul.quicklinks
 				ol
 					margin-left: 25px
 					font-size: 1.2em
-				color= !body_bg_color
+				color: $body_bg_color
 				+column(7)
 			#right
 				+column(17, true)
 				h3
-					color= !article_title_color
+					color: $article_title_color
 
 #home 
 	#middle
@@ -323,7 +323,7 @@ ul.quicklinks
 					font-size: 1.3em
 					font-weight: bold
 					margin-bottom: 7px
-					color= !article_title_color
+					color: $article_title_color
 					&.email
 						padding-left: 32px
 						background: url(../images/icons/mail-32.png) no-repeat scroll center left
@@ -366,7 +366,7 @@ ul.quicklinks
 	height: 94px
 	width: 97px
 	top: 155px
-	left= !blueprint_grid_width * 16.5
+	left: $blueprint_grid_width * 16.5
 	z-index: 2
 
 
@@ -389,7 +389,7 @@ ul.quicklinks
 				font-size: 1.4em
 				&.selected
 					a
-						color= !page_header_color + #111
+						color: $page_header_color + #111
 				a
 		p
 			margin-bottom: 10px
@@ -401,10 +401,10 @@ ul.quicklinks
 			line-height: 1.1em
 			font-size: 2.5em
 			letter-spacing: -0.04em
-			color= !page_header_color
+			color: $page_header_color
 			text-transform: capitalize
 			a
-				color= !page_header_color
+				color: $page_header_color
 		> div
 			+container
 			position: relative
@@ -413,11 +413,11 @@ ul.quicklinks
 				+column(10)
 				p
 					a:hover
-						color= #2e5378 - #111
+						color: #2e5378 - #111
 				h2
 					font-size: 3.5em
 					a
-						color= !page_header_color
+						color: $page_header_color
 						&:hover
 							text-decoration: none
 			.introduction + div
@@ -435,9 +435,9 @@ ul.quicklinks
 		#birthdays, #summercamp
 			#badge-home
 				top: 255px
-				left= !blueprint_grid_width * 18.5
+				left: $blueprint_grid_width * 18.5
 			h3, h4
-				color= !article_title_color
+				color: $article_title_color
 				margin-bottom: 10px
 			ul
 				list-style-type: square
@@ -451,7 +451,7 @@ ul.quicklinks
 		#summercamp
 			#badge-home
 				top: 150px
-				left= !blueprint_grid_width * 23
+				left: $blueprint_grid_width * 23
 			.introduction
 				+column(14)
 			.introduction + div
@@ -477,7 +477,7 @@ ul.quicklinks
 				margin-bottom: 3px
 			h3
 				font-size: 1.3em
-				color= !article_title_color
+				color: $article_title_color
 			p
 				margin-bottom: 10px
 			ul
@@ -500,9 +500,9 @@ ul.quicklinks
 						margin-bottom: 8px
 				&:hover
 					div
-						border= 1px "solid" #7e848e - #333
+						border: 1px "solid" #7e848e - #333
 					img
-						border= 1px "solid" #b2ae96 - #333
+						border: 1px "solid" #b2ae96 - #333
 				\+p
 					margin: 0px
 					padding: 0px
@@ -519,7 +519,7 @@ ul.quicklinks
 					padding-top: 0px
 			p
 			h4
-				color= !article_title_color
+				color: $article_title_color
 			img
 				float: right
 				margin-left: 10px
@@ -538,7 +538,7 @@ ul.quicklinks
 					background-color: #3B6795
 					.left
 						img
-							border= 1px "inset" #7e848e - #333
+							border: 1px "inset" #7e848e - #333
 					.right
 						p
 							color: white
@@ -578,12 +578,12 @@ ul.quicklinks
 			> .article
 				+column(5)
 				a
-					color= !nav_background
+					color: $nav_background
 			> .article + .article
 			hr
 				clear: both
 			h4
-				color= !article_title_color
+				color: $article_title_color
 			table.camp
 				width: 300px
 				th
@@ -597,7 +597,7 @@ ul.quicklinks
 			position: relative
 			padding-left: 0px
 			h4, h3
-				color= !article_title_color
+				color: $article_title_color
 			hr
 				color: #fff
 			.article
@@ -620,7 +620,7 @@ ul.quicklinks
 
 #footer
 	+container
-	color= !body_bg_text_color
+	color: $body_bg_text_color
 	padding-top: 57px
 	padding-bottom: 50px
 	background: url(../images/lower-right-stars.jpg) no-repeat top right
@@ -663,7 +663,7 @@ ul.quicklinks
 						width: 80px
 		h5
 			a
-				color= !article_title_color + #333
+				color: $article_title_color + #333
 		h2
 			color: #bcd0e8
 			> a
@@ -677,11 +677,11 @@ ul.quicklinks
 		h3
 			margin-bottom: 3px
 			a
-				color= !article_title_color + #333
+				color: $article_title_color + #333
 				font-size: 14px
 				font-weight: normal
 				&:hover
-					color= !article_title_color + #555
+					color: $article_title_color + #555
 
 			p
 	hr
