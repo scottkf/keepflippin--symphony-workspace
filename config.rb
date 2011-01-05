@@ -4,6 +4,4 @@ css_dir = "css"
 sass_dir = "src"
 images_dir = "images"
 output_style = :compressed
-# To enable relative image paths using the images_url() function:
-# http_images_path = :relative
-http_images_path = :relative
+relative_assets = true
