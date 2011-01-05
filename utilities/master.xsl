@@ -67,7 +67,8 @@
 		<link rel="stylesheet" href="{$workspace}/css/print.css" type="text/css" media="print" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{$workspace}/css/colorbox.css" />
 		<!--[if IE]><link rel="stylesheet" href="{$workspace}/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/jquery.colorbox-min.js"></script>
   	<script type="text/javascript" src="{$workspace}/javascript/analytics.js"></script>
 		<script type="text/javascript" src="{$workspace}/javascript/site.js"></script>

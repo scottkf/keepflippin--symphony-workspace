@@ -29,16 +29,23 @@
 	<xsl:param name="admin" />
 	<ul id="class">
 	<xsl:for-each select="classes/entry[hidden = 'No']">
-	<li>
+	<li style="padding-left: 15px">
 		<xsl:if test="position() mod 2 = 0 or last() = position()">
 			<xsl:attribute name="class">
 				<xsl:value-of select="'last'"/>
 			</xsl:attribute>
 		</xsl:if>
 		<div class='left'>
+                                <xsl:if test="class-name/@handle != 'team'">
 				<a href="{$root}/classes/{class-name/@handle}/">
 					<img src="{$workspace}/{image/@path}/{image/filename}" />
 	 			</a>
+                                </xsl:if>
+                                <xsl:if test="class-name/@handle = 'team'">
+				<a href="{$root}/showteam/">
+					<img src="{$workspace}/{image/@path}/{image/filename}" />
+	 			</a>
+                                </xsl:if>
 		</div>
 		<div class='right'>
 			<h3>
@@ -87,7 +94,7 @@
 		  	  </xsl:if>
 				<xsl:copy-of select="description/*"/>
 				<xsl:call-template name="important" />			
-			  	<xsl:if test="class-name/@handle != 'power-tumbling' and class-name/@handle != 'tumble-with-me' and class-name/@handle != 'open-gym' and class-name/@handle != 'middle-school'">
+			  	<xsl:if test="class-name/@handle != 'power-tumbling' and class-name/@handle != 'tumble-with-me' and class-name/@handle != 'open-gym' and class-name/@handle != 'middle-school' and class-name/@handle != 'open-freerunning'">
 					<h3>What is the maximum number of students in a class?</h3>
 					<p>
 						<xsl:choose>

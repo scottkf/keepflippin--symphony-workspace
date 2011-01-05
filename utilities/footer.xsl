@@ -11,9 +11,9 @@
 			<div id="classes-bottom">
 				<h2><a href="{$root}/classes">Our Classes - for any skill level</a></h2>
 				<p>Our USA Program is comprised of three different skill levels: <a href="{$root}/classes/red">Red</a> for beginners, <a href="{$root}/classes/white">White</a> for Intermediate gymnasts, and
-	               <a href="{$root}/classes/blue">Blue</a> for Advanced gymnasts.</p>
+	               <a href="{$root}/classes/blue">Blue</a> for Advanced gymnasts. </p>
 		
-				<p>In addition, we also have classes available <a href="{$root}/classes/middle-school">Middle School students</a>, <a href="{$root}/classes/adult-tumbling">High School students and adults</a>, as well as <a
+				<p>In addition, we also have classes available <a href="{$root}/classes/middle-school">Middle School students</a>, <a href="{$root}/classes/adult-tumbling">High School students and adults</a>, a <a href="{$root}/classes/open-freerunning">drop-in freerunning (parkour) style class, </a>as well as <a
 	               href="{$root}/classes/open-gym">Open Gym</a>, where students can focus on what they wish.</p><p>All of these classes are available at our Jupiter, FL location!</p>
 			</div>
 		</div>

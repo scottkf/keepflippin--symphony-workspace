@@ -2,24 +2,24 @@
 @import blueprint.sass
 @import compass/utilities.sass
 
-!galleryw = 160px
-!galleryh = 138px
-!gallerycols = 5
-!picw = 260px
-!pich = 195px
-!piccols = 3
+$galleryw = 160px
+$galleryh = 138px
+$gallerycols = 5
+$picw = 260px
+$pich = 195px
+$piccols = 3
 
 
-!gallery = !blueprint_grid_columns / !gallerycols
-!pic = !blueprint_grid_columns / !piccols
+$gallery = $blueprint_grid_columns / $gallerycols
+$pic = $blueprint_grid_columns / $piccols
 
-#gallery-list, #gallery
+#gallery-list, #gallery, #video-list
 	+horizontal-list(0px)
 	li
 		margin-bottom: 35px
-		+column(!gallery)
+		+column($gallery)
 		&.last
-			+column(!gallery,true)
+			+column($gallery,true)
 		margin-right: 0px
 		p.tags, p.date, p.comments
 			margin-top: .2em
@@ -28,7 +28,7 @@
 			font-size: 1.2em
 			margin-bottom: 0em
 			white-space: normal
-			width= !galleryw
+			width: $galleryw
 			a
 				display: inline
 			&.comments
@@ -43,16 +43,16 @@
 			text-decoration: none
 			display: block
 			position: relative
-			width= !galleryw
-			height= !galleryh
+			width: $galleryw
+			height: $galleryh
 			margin-bottom: 5px
 			& p.title
 				font-size: 1.1em
 				color: black
 			img
 			div
-				width= !galleryw
-				height= !galleryh - 18
+				width: $galleryw
+				height: $galleryh - 18
 				display: none
 				&.shade
 					background-color: #000000
@@ -74,8 +74,8 @@
 						white-space: normal
 						padding: 5px
 						border: 1px solid #aaa
-						width= !galleryw - 10
-						height= !galleryh
+						width: $galleryw - 10
+						height: $galleryh
 
 		a:hover
 			& p.title
@@ -89,19 +89,19 @@
 #gallery
 	li
 		margin-bottom: 30px
-		+column(!pic)
+		+column($pic)
 		&.last
-			+column(!pic,true)
+			+column($pic,true)
 		a
-			width= !picw
-			height= !pich
+			width: $picw
+			height: $pich
 			div
-				width= !picw
-				height= !pich
+				width: $picw
+				height: $pich
 				&.shade
 					opacity: 0.2
 				&.description
 					p
-						width= !picw - 10
-						height= !pich
+						width: $picw - 10
+						height: $pich
 				

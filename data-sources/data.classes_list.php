@@ -6,7 +6,7 @@
 		
 		public $dsParamROOTELEMENT = 'classes-list';
 		public $dsParamORDER = 'desc';
-		public $dsParamLIMIT = '20';
+		public $dsParamLIMIT = '25';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamSORT = 'system:id';
 		public $dsParamSTARTPAGE = '1';
@@ -32,10 +32,10 @@
 					 'name' => 'Classes list',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://localhost/kf',
-							'email' => 'scott@keepflippin.com'),
+							'website' => 'http://keepflippin.com',
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-08-05T14:15:31+00:00');	
+					 'release-date' => '2011-01-04T20:28:54+00:00');	
 		}
 		
 		public function getSource(){

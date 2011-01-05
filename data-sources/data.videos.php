@@ -12,6 +12,7 @@
 		public $dsParamSTARTPAGE = '1';
 		public $dsParamINCLUDEDELEMENTS = array(
 				'title',
+				'image-thumb',
 				'link',
 				'date',
 				'showteam'
@@ -30,7 +31,7 @@
 							'website' => 'http://keepflippin.com',
 							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2010-08-26T20:29:27+00:00');	
+					 'release-date' => '2010-10-28T23:00:57+00:00');	
 		}
 		
 		public function getSource(){

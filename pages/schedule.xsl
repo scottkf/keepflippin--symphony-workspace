@@ -57,7 +57,7 @@
   		  </p>  		  
   		</xsl:if>
   		<p>
-  		  All gymnasts will be evaluated before signing up for a class. Any Red, White or Blue class that does not specify a gender is a girls class. 
+  		  All gymnasts will be evaluated before signing up for a class. Any Red, White or Blue class that does not specify a gender is a girls class. NP (non-performance) classes do not participate in the end of the year show.
   	  </p>
   	  <h3>You can also view</h3>
   		<ul>

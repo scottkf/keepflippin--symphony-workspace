@@ -5,10 +5,10 @@
 	Class datasourcefitness_test_participants extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'fitness-test-participants';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '1000';
 		public $dsParamREDIRECTONEMPTY = 'no';
-		public $dsParamSORT = 'system:id';
+		public $dsParamSORT = 'name';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -33,7 +33,7 @@
 							'website' => 'http://keepflippin.com',
 							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2010-10-02T19:47:03+00:00');	
+					 'release-date' => '2010-11-12T20:01:32+00:00');	
 		}
 		
 		public function getSource(){

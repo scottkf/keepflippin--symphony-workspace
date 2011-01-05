@@ -10,33 +10,47 @@
 		<xsl:choose>
 			<xsl:when test="$gallery != ''">
 				<h2>Photos</h2>
-				<p>
-				<b><xsl:value-of select="/data/galleries/entry/title"/></b> &#8212;
-				<xsl:value-of select="/data/galleries/entry/short-description"/>
-				</p>
-			</xsl:when>
-			<xsl:otherwise>
-				<h2>Media</h2>
-			</xsl:otherwise>
-		</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+				<h2 class="header"><a href="{$root}/about">Media</a></h2>
+				</xsl:otherwise>
+			</xsl:choose>
 	</div>
 </xsl:template>
 
 <xsl:template match="data">
+	<style type="text/css">
+		.ui-tabs .ui-tabs-nav { margin: 0em; padding: 0; }
+		.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; margin: 0 0em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+		.ui-tabs .ui-tabs-nav li a { float: left; padding: 0em 2em 0.2em 2em; text-decoration: none;}
+		.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; font-weight: bold; background: #EAF0F6;}
+		.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; font-weight: bold;}
+		.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } 
+		.ui-tabs .ui-tabs-panel { display: block; border-width: 0;  background: #EAF0F6; }
+		.ui-tabs .ui-tabs-hide { display: none !important; }
+		.ui-tabs #fragment-1, .ui-tabs #fragment-2 { clear: both; padding: 7px; color: #333; }
+		#photos #middle #content #left .ui-tabs #fragment-1 h5, #photos #middle #content #left .ui-tabs #fragment-2 h5 { margin-bottom: 1em; margin-top: 1.5em; color: #333; }
+	</style>
 	<xsl:choose>
 		<xsl:when test="$gallery != ''">
 			<xsl:call-template name="gallery" />
 		</xsl:when>
 		<xsl:otherwise>
-			<div id="tabs">
-			<div id="tabs-1">
-			<h4><a href="#tabs-2">Photos</a><a href="#tabs-2">Videos</a></h4>
-			<h5>click on a gallery to view it's contents!</h5>
+		<div id="left">
+		<div id="tabs">
+			<ul>
+				<li><h2><a href="#fragment-1">Photos</a></h2></li>
+				<li><h2><a href="#fragment-2">Videos</a></h2></li>
+			</ul>
+			<div id="fragment-1">
+			<h5>Click on a gallery to view it's contents!</h5>
 			<xsl:call-template name="gallery-list"/>
 			</div>
-			<div id="tabs-2">
-				<h4>Videos</h4>
+			<div id="fragment-2">
+				<h5>Clicking on a video will take you to the video! (externally)</h5>
+				<xsl:call-template name="video-list"/>
 			</div>
+		</div>
 		</div>
 		<div id="right">
 			<h4>On the web</h4>
@@ -45,11 +59,6 @@
     			<li><a href="http://www.facebook.com/pages/Jupiter-FL/Keep-Flippin/208723055787?ref=nf"><img src="{$workspace}/images/icons/facebook_32.png" alt="view us on facebook" title="view us on facebook" /></a></li>
     			<li><a href="{$root}/rss"><img src="{$workspace}/images/icons/rss-32x32.png" alt="rss" title="rss" /></a></li>
         </ul>
-      <h4>Videos</h4>
-      <ul style="list-style-type: none; margin-left: 0em; padding-left: 0em">
-        <xsl:apply-templates select="videos/entry" />
-      </ul>
-
       <h4>Programs&#160;<img src="{$workspace}/images/icons/icon_a_acrobat.png" alt="acrobat" /></h4>
       <h5>from the end of the year show, <a href="http://get.adobe.com/reader/">in pdf format</a>.</h5>
       <ul class="programs">

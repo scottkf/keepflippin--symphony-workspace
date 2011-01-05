@@ -64,20 +64,43 @@
 	<a href="{$root}/photos">Back to the gallery listing!</a>
 </xsl:template>
 
-<xsl:template match="videos/entry">
-        <li>
-        <a href="{link}">
-                <xsl:value-of select="title" />
-        </a>,
-        <xsl:call-template name="format-date">
-                <xsl:with-param name="date" select="date"/>
-                <xsl:with-param name="format" select="'M D, Y'"/>
-        </xsl:call-template>
-        <xsl:if test="showteam">
-                <br />
-                <small>- performed by the <a href="{$root}/showteam">showteam</a></small>                
-        </xsl:if>
-        </li>
+<xsl:template name="video-list">
+	<ul id="video-list">
+		<xsl:for-each select="videos/entry">
+			<li>
+				<xsl:choose>
+					<xsl:when test="position() mod $gallerycols = 0 or position() = last()">						
+						<xsl:attribute name="class">
+							<xsl:text>last</xsl:text>
+						</xsl:attribute>
+					</xsl:when>
+					<xsl:when test="position() mod $gallerycols = 1">
+						<xsl:attribute name="class">
+							<xsl:text>first</xsl:text>
+						</xsl:attribute>						
+					</xsl:when>
+				</xsl:choose>
+				<a href="{link}">
+					<img src="{$root}/image/2/{$gallerywidth}/120/3{image-thumb/@path}/{image-thumb/filename}" />
+					<div class="shade" />
+					<div class="description">
+						<p>
+							Performed
+			        <xsl:if test="showteam = 'Yes'">
+			                <small> by the Keep Flippin' Gymnastics Showteam</small>                
+			        </xsl:if>
+					 on
+			        <xsl:call-template name="format-date">
+			                <xsl:with-param name="date" select="date"/>
+			                <xsl:with-param name="format" select="'M D, Y'"/>
+			        </xsl:call-template>.
+						</p>
+					</div>
+					<p class="title"><xsl:value-of select="title"/></p>
+				</a>
+			</li>
+		</xsl:for-each>
+	</ul>
 </xsl:template>
 
 <xsl:template name="photo">

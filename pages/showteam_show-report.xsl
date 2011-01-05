@@ -36,7 +36,7 @@
 <xsl:for-each select="/data/activities/entry">
 <xsl:variable name="activity-id" select="@id" />
 <tr class="hour-row">
-<th class="hour"> <xsl:if test="metric != 'none'">(in <xsl:value-of select="metric" />)</xsl:if><h3><xsl:value-of select="name" /></h3></th>
+<th class="hour" style="font-size: 0.9em"> <xsl:if test="metric != 'none'">(in <xsl:value-of select="metric" />)</xsl:if><h3><xsl:value-of select="name" /></h3></th>
 <xsl:for-each select="/data/fitness-test-participants/entry">
   <xsl:variable name="person-id" select="@id" />
   <td>

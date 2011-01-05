@@ -13,14 +13,13 @@
 		
 		public $dsParamFILTERS = array(
 				'118' => '{$ds-session}',
-				'98' => '153,157,160,161,162,163,164,165,956,1030,1036',
+				'98' => '153,157,160,161,162,163,164,165,956,1030,1036,2399',
 				'109' => '{$ds-schedule-places-events}',
 				'101' => '{$year:$this-year}-{$month:$this-month}-01 to {$year:$this-year}-{$month:$this-month}-31',
 		);
 		
 		public $dsParamINCLUDEDELEMENTS = array(
 				'name',
-				'description',
 				'class',
 				'date'
 		);
@@ -35,10 +34,10 @@
 					 'name' => 'Schedule',
 					 'author' => array(
 							'name' => 'scott tesoriere',
-							'website' => 'http://imac.local/kf',
-							'email' => 'scott@keepflippin.com'),
+							'website' => 'http://keepflippin.com',
+							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2009-06-15T19:18:48+00:00');	
+					 'release-date' => '2011-01-04T23:12:18+00:00');	
 		}
 		
 		public function getSource(){

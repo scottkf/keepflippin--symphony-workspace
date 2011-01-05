@@ -695,7 +695,7 @@ URL: http://gist.github.com/115859
 		</xsl:choose>
 	</xsl:variable>
 	<xsl:if test="$is-logged-in">
-		<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate} {$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mde={$mode}&amp;class=1">(+)</a></small>		
+		<small><a class="schedule-add" title="add an event" href="{$root}/schedule/add/{$session}/?short&amp;start={$mdate}%20{$time}&amp;end={$fdate} {$time}&amp;session={$ses}&amp;place={$pl}&amp;units={$units}&amp;mde={$mode}&amp;class=1">(+)</a></small>		
 	</xsl:if>
 </xsl:template>
 
