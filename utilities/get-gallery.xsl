@@ -25,6 +25,10 @@
 						<xsl:attribute name="class">
 							<xsl:text>first</xsl:text>
 						</xsl:attribute>						
+						<xsl:attribute name="style">
+							<xsl:text>clear: both</xsl:text>
+						</xsl:attribute>
+
 					</xsl:when>
 				</xsl:choose>
 				<a>
@@ -33,7 +37,7 @@
 						<xsl:text>/photos/</xsl:text>
 						<xsl:value-of select="title/@handle"/>
 					</xsl:attribute>
-					<img src="{$root}/image/2/{$gallerywidth}/120/3{key-photo/@path}/{key-photo/item/filename}" />
+					<img src="{$root}/image/2/{$gallerywidth}/120/3{key-photo/item/image/@path}/{key-photo/item/image/filename}" />
 					<div class="shade" />
 					<div class="description">
 						<p>
@@ -161,11 +165,11 @@
 <xsl:template match="item" mode="photo">
 	<li>
 		<xsl:call-template name="photo">
-			<xsl:with-param name="filename" select="filename"/>
-			<xsl:with-param name="path" select="../@path" />
-			<xsl:with-param name="date" select="meta/@creation" />
-			<xsl:with-param name="date" select="meta/@creation" />
-			<xsl:with-param name="desc" select="../short-description" />
+			<xsl:with-param name="filename" select="image/filename"/>
+			<xsl:with-param name="path" select="image/@path" />
+			<xsl:with-param name="date" select="image/meta/@creation" />
+			<xsl:with-param name="date" select="image/meta/@creation" />
+			<xsl:with-param name="desc" select="short-description" />
 			<xsl:with-param name="id" select="@related-id" />
 		</xsl:call-template>
 	</li>	

@@ -10,6 +10,7 @@
 		<xsl:choose>
 			<xsl:when test="$gallery != ''">
 				<h2>Photos</h2>
+                                <a href="{$root}/photos">Back to the gallery list</a>
 				</xsl:when>
 				<xsl:otherwise>
 				<h2 class="header"><a href="{$root}/about">Media</a></h2>
