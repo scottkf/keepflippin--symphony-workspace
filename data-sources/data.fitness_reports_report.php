@@ -12,6 +12,8 @@
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
+				'182' => '{$ds-fitness-test-participants-by-name}',
+				'183' => '{$activity-id}',
 				'191' => '{$ds-fitness-reports}',
 		);
 		
@@ -24,7 +26,7 @@
 
 		public function __construct(&$parent, $env=NULL, $process_params=true){
 			parent::__construct($parent, $env, $process_params);
-			$this->_dependencies = array('$ds-fitness-reports');
+			$this->_dependencies = array('$ds-fitness-test-participants-by-name', '$ds-fitness-reports');
 		}
 		
 		public function about(){
@@ -35,7 +37,7 @@
 							'website' => 'http://keepflippin.com',
 							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2010-10-02T22:40:15+00:00');	
+					 'release-date' => '2011-02-22T15:47:27+00:00');	
 		}
 		
 		public function getSource(){

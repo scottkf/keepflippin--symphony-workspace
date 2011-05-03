@@ -16,7 +16,7 @@
                         <xsl:with-param name="format" select="'M d, Y'"/>
                         </xsl:call-template></strong> and we added the following comments:</p><p>
                         <em><xsl:value-of select="/data/fitness-reports/entry/comments" /></em>
-                        <br/><a href="{$root}/showteam/show-report">Back to the list of reports</a>
+                        <br/><br />Click on a name for a detailed graph of overall progress. Or go <a href="{$root}/showteam/show-report">back to the list of reports</a>
 			</p></xsl:if>
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 <tbody>
 <tr class="days"><th></th>
 <xsl:for-each select="/data/fitness-test-participants/entry">
-  <th><xsl:value-of select="name" /></th>
+  <th><a href="{$root}/showteam/fitness-report-graph/{name}"><xsl:value-of select="name" /></a></th>
 </xsl:for-each>
 </tr>
 <xsl:for-each select="/data/activities/entry">
@@ -40,8 +40,9 @@
 <xsl:for-each select="/data/fitness-test-participants/entry">
   <xsl:variable name="person-id" select="@id" />
   <td>
-
+    <a href="{$root}/showteam/fitness-report-graph/{name}/{$activity-id}">
     <xsl:value-of select="/data/fitness-reports-report/entry[(activity/item/@id = $activity-id) and (member/item/@id = $person-id) and (fitness-report/item/@id = $ds-fitness-reports)]/data" />
+     </a>
   </td>
 </xsl:for-each>
 </tr>
@@ -51,6 +52,9 @@
 </div>
 		</xsl:when>
 		<xsl:otherwise>
+          <xsl:if test="/data/events/login-info/@logged-in = 'true'">
+            <h2><a href="{$root}/showteam/add-report/">Add a new report</a></h2> 
+          </xsl:if>
                   <xsl:for-each select="/data/fitness-reports/entry">
                     <h3><a href="{$root}/showteam/show-report/{@id}">    
                       <xsl:call-template name="format-date">

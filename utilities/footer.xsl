@@ -17,7 +17,7 @@
 	               href="{$root}/classes/open-gym">Open Gym</a>, where students can focus on what they wish.</p><p>All of these classes are available at our Jupiter, FL location!</p>
 			</div>
 			<div id="showteam-bottom">
-				<h2><a href="{$root}/classes">Our Showteam - performance gymnasts</a></h2>
+				<h2><a href="{$root}/showteam">Our Showteam - performance gymnasts</a></h2>
 				<p>Our performing Showteam has been featured at <a href="http://disney.com">Disney World</a> and <a href="http://www.universalorlando.com">Universal Studios!</a>
 </p><p>
 Locally, they have appeared at <a href="http://www.artigras.org/">Artigras</a>, Jupiter/Tequesta Art Fair, <a href="http://www.jupiter.fl.us/JUBILEE/">Jupiter Jubilee</a>, Abacoa, <a href="http://www.sunfest.com/">SunFest</a> and numerous fairs. They also returned to "<a href="http://www.gktw.org/">Give Kids the World</a>", a resort for children with terminal illnesses in Kissimmee. Our Showteam's extraordinary talent, dedication and hard work inspires all of our gymnasts!

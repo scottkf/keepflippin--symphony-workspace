@@ -12,7 +12,9 @@
 		<div id="menu">
 			<ul>
 				<!-- <li><a href="{$root}/locations">Locations</a></li> -->
-				<li><a href="{$root}/news">News</a></li> 
+				<li><a href="{$root}/summer-camp">Summer Camp</a></li> 
+				<!-- <li><a href="{$root}/end-of-the-year-show-2011">End of the Year Show</a></li> -->
+				<!--<li><a href="{$root}/news">News</a></li>-->
                                 <li>
                                     <a>
                                         <xsl:attribute name="href">

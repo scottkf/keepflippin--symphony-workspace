@@ -5,11 +5,11 @@
 	Class datasourcefitness_reports extends Datasource{
 		
 		public $dsParamROOTELEMENT = 'fitness-reports';
-		public $dsParamORDER = 'desc';
+		public $dsParamORDER = 'asc';
 		public $dsParamLIMIT = '1000';
 		public $dsParamREDIRECTONEMPTY = 'no';
 		public $dsParamPARAMOUTPUT = 'system:id';
-		public $dsParamSORT = 'system:date';
+		public $dsParamSORT = 'date';
 		public $dsParamSTARTPAGE = '1';
 		
 		public $dsParamFILTERS = array(
@@ -34,7 +34,7 @@
 							'website' => 'http://keepflippin.com',
 							'email' => 'scott.tesoriere@gmail.com'),
 					 'version' => '1.0',
-					 'release-date' => '2010-10-02T22:37:55+00:00');	
+					 'release-date' => '2011-02-22T15:48:01+00:00');	
 		}
 		
 		public function getSource(){
