@@ -29,7 +29,7 @@
 <table summary="calendar">
 <tbody>
 <tr class="days"><th></th>
-<xsl:for-each select="/data/fitness-test-participants/entry">
+<xsl:for-each select="/data/fitness-test-participants/entry[fitness-participant='Yes' and current-member='Yes']">
   <th><a href="{$root}/showteam/fitness-report-graph/{name}"><xsl:value-of select="name" /></a></th>
 </xsl:for-each>
 </tr>
@@ -37,7 +37,7 @@
 <xsl:variable name="activity-id" select="@id" />
 <tr class="hour-row">
 <th class="hour" style="font-size: 0.9em"> <xsl:if test="metric != 'none'">(in <xsl:value-of select="metric" />)</xsl:if><h3><xsl:value-of select="name" /></h3></th>
-<xsl:for-each select="/data/fitness-test-participants/entry">
+<xsl:for-each select="/data/fitness-test-participants/entry[fitness-participant='Yes' and current-member='Yes']">
   <xsl:variable name="person-id" select="@id" />
   <td>
     <a href="{$root}/showteam/fitness-report-graph/{name}/{$activity-id}">

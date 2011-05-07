@@ -26,7 +26,7 @@
 <xsl:for-each select="/data/activities/entry">
 <xsl:variable name="activity-id" select="@id" />
   <xsl:if test="count(/data/fitness-reports-report/entry/activity[item/@id = $activity-id]) > 0">
-<xsl:for-each select="/data/fitness-test-participants-by-name/entry">
+<xsl:for-each select="/data/fitness-test-participants-by-name/entry[fitness-participant='Yes' and current-member='Yes']">
   <xsl:variable name="person-id" select="@id" />
   <row>
   <string><xsl:value-of select="name" /> - <xsl:value-of select="/data/activities/entry[@id = $activity-id]/name" /> <xsl:if test="/data/activities/entry[@id = $activity-id]/metric/item != 'none'"> (in <xsl:value-of select="/data/activities/entry[@id = $activity-id]/metric/item" />)</xsl:if></string>
